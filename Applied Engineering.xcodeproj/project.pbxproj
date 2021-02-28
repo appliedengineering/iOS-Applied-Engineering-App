@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33B2177025EC61C100AE4BAD /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 33B2176F25EC61C100AE4BAD /* Assets */; };
 		33B8851025EC5F50002B22A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8850F25EC5F50002B22A3 /* AppDelegate.swift */; };
 		33B8851225EC5F50002B22A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8851125EC5F50002B22A3 /* SceneDelegate.swift */; };
 		33B8851425EC5F50002B22A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8851325EC5F50002B22A3 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		33B2176F25EC61C100AE4BAD /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		33B8850C25EC5F50002B22A3 /* Applied Engineering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Applied Engineering.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B8850F25EC5F50002B22A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33B8851125EC5F50002B22A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33B2177225EC61C800AE4BAD /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				33B8851525EC5F50002B22A3 /* Main.storyboard */,
+				33B8851A25EC5F51002B22A3 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		33B2177325EC61DA00AE4BAD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				33B8851325EC5F50002B22A3 /* ViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		33B2177425EC61E300AE4BAD /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Backend;
+			sourceTree = "<group>";
+		};
 		33B8850325EC5F50002B22A3 = {
 			isa = PBXGroup;
 			children = (
@@ -58,10 +84,11 @@
 			children = (
 				33B8850F25EC5F50002B22A3 /* AppDelegate.swift */,
 				33B8851125EC5F50002B22A3 /* SceneDelegate.swift */,
-				33B8851325EC5F50002B22A3 /* ViewController.swift */,
-				33B8851525EC5F50002B22A3 /* Main.storyboard */,
+				33B2177425EC61E300AE4BAD /* Backend */,
+				33B2177325EC61DA00AE4BAD /* UI */,
+				33B2177225EC61C800AE4BAD /* Storyboards */,
 				33B8851825EC5F51002B22A3 /* Assets.xcassets */,
-				33B8851A25EC5F51002B22A3 /* LaunchScreen.storyboard */,
+				33B2176F25EC61C100AE4BAD /* Assets */,
 				33B8851D25EC5F51002B22A3 /* Info.plist */,
 			);
 			path = "Applied Engineering";
@@ -125,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B8851C25EC5F51002B22A3 /* LaunchScreen.storyboard in Resources */,
+				33B2177025EC61C100AE4BAD /* Assets in Resources */,
 				33B8851925EC5F51002B22A3 /* Assets.xcassets in Resources */,
 				33B8851725EC5F50002B22A3 /* Main.storyboard in Resources */,
 			);
