@@ -1,0 +1,16 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Applied Engineering' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Applied Engineering
+
+  pod 'SwiftyZeroMQ5', :git => 'https://github.com/appliedengineering/SwiftyZeroMQ5.git', :branch => 'master'
+
+  pod 'Charts'
+
+  pod 'MessagePacker'
+
+end
