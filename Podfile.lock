@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyZeroMQ5:
-    :commit: cae7dae3b4b355ec0d8eddd6e10291745f39b3f8
+    :commit: a1b3ba6fa188fe5f363aa25ba363e7e7d2d26db1
     :git: https://github.com/appliedengineering/SwiftyZeroMQ5.git
 
 SPEC CHECKSUMS:
