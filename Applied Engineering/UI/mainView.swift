@@ -15,6 +15,7 @@ class mainViewController: UIViewController {
         
         self.view.backgroundColor = .white;
         print("zeromq ver: \(SwiftyZeroMQ.version)");
+        
     }
 
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3357400025F5978500C5F3CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33573FFF25F5978500C5F3CC /* LaunchScreen.storyboard */; };
+		3357400325F5989900C5F3CC /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357400225F5989900C5F3CC /* AppUtility.swift */; };
 		33B2177025EC61C100AE4BAD /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 33B2176F25EC61C100AE4BAD /* Assets */; };
 		33B8851025EC5F50002B22A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8850F25EC5F50002B22A3 /* AppDelegate.swift */; };
 		33B8851225EC5F50002B22A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8851125EC5F50002B22A3 /* SceneDelegate.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		33573FFF25F5978500C5F3CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3357400225F5989900C5F3CC /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		33B2176F25EC61C100AE4BAD /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		33B8850C25EC5F50002B22A3 /* Applied Engineering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Applied Engineering.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B8850F25EC5F50002B22A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				33B8850F25EC5F50002B22A3 /* AppDelegate.swift */,
+				3357400225F5989900C5F3CC /* AppUtility.swift */,
 				33B8851125EC5F50002B22A3 /* SceneDelegate.swift */,
 				33573FFF25F5978500C5F3CC /* LaunchScreen.storyboard */,
 				33B2177425EC61E300AE4BAD /* Backend */,
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3357400325F5989900C5F3CC /* AppUtility.swift in Sources */,
 				33B8851425EC5F50002B22A3 /* mainView.swift in Sources */,
 				33B8851025EC5F50002B22A3 /* AppDelegate.swift in Sources */,
 				33B8851225EC5F50002B22A3 /* SceneDelegate.swift in Sources */,

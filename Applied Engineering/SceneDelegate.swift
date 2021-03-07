@@ -23,6 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window;
         window.makeKeyAndVisible();
         
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
