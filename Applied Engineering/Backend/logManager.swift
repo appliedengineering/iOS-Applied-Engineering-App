@@ -9,13 +9,15 @@ import Foundation
 
 class log{
     static private var logBuffer : [String] = [String]();
-    static public func add(_ s: String){
-        print(s);
-        logBuffer.append(s);
+    static public func add(_ s: Any){
+        let str = "\(s)";
+        print(str);
+        logBuffer.append(str);
     }
-    static public func addc(_ s: String){ // critical
-        print(s);
-        logBuffer.append(s);
+    static public func addc(_ s: Any){ // critical
+        let str = "Critical: \(s)";
+        print(str);
+        logBuffer.append(str);
     }
     static public func getBuffer() -> [String]{
         return logBuffer;
