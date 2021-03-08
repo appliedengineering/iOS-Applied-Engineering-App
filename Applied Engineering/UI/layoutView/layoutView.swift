@@ -35,6 +35,9 @@ class layoutViewController: UIViewController {
         // mainView
         
         mainViewContainer.frame = CGRect(x: 0, y: AppUtility.topSafeAreaInsetHeight, width: self.view.frame.width, height: self.view.frame.height - AppUtility.topSafeAreaInsetHeight);
+        mainViewContainer.layer.cornerRadius = 10;
+        mainViewContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner];
+        mainViewContainer.clipsToBounds = true;
         
         self.view.addSubview(mainViewContainer);
         
