@@ -10,7 +10,8 @@ import UIKit
 
 extension layoutViewController{
     internal func linkViewControllerToView(view: UIView, controller: UIViewController){
-        controller.view.frame = view.frame;
+        controller.willMove(toParent: self);
+        controller.view.frame = view.bounds;
         view.addSubview(controller.view);
         self.addChild(controller);
         controller.didMove(toParent: self);

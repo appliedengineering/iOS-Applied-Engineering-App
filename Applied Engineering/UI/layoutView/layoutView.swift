@@ -26,6 +26,8 @@ class layoutViewController: UIViewController {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan));
         mainViewContainer.addGestureRecognizer(panGesture);
         
+        mainViewContainer.backgroundColor = .green;
+       
     }
 
     
@@ -33,6 +35,7 @@ class layoutViewController: UIViewController {
         // mainView
         
         mainViewContainer.frame = CGRect(x: 0, y: AppUtility.topSafeAreaInsetHeight, width: self.view.frame.width, height: self.view.frame.height - AppUtility.topSafeAreaInsetHeight);
+        
         self.view.addSubview(mainViewContainer);
         
         linkViewControllerToView(view: mainViewContainer, controller: mainView);
