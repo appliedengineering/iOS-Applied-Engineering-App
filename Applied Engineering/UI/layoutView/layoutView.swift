@@ -18,11 +18,9 @@ class layoutViewController: UIViewController {
     
     internal var rightBarContainer = UIView();
     internal let rightBar : rightBarViewController = rightBarViewController();
-    internal let rightBarWidth : CGFloat = 300;
     
     internal var leftBarContainer = UIView();
     internal let leftBar : leftBarViewController = leftBarViewController();
-    internal let leftBarWidth : CGFloat = 300;
     
     
     override func viewDidLoad() {
@@ -46,9 +44,9 @@ class layoutViewController: UIViewController {
         // mainView
         
         mainViewContainer.frame = CGRect(x: 0, y: AppUtility.topSafeAreaInsetHeight, width: self.view.frame.width, height: self.view.frame.height - AppUtility.topSafeAreaInsetHeight);
-        mainViewContainer.layer.cornerRadius = 10;
+        /*mainViewContainer.layer.cornerRadius = 10;
         mainViewContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner];
-        mainViewContainer.clipsToBounds = true;
+        mainViewContainer.clipsToBounds = true;*/
         
         self.view.addSubview(mainViewContainer);
         
@@ -56,7 +54,11 @@ class layoutViewController: UIViewController {
         
         // rightBar
         
+        let rightBarWidth = CGFloat(self.view.frame.width * 2 / 3);
         rightBarContainer.frame = CGRect(x: mainViewContainer.frame.maxX, y: AppUtility.topSafeAreaInsetHeight, width: rightBarWidth, height: self.view.frame.height - AppUtility.topSafeAreaInsetHeight);
+        /*rightBarContainer.layer.cornerRadius = 10;
+        rightBarContainer.layer.maskedCorners = [.layerMinXMinYCorner];
+        rightBarContainer.clipsToBounds = true;*/
         
         self.view.addSubview(rightBarContainer);
         
@@ -64,7 +66,11 @@ class layoutViewController: UIViewController {
         
         // leftBar
         
+        let leftBarWidth = CGFloat(self.view.frame.width * 2 / 3);
         leftBarContainer.frame = CGRect(x: -leftBarWidth, y: AppUtility.topSafeAreaInsetHeight, width: leftBarWidth, height: self.view.frame.height - AppUtility.topSafeAreaInsetHeight);
+        /*leftBarContainer.layer.cornerRadius = 10;
+        leftBarContainer.layer.maskedCorners = [.layerMaxXMinYCorner];
+        leftBarContainer.clipsToBounds = true;*/
         
         self.view.addSubview(leftBarContainer);
         

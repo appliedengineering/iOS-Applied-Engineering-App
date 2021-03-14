@@ -14,6 +14,7 @@
 		3357400E25F59D2800C5F3CC /* leftBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357400D25F59D2800C5F3CC /* leftBarView.swift */; };
 		3357401125F59E8300C5F3CC /* logManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357401025F59E8300C5F3CC /* logManager.swift */; };
 		3357401425F5A48E00C5F3CC /* layoutViewMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357401325F5A48E00C5F3CC /* layoutViewMisc.swift */; };
+		337701E225FECEF500DB4A71 /* preferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337701E125FECEF500DB4A71 /* preferencesManager.swift */; };
 		33B2177025EC61C100AE4BAD /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 33B2176F25EC61C100AE4BAD /* Assets */; };
 		33B8851025EC5F50002B22A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8850F25EC5F50002B22A3 /* AppDelegate.swift */; };
 		33B8851225EC5F50002B22A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8851125EC5F50002B22A3 /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		3357400D25F59D2800C5F3CC /* leftBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leftBarView.swift; sourceTree = "<group>"; };
 		3357401025F59E8300C5F3CC /* logManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logManager.swift; sourceTree = "<group>"; };
 		3357401325F5A48E00C5F3CC /* layoutViewMisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layoutViewMisc.swift; sourceTree = "<group>"; };
+		337701E125FECEF500DB4A71 /* preferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preferencesManager.swift; sourceTree = "<group>"; };
 		33B2176F25EC61C100AE4BAD /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		33B8850C25EC5F50002B22A3 /* Applied Engineering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Applied Engineering.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B8850F25EC5F50002B22A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				3357401025F59E8300C5F3CC /* logManager.swift */,
+				337701E125FECEF500DB4A71 /* preferencesManager.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				3357400325F5989900C5F3CC /* AppUtility.swift in Sources */,
 				33B8851425EC5F50002B22A3 /* layoutView.swift in Sources */,
 				33B8851025EC5F50002B22A3 /* AppDelegate.swift in Sources */,
+				337701E225FECEF500DB4A71 /* preferencesManager.swift in Sources */,
 				3357400B25F59D1E00C5F3CC /* rightBarView.swift in Sources */,
 				3357400E25F59D2800C5F3CC /* leftBarView.swift in Sources */,
 				3357400825F59D0200C5F3CC /* mainView.swift in Sources */,
