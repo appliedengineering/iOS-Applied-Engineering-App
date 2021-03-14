@@ -23,18 +23,55 @@ extension layoutViewController{
             let translation = panGesture.translation(in: mainViewContainer);
             panGesture.setTranslation(.zero, in: mainViewContainer);
             
-            mainViewContainer.frame = CGRect(x: mainViewContainer.frame.minX + translation.x, y: mainViewContainer.frame.minY, width: mainViewContainer.frame.width, height: mainViewContainer.frame.height);
+            let mainViewContainerMinX = min(max(mainViewContainer.frame.minX + translation.x, -rightBarContainer.frame.width), leftBarContainer.frame.width);
+            
+            updateContainerViews(mainViewContainerMinX: mainViewContainerMinX);
             
         }
         else if (panGesture.state == .ended){ // snap mainView to either side or return to original position
+        
+            let thresholdPercent : CGFloat = 0.5; // if at least 30 percent of one of the bar views are showing, then move to that otherwise move back to main view
             
-            UIView.animate(withDuration: 0.2, animations: {
+            let mainViewContainerMinX = mainViewContainer.frame.minX;
+            
+            if (mainViewContainerMinX >= thresholdPercent * leftBarContainer.frame.width){
                 
-                self.mainViewContainer.frame = CGRect(x: 0, y: self.mainViewContainer.frame.minY, width: self.mainViewContainer.frame.width, height: self.mainViewContainer.frame.height);
+                UIView.animate(withDuration: 0.2, animations: {
+                    
+                    self.updateContainerViews(mainViewContainerMinX: self.leftBarContainer.frame.width);
+                    
+                });
                 
-            });
+            }
+            else if (mainViewContainerMinX <= -(thresholdPercent * rightBarContainer.frame.width)){
+                
+                UIView.animate(withDuration: 0.2, animations: {
+                    
+                    self.updateContainerViews(mainViewContainerMinX: -self.rightBarContainer.frame.width);
+                    
+                });
+                
+            }
+            else{ // snap back to main view
+                
+                UIView.animate(withDuration: 0.2, animations: {
+                    
+                    self.updateContainerViews(mainViewContainerMinX: 0);
+                    
+                });
+                
+            }
             
         }
         
+    }
+    
+    
+    private func updateContainerViews(mainViewContainerMinX: CGFloat){
+        mainViewContainer.frame = CGRect(x: mainViewContainerMinX, y: mainViewContainer.frame.minY, width: mainViewContainer.frame.width, height: mainViewContainer.frame.height);
+        
+        rightBarContainer.frame = CGRect(x: mainViewContainer.frame.maxX, y: rightBarContainer.frame.minY, width: rightBarContainer.frame.width, height: rightBarContainer.frame.height);
+        
+        leftBarContainer.frame = CGRect(x: mainViewContainer.frame.minX - leftBarContainer.frame.width, y: leftBarContainer.frame.minY, width: leftBarContainer.frame.width, height: leftBarContainer.frame.height);
     }
 }
