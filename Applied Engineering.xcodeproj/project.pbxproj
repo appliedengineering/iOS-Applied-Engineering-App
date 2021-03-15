@@ -73,11 +73,19 @@
 			path = layoutView;
 			sourceTree = "<group>";
 		};
+		337701E625FED6BE00DB4A71 /* mainView */ = {
+			isa = PBXGroup;
+			children = (
+				3357400725F59D0200C5F3CC /* mainView.swift */,
+			);
+			path = mainView;
+			sourceTree = "<group>";
+		};
 		33B2177325EC61DA00AE4BAD /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				3357401625F5A49C00C5F3CC /* layoutView */,
-				3357400725F59D0200C5F3CC /* mainView.swift */,
+				337701E625FED6BE00DB4A71 /* mainView */,
 				3357400A25F59D1E00C5F3CC /* rightBarView.swift */,
 				3357400D25F59D2800C5F3CC /* leftBarView.swift */,
 			);

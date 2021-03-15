@@ -27,7 +27,7 @@ class layoutViewController: UIViewController {
         super.viewDidLoad();
         print("zeromq ver: \(SwiftyZeroMQ.version)");
         
-        
+        print("main self view width - \(self.view.frame.width)")
         // set up all the view controllers
         setupLayout();
         
@@ -68,9 +68,9 @@ class layoutViewController: UIViewController {
         
         let leftBarWidth = CGFloat(self.view.frame.width * 2 / 3);
         leftBarContainer.frame = CGRect(x: -leftBarWidth, y: AppUtility.topSafeAreaInsetHeight, width: leftBarWidth, height: self.view.frame.height - AppUtility.topSafeAreaInsetHeight);
-        /*leftBarContainer.layer.cornerRadius = 10;
-        leftBarContainer.layer.maskedCorners = [.layerMaxXMinYCorner];
-        leftBarContainer.clipsToBounds = true;*/
+        //leftBarContainer.layer.cornerRadius = 10;
+        //leftBarContainer.layer.maskedCorners = [.layerMaxXMinYCorner];
+        //leftBarContainer.clipsToBounds = true;
         
         self.view.addSubview(leftBarContainer);
         
