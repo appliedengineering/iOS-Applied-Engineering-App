@@ -27,7 +27,6 @@ class layoutViewController: UIViewController {
         super.viewDidLoad();
         print("zeromq ver: \(SwiftyZeroMQ.version)");
         
-        print("main self view width - \(self.view.frame.width)")
         // set up all the view controllers
         setupLayout();
         
