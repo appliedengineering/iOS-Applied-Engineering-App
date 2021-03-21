@@ -35,29 +35,65 @@ class leftBarViewController : UIViewController{
     private func renderTopView(){
         topView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.frame.height / 12));
         self.view.addSubview(topView);
+
+        // vars needed beforehand to calculate width of topContentView
         
-        let iconImageViewPadding = CGFloat(10);
-        let iconImageViewSize = topView.frame.height;
-        let iconImageViewFrame = CGRect(x: iconImageViewPadding, y: 0, width: iconImageViewSize - 2 * iconImageViewPadding, height: iconImageViewSize);
+        let iconImageViewPadding = CGFloat(5);
+        let iconImageViewSize = topView.frame.height - 2*iconImageViewPadding;
+        
+        let titleLabelVerticalPadding = CGFloat(10);
+        
+        let titleTopLabelText = "applied";
+        let titleBottomLabelText = "engineering";
+        let titleLabelHeight = topView.frame.height / 2 - titleLabelVerticalPadding;
+        let titleLabelFont = UIFont(name: Inter_Bold, size: titleLabelHeight * 0.8)!;
+        let titleLabelsMaxWidth = max(titleTopLabelText.getWidth(withConstrainedHeight: titleLabelHeight, font: titleLabelFont), titleBottomLabelText.getWidth(withConstrainedHeight: titleLabelHeight, font: titleLabelFont));
+        
+        //
+        
+        let topContentViewWidth = 2*iconImageViewPadding + iconImageViewSize + titleLabelsMaxWidth + 10;
+        let topContentViewFrame = CGRect(x: (topView.frame.width / 2) - (topContentViewWidth / 2), y: 0, width: topContentViewWidth, height: topView.frame.height);
+        let topContentView = UIView(frame: topContentViewFrame);
+        
+        //topContentView.backgroundColor = .systemRed;
+        
+        topView.addSubview(topContentView);
+        
+        let iconImageViewFrame = CGRect(x: iconImageViewPadding, y: iconImageViewPadding, width: iconImageViewSize, height: iconImageViewSize);
         let iconImageView = UIImageView(frame: iconImageViewFrame);
         iconImageView.image = UIImage(named: "AELogo");
         iconImageView.contentMode = .scaleAspectFit;
+        //iconImageView.backgroundColor = .systemRed;
         
-        topView.addSubview(iconImageView);
+        topContentView.addSubview(iconImageView);
         
-        let titleLabelPadding = CGFloat(5);
-        let titleLabelFrame = CGRect(x: iconImageView.frame.width + 2*iconImageViewPadding + titleLabelPadding, y: 0, width: topView.frame.width - iconImageView.frame.width - 2*titleLabelPadding - 2 * iconImageViewPadding, height: topView.frame.height);
-        let titleLabel = UILabel(frame: titleLabelFrame);
+        let titleTopLabelFrame = CGRect(x: iconImageView.frame.width + 2*iconImageViewPadding, y: titleLabelVerticalPadding, width: topContentView.frame.width - iconImageView.frame.width - 2*iconImageViewPadding, height: topContentView.frame.height / 2 - titleLabelVerticalPadding);
+        let titleTopLabel = UILabel(frame: titleTopLabelFrame);
         
-        titleLabel.numberOfLines = 0;
-        titleLabel.text = "Applied\nEngineering";
-        titleLabel.textColor = InverseBackgroundColor;
-        titleLabel.font = UIFont(name: Inter_Bold, size: titleLabel.frame.height / 3);
+        //titleLabel.numberOfLines = 0;
+        titleTopLabel.text = "applied";
+        titleTopLabel.textColor = InverseBackgroundColor;
+        titleTopLabel.font = UIFont(name: Inter_Bold, size: titleTopLabel.frame.height * 0.8);
+        //titleTopLabel.backgroundColor = .systemPink
         
-        topView.addSubview(titleLabel);
+        topContentView.addSubview(titleTopLabel);
+        
+        //
+        
+        let titleBottomLabelFrame = CGRect(x: titleTopLabel.frame.minX, y: titleTopLabel.frame.maxY, width: titleTopLabel.frame.width, height: titleTopLabel.frame.height);
+        let titleBottomLabel = UILabel(frame: titleBottomLabelFrame);
+        
+        titleBottomLabel.text = "engineering";
+        titleBottomLabel.textColor = InverseBackgroundColor;
+        titleBottomLabel.font = UIFont(name: Inter_Bold, size: titleBottomLabel.frame.height * 0.8);
+        //titleBottomLabel.backgroundColor = .systemBlue;
+        
+        topContentView.addSubview(titleBottomLabel);
+        
+        // --
         
         let seperatorViewHeight = CGFloat(1);
-        let seperatorViewFrame = CGRect(x: 0, y: topView.frame.height - seperatorViewHeight, width: topView.frame.width, height: seperatorViewHeight);
+        let seperatorViewFrame = CGRect(x: 0, y: topView.frame.height + seperatorViewHeight, width: topView.frame.width, height: seperatorViewHeight);
         let seperatorView = UIView(frame: seperatorViewFrame);
         seperatorView.backgroundColor = BackgroundGray;
         
