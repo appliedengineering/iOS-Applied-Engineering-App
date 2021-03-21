@@ -12,6 +12,8 @@ class leftBarViewController : UIViewController{
     
     internal var topView : UIView = UIView();
     
+    private let leftBarContentTitles : [String] = ["Telemetry", "Task\nTracking", "Instrument\nCluster", "Settings"];
+    
     override func viewDidLoad() {
         super.viewDidLoad();
     }
@@ -58,6 +60,50 @@ class leftBarViewController : UIViewController{
     }
     
     private func renderList(){
+        let listViewFrame = CGRect(x: 0, y: topView.frame.height, width: self.view.frame.width, height: self.view.frame.height - topView.frame.height);
+        let listView = UIScrollView(frame: listViewFrame);
+        //listView.backgroundColor = .systemRed;
+        self.view.addSubview(listView);
+        
+        let listHeightPadding = CGFloat(2);
+        var nextY : CGFloat = listHeightPadding;
+        
+        for i in 0..<leftBarContentTitles.count{
+            
+            let buttonFrame = CGRect(x: 0, y: nextY, width: listView.frame.width, height: listView.frame.height / 8);
+            let button = UIButton(frame: buttonFrame);
+            //button.layer.borderWidth = 1;
+            //button.layer.borderColor = BackgroundGray.cgColor;
+            button.backgroundColor = BackgroundGray;
+            
+            //
+            let imageViewSize = button.frame.height;
+            let imageViewFrame = CGRect(x: 0, y: 0, width: imageViewSize, height: imageViewSize);
+            let imageView = UIImageView(frame: imageViewFrame);
+            
+            imageView.backgroundColor = .systemRed;
+            
+            button.addSubview(imageView);
+            
+            //
+            let labelHorizontalPadding = CGFloat(5);
+            let labelFrame = CGRect(x: imageView.frame.width + labelHorizontalPadding, y: 0, width: button.frame.width - imageView.frame.width - 2*labelHorizontalPadding, height: button.frame.height);
+            let label = UILabel(frame: labelFrame);
+            
+            label.textAlignment = .left;
+            label.text = leftBarContentTitles[i];
+            label.font = UIFont(name: Inter_Regular, size: label.frame.height / 4);
+            label.numberOfLines = 0;
+            
+            button.addSubview(label);
+            
+            
+            listView.addSubview(button);
+            nextY += button.frame.height + listHeightPadding;
+
+        }
+        
+        listView.contentSize = CGSize(width: listView.frame.width, height: nextY);
         
     }
 }
