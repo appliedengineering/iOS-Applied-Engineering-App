@@ -30,6 +30,12 @@ class leftBarViewController : UIViewController{
     
     @objc func updateMainView(_ sender: UIButton){
         print(sender.tag);
+        if (sender.tag == 3){ // settings was clicked
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil, userInfo: nil);
+        }
+        else{
+            
+        }
     }
     
     private func renderTopView(){
@@ -71,9 +77,9 @@ class leftBarViewController : UIViewController{
         let titleTopLabel = UILabel(frame: titleTopLabelFrame);
         
         //titleLabel.numberOfLines = 0;
-        titleTopLabel.text = "applied";
+        titleTopLabel.text = titleTopLabelText;
         titleTopLabel.textColor = InverseBackgroundColor;
-        titleTopLabel.font = UIFont(name: Inter_Bold, size: titleTopLabel.frame.height * 0.8);
+        titleTopLabel.font = titleLabelFont;
         //titleTopLabel.backgroundColor = .systemPink
         
         topContentView.addSubview(titleTopLabel);
@@ -83,9 +89,9 @@ class leftBarViewController : UIViewController{
         let titleBottomLabelFrame = CGRect(x: titleTopLabel.frame.minX, y: titleTopLabel.frame.maxY, width: titleTopLabel.frame.width, height: titleTopLabel.frame.height);
         let titleBottomLabel = UILabel(frame: titleBottomLabelFrame);
         
-        titleBottomLabel.text = "engineering";
+        titleBottomLabel.text = titleBottomLabelText;
         titleBottomLabel.textColor = InverseBackgroundColor;
-        titleBottomLabel.font = UIFont(name: Inter_Bold, size: titleBottomLabel.frame.height * 0.8);
+        titleBottomLabel.font = titleLabelFont;
         //titleBottomLabel.backgroundColor = .systemBlue;
         
         topContentView.addSubview(titleBottomLabel);
@@ -93,7 +99,7 @@ class leftBarViewController : UIViewController{
         // --
         
         let seperatorViewHeight = CGFloat(1);
-        let seperatorViewFrame = CGRect(x: 0, y: topView.frame.height + seperatorViewHeight, width: topView.frame.width, height: seperatorViewHeight);
+        let seperatorViewFrame = CGRect(x: 0, y: topView.frame.height + 2*seperatorViewHeight, width: topView.frame.width, height: seperatorViewHeight);
         let seperatorView = UIView(frame: seperatorViewFrame);
         seperatorView.backgroundColor = BackgroundGray;
         

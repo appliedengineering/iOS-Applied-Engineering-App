@@ -66,6 +66,15 @@ extension layoutViewController{
         
     }
     
+    @objc func moveToSettings(_ sender: NSNotification){
+        //print("called");
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            self.updateContainerViews(mainViewContainerMinX: -self.rightBarContainer.frame.width);
+            
+        });
+    }
+    
     
     private func updateContainerViews(mainViewContainerMinX: CGFloat){
         mainViewContainer.frame = CGRect(x: mainViewContainerMinX, y: mainViewContainer.frame.minY, width: mainViewContainer.frame.width, height: mainViewContainer.frame.height);

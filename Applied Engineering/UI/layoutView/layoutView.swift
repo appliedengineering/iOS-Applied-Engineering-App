@@ -36,8 +36,13 @@ class layoutViewController: UIViewController {
         
         self.view.backgroundColor = BackgroundColor;
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.moveToSettings), name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil);
         //mainViewContainer.backgroundColor = .green;
        
+    }
+    
+    deinit{
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil);
     }
 
     

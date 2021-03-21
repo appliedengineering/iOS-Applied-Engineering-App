@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+// Notification Macros
+let layoutSettingsViewNotification = "layoutSettingsViewNotification";
+//
+
 // Colors
 let AccentColor = UIColor(named: "AccentColor")!;
 let BackgroundColor = UIColor(named: "BackgroundColor")!;
