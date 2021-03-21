@@ -29,7 +29,7 @@ class leftBarViewController : UIViewController{
     }
     
     @objc func updateMainView(_ sender: UIButton){
-        print(sender.tag);
+        //print(sender.tag);
         if (sender.tag == 3){ // settings was clicked
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil, userInfo: nil);
         }

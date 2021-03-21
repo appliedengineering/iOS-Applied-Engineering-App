@@ -60,3 +60,13 @@ extension String {
     }
 }
 //
+
+// Functions
+internal func linkViewControllerToView(view: UIView, controller: UIViewController, parentController: UIViewController){
+    controller.willMove(toParent: parentController);
+    controller.view.frame = view.bounds;
+    view.addSubview(controller.view);
+    parentController.addChild(controller);
+    controller.didMove(toParent: parentController);
+}
+//

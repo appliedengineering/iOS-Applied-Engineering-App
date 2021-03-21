@@ -9,20 +9,27 @@ import Foundation
 import UIKit
 
 class mainViewController : UIViewController{
+    
+    internal let contentViewControllers : [UIViewController] = [telemetryViewController(), taskTrackingViewController(), instrumentClusterViewController()];
+    internal var previousViewControllerIndex : Int = -1;
+    
     override func viewDidLoad() {
         super.viewDidLoad();
-        
-        self.view.backgroundColor = .blue;
-        
-        //log.add("called mainviewcontroller")
-        NotificationCenter.default.addObserver(self, selector: #selector(self.setContent), name: NSNotification.Name(rawValue: mainViewSetContentViewNotification), object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setContentHandler), name: NSNotification.Name(rawValue: mainViewSetContentViewNotification), object: nil);
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: mainViewSetContentViewNotification), object: nil);
     }
     
-    @objc func setContent(_ sender: NSNotification){
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        setContent(0);
+        
+    }
+    
+    @objc func setContentHandler(_ sender: NSNotification){
         
         guard let dict = sender.userInfo as NSDictionary? else{
             return;
@@ -32,7 +39,25 @@ class mainViewController : UIViewController{
             return;
         }
         
-        print("got content - \(contentIndex)");
+        setContent(contentIndex);
         
+    }
+    
+    private func setContent(_ contentIndex: Int){
+        if (previousViewControllerIndex != contentIndex && previousViewControllerIndex != -1){
+            
+            for views in self.view.subviews{
+                views.removeFromSuperview();
+            }
+            
+            let vc = contentViewControllers[previousViewControllerIndex];
+            
+            vc.willMove(toParent: nil);
+            vc.view.removeFromSuperview();
+            vc.removeFromParent();
+            
+        }
+        previousViewControllerIndex = contentIndex;
+        linkViewControllerToView(view: self.view, controller: contentViewControllers[contentIndex], parentController: self);
     }
 }

@@ -58,7 +58,7 @@ class layoutViewController: UIViewController {
         
         self.view.addSubview(mainViewContainer);
         
-        linkViewControllerToView(view: mainViewContainer, controller: mainView);
+        linkViewControllerToView(view: mainViewContainer, controller: mainView, parentController: self);
         
         // rightBar
         
@@ -70,7 +70,7 @@ class layoutViewController: UIViewController {
         
         self.view.addSubview(rightBarContainer);
         
-        linkViewControllerToView(view: rightBarContainer, controller: rightBar);
+        linkViewControllerToView(view: rightBarContainer, controller: rightBar, parentController: self);
         
         // leftBar
         
@@ -82,7 +82,7 @@ class layoutViewController: UIViewController {
         
         self.view.addSubview(leftBarContainer);
         
-        linkViewControllerToView(view: leftBarContainer, controller: leftBar);
+        linkViewControllerToView(view: leftBarContainer, controller: leftBar, parentController: self);
         
     }
 
