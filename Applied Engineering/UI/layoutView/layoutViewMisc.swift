@@ -66,6 +66,15 @@ extension layoutViewController{
         
     }
     
+    
+    private func updateContainerViews(mainViewContainerMinX: CGFloat){
+        mainViewContainer.frame = CGRect(x: mainViewContainerMinX, y: mainViewContainer.frame.minY, width: mainViewContainer.frame.width, height: mainViewContainer.frame.height);
+        
+        rightBarContainer.frame = CGRect(x: mainViewContainer.frame.maxX, y: rightBarContainer.frame.minY, width: rightBarContainer.frame.width, height: rightBarContainer.frame.height);
+        
+        leftBarContainer.frame = CGRect(x: mainViewContainer.frame.minX - leftBarContainer.frame.width, y: leftBarContainer.frame.minY, width: leftBarContainer.frame.width, height: leftBarContainer.frame.height);
+    }
+    
     @objc func moveToSettings(_ sender: NSNotification){
         //print("called");
         UIView.animate(withDuration: 0.3, animations: {
@@ -75,12 +84,13 @@ extension layoutViewController{
         });
     }
     
-    
-    private func updateContainerViews(mainViewContainerMinX: CGFloat){
-        mainViewContainer.frame = CGRect(x: mainViewContainerMinX, y: mainViewContainer.frame.minY, width: mainViewContainer.frame.width, height: mainViewContainer.frame.height);
+    @objc func moveToMain(_ sender: NSNotification){
         
-        rightBarContainer.frame = CGRect(x: mainViewContainer.frame.maxX, y: rightBarContainer.frame.minY, width: rightBarContainer.frame.width, height: rightBarContainer.frame.height);
+        UIView.animate(withDuration: 0.2, animations: {
+            
+            self.updateContainerViews(mainViewContainerMinX: 0);
+            
+        });
         
-        leftBarContainer.frame = CGRect(x: mainViewContainer.frame.minX - leftBarContainer.frame.width, y: leftBarContainer.frame.minY, width: leftBarContainer.frame.width, height: leftBarContainer.frame.height);
     }
 }

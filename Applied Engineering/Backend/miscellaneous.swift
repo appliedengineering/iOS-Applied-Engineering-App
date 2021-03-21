@@ -10,6 +10,7 @@ import UIKit
 
 // Notification Macros
 let layoutSettingsViewNotification = "layoutSettingsViewNotification";
+let layoutMainViewNotification = "layoutMainViewNotification";
 let mainViewSetContentViewNotification = "mainViewSetContentViewNotification";
 //
 
