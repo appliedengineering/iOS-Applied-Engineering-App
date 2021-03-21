@@ -34,7 +34,9 @@ class leftBarViewController : UIViewController{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil, userInfo: nil);
         }
         else{
-            
+            var dataDict : [String : Any] = [:];
+            dataDict["contentIndex"] = sender.tag;
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: mainViewSetContentViewNotification), object: nil, userInfo: dataDict);
         }
     }
     

@@ -15,10 +15,24 @@ class mainViewController : UIViewController{
         self.view.backgroundColor = .blue;
         
         //log.add("called mainviewcontroller")
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setContent), name: NSNotification.Name(rawValue: mainViewSetContentViewNotification), object: nil);
     }
     
     deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: mainViewSetContentViewNotification), object: nil);
+    }
+    
+    @objc func setContent(_ sender: NSNotification){
+        
+        guard let dict = sender.userInfo as NSDictionary? else{
+            return;
+        }
+        
+        guard let contentIndex = dict["contentIndex"] as? Int else{
+            return;
+        }
+        
+        print("got content - \(contentIndex)");
         
     }
 }
