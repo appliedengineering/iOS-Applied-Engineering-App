@@ -13,6 +13,7 @@ class leftBarViewController : UIViewController{
     internal var topView : UIView = UIView();
     
     private let leftBarContentTitles : [String] = ["Telemetry", "Task\nTracking", "Instrument\nCluster", "Settings"];
+    private let leftBarContentImageNames : [String] = ["list.bullet.rectangle", "doc.plaintext", "speedometer", "gearshape"];
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -77,17 +78,21 @@ class leftBarViewController : UIViewController{
             button.backgroundColor = BackgroundGray;
             
             //
-            let imageViewSize = button.frame.height;
-            let imageViewFrame = CGRect(x: 0, y: 0, width: imageViewSize, height: imageViewSize);
+            let imageViewPadding = CGFloat(15);
+            let imageViewSize = button.frame.height - 2*imageViewPadding;
+            let imageViewFrame = CGRect(x: imageViewPadding, y: imageViewPadding, width: imageViewSize, height: imageViewSize);
             let imageView = UIImageView(frame: imageViewFrame);
             
-            imageView.backgroundColor = .systemRed;
+            //imageView.backgroundColor = .systemRed;
+            imageView.image = UIImage(systemName: leftBarContentImageNames[i]);
+            imageView.contentMode = .scaleAspectFit;
+            imageView.tintColor = AccentColor;
             
             button.addSubview(imageView);
             
             //
             let labelHorizontalPadding = CGFloat(5);
-            let labelFrame = CGRect(x: imageView.frame.width + labelHorizontalPadding, y: 0, width: button.frame.width - imageView.frame.width - 2*labelHorizontalPadding, height: button.frame.height);
+            let labelFrame = CGRect(x: imageView.frame.width + imageViewPadding + labelHorizontalPadding, y: 0, width: button.frame.width - imageView.frame.width - 2*labelHorizontalPadding, height: button.frame.height);
             let label = UILabel(frame: labelFrame);
             
             label.textAlignment = .left;
@@ -104,6 +109,21 @@ class leftBarViewController : UIViewController{
         }
         
         listView.contentSize = CGSize(width: listView.frame.width, height: nextY);
+        
+        // version number
+        
+        let versionLabelPadding = CGFloat(20);
+        let versionLabelText = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0";
+        let versionLabelFont = UIFont(name: Inter_Bold, size: self.view.frame.width / 15)!;
+        let versionLabelTextHeight = versionLabelText.getHeight(withConstrainedWidth: self.view.frame.width, font: versionLabelFont);
+        let versionLabelFrame = CGRect(x: versionLabelPadding, y: self.view.frame.height - versionLabelPadding - versionLabelTextHeight, width: self.view.frame.width, height: versionLabelTextHeight);
+        let versionLabel = UILabel(frame: versionLabelFrame);
+        
+        versionLabel.text = versionLabelText;
+        versionLabel.font = versionLabelFont;
+        versionLabel.textAlignment = .left;
+        
+        self.view.addSubview(versionLabel);
         
     }
 }
