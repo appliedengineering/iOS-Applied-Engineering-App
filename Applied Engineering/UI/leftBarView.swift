@@ -28,12 +28,17 @@ class leftBarViewController : UIViewController{
         self.view.backgroundColor = BackgroundColor;
     }
     
+    @objc func updateMainView(_ sender: UIButton){
+        print(sender.tag);
+    }
+    
     private func renderTopView(){
         topView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.frame.height / 12));
         self.view.addSubview(topView);
         
+        let iconImageViewPadding = CGFloat(10);
         let iconImageViewSize = topView.frame.height;
-        let iconImageViewFrame = CGRect(x: 0, y: 0, width: iconImageViewSize, height: iconImageViewSize);
+        let iconImageViewFrame = CGRect(x: iconImageViewPadding, y: 0, width: iconImageViewSize - 2 * iconImageViewPadding, height: iconImageViewSize);
         let iconImageView = UIImageView(frame: iconImageViewFrame);
         iconImageView.image = UIImage(named: "AELogo");
         iconImageView.contentMode = .scaleAspectFit;
@@ -41,7 +46,7 @@ class leftBarViewController : UIViewController{
         topView.addSubview(iconImageView);
         
         let titleLabelPadding = CGFloat(5);
-        let titleLabelFrame = CGRect(x: iconImageView.frame.width + titleLabelPadding, y: 0, width: topView.frame.width - iconImageView.frame.width - 2*titleLabelPadding, height: topView.frame.height);
+        let titleLabelFrame = CGRect(x: iconImageView.frame.width + 2*iconImageViewPadding + titleLabelPadding, y: 0, width: topView.frame.width - iconImageView.frame.width - 2*titleLabelPadding - 2 * iconImageViewPadding, height: topView.frame.height);
         let titleLabel = UILabel(frame: titleLabelFrame);
         
         titleLabel.numberOfLines = 0;
@@ -75,7 +80,7 @@ class leftBarViewController : UIViewController{
             let button = UIButton(frame: buttonFrame);
             //button.layer.borderWidth = 1;
             //button.layer.borderColor = BackgroundGray.cgColor;
-            button.backgroundColor = BackgroundGray;
+            //button.backgroundColor = BackgroundGray;
             
             //
             let imageViewPadding = CGFloat(15);
@@ -92,7 +97,7 @@ class leftBarViewController : UIViewController{
             
             //
             let labelHorizontalPadding = CGFloat(5);
-            let labelFrame = CGRect(x: imageView.frame.width + imageViewPadding + labelHorizontalPadding, y: 0, width: button.frame.width - imageView.frame.width - 2*labelHorizontalPadding, height: button.frame.height);
+            let labelFrame = CGRect(x: imageView.frame.width + 2*imageViewPadding + labelHorizontalPadding, y: 0, width: button.frame.width - imageView.frame.width - 2*labelHorizontalPadding - 2*imageViewPadding, height: button.frame.height);
             let label = UILabel(frame: labelFrame);
             
             label.textAlignment = .left;
@@ -102,6 +107,16 @@ class leftBarViewController : UIViewController{
             
             button.addSubview(label);
             
+            //
+            let seperatorViewHeight = CGFloat(1);
+            let seperatorViewFrame = CGRect(x: 0, y: button.frame.height - seperatorViewHeight, width: button.frame.width, height: seperatorViewHeight);
+            let seperatorView = UIView(frame: seperatorViewFrame);
+            seperatorView.backgroundColor = BackgroundGray;
+            
+            button.addSubview(seperatorView);
+            
+            button.tag = i;
+            button.addTarget(self, action: #selector(self.updateMainView), for: .touchUpInside);
             
             listView.addSubview(button);
             nextY += button.frame.height + listHeightPadding;

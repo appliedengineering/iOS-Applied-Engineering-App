@@ -34,6 +34,8 @@ class layoutViewController: UIViewController {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan));
         self.view.addGestureRecognizer(panGesture);
         
+        self.view.backgroundColor = BackgroundColor;
+        
         //mainViewContainer.backgroundColor = .green;
        
     }

@@ -17,4 +17,8 @@ class mainViewController : UIViewController{
         //log.add("called mainviewcontroller")
         
     }
+    
+    deinit {
+        
+    }
 }
