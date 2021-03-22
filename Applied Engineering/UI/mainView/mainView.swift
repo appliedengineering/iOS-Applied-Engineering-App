@@ -44,20 +44,22 @@ class mainViewController : UIViewController{
     }
     
     private func setContent(_ contentIndex: Int){
-        if (previousViewControllerIndex != contentIndex && previousViewControllerIndex != -1){
+        if (previousViewControllerIndex != contentIndex){
             
-            for views in self.view.subviews{
-                views.removeFromSuperview();
+            if (previousViewControllerIndex != -1){
+                for views in self.view.subviews{
+                    views.removeFromSuperview();
+                }
+                
+                let vc = contentViewControllers[previousViewControllerIndex];
+                
+                vc.willMove(toParent: nil);
+                vc.view.removeFromSuperview();
+                vc.removeFromParent();
             }
             
-            let vc = contentViewControllers[previousViewControllerIndex];
-            
-            vc.willMove(toParent: nil);
-            vc.view.removeFromSuperview();
-            vc.removeFromParent();
-            
+            previousViewControllerIndex = contentIndex;
+            linkViewControllerToView(view: self.view, controller: contentViewControllers[contentIndex], parentController: self);
         }
-        previousViewControllerIndex = contentIndex;
-        linkViewControllerToView(view: self.view, controller: contentViewControllers[contentIndex], parentController: self);
     }
 }
