@@ -12,6 +12,7 @@ import UIKit
 let layoutSettingsViewNotification = "layoutSettingsViewNotification";
 let layoutMainViewNotification = "layoutMainViewNotification";
 let mainViewSetContentViewNotification = "mainViewSetContentViewNotification";
+let dismissRightBarKeyboardNotification = "dismissRightBarKeyboardNotification";
 //
 
 // Colors
@@ -59,6 +60,20 @@ extension String {
         return ceil(boundingBox.width)
     }
 }
+
+// https://stackoverflow.com/a/27079103
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: dismissRightBarKeyboardNotification), object: nil, userInfo: nil);
+    }
+}
+
 //
 
 // Functions

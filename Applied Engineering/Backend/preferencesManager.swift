@@ -22,6 +22,9 @@ class preferencesManager{
     //
     
     // List of accessible variables
+    public let numberOfSettings = 8;
+    public let settingsNameArray : [String] = ["Connection IP", "Connection Port", "Connection Group", "ZMQ RCV RCNT", "ZMQ RCV Timeout", "ZMQ RCV Buffer", "Reconnect Timeout", "Graph Point Buffer"];
+    
     public var connectionIPAddress : String = "";
     public var connectionPort : String = "";
     public var connectionGroup : String = "";

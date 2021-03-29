@@ -16,6 +16,7 @@ class mainViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad();
         NotificationCenter.default.addObserver(self, selector: #selector(self.setContentHandler), name: NSNotification.Name(rawValue: mainViewSetContentViewNotification), object: nil);
+        self.hideKeyboardWhenTappedAround();
     }
     
     deinit {

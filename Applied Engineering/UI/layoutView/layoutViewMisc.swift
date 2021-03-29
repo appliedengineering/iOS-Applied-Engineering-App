@@ -20,6 +20,10 @@ extension layoutViewController{
             
             updateContainerViews(mainViewContainerMinX: mainViewContainerMinX);
             
+            if (mainViewContainerMinX < 0){
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: dismissRightBarKeyboardNotification), object: nil, userInfo: nil);
+            }
+            
         }
         else if (panGesture.state == .ended){ // snap mainView to either side or return to original position
         

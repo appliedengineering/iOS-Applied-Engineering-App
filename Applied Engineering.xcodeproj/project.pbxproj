@@ -17,6 +17,7 @@
 		3357400E25F59D2800C5F3CC /* leftBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357400D25F59D2800C5F3CC /* leftBarView.swift */; };
 		3357401125F59E8300C5F3CC /* logManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357401025F59E8300C5F3CC /* logManager.swift */; };
 		3357401425F5A48E00C5F3CC /* layoutViewMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357401325F5A48E00C5F3CC /* layoutViewMisc.swift */; };
+		33663B8A26114FE20010A6F5 /* rightBarViewActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33663B8926114FE20010A6F5 /* rightBarViewActions.swift */; };
 		337701E225FECEF500DB4A71 /* preferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337701E125FECEF500DB4A71 /* preferencesManager.swift */; };
 		33B8851025EC5F50002B22A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8850F25EC5F50002B22A3 /* AppDelegate.swift */; };
 		33B8851225EC5F50002B22A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8851125EC5F50002B22A3 /* SceneDelegate.swift */; };
@@ -57,6 +58,7 @@
 		3357400D25F59D2800C5F3CC /* leftBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leftBarView.swift; sourceTree = "<group>"; };
 		3357401025F59E8300C5F3CC /* logManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logManager.swift; sourceTree = "<group>"; };
 		3357401325F5A48E00C5F3CC /* layoutViewMisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layoutViewMisc.swift; sourceTree = "<group>"; };
+		33663B8926114FE20010A6F5 /* rightBarViewActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rightBarViewActions.swift; sourceTree = "<group>"; };
 		337701E125FECEF500DB4A71 /* preferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = preferencesManager.swift; sourceTree = "<group>"; };
 		33B8850C25EC5F50002B22A3 /* Applied Engineering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Applied Engineering.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B8850F25EC5F50002B22A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,15 @@
 			path = layoutView;
 			sourceTree = "<group>";
 		};
+		33663B8826114FCC0010A6F5 /* rightBar */ = {
+			isa = PBXGroup;
+			children = (
+				3357400A25F59D1E00C5F3CC /* rightBarView.swift */,
+				33663B8926114FE20010A6F5 /* rightBarViewActions.swift */,
+			);
+			path = rightBar;
+			sourceTree = "<group>";
+		};
 		337701E625FED6BE00DB4A71 /* mainView */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +146,7 @@
 			children = (
 				3357401625F5A49C00C5F3CC /* layoutView */,
 				337701E625FED6BE00DB4A71 /* mainView */,
-				3357400A25F59D1E00C5F3CC /* rightBarView.swift */,
+				33663B8826114FCC0010A6F5 /* rightBar */,
 				3357400D25F59D2800C5F3CC /* leftBarView.swift */,
 			);
 			path = UI;
@@ -371,6 +382,7 @@
 				33D563582606A7EF004E5624 /* miscellaneous.swift in Sources */,
 				3357400B25F59D1E00C5F3CC /* rightBarView.swift in Sources */,
 				33205A952606F94D00A5B139 /* telemetryView.swift in Sources */,
+				33663B8A26114FE20010A6F5 /* rightBarViewActions.swift in Sources */,
 				3357400E25F59D2800C5F3CC /* leftBarView.swift in Sources */,
 				33205A982606F96E00A5B139 /* taskTrackingView.swift in Sources */,
 				3357400825F59D0200C5F3CC /* mainView.swift in Sources */,
