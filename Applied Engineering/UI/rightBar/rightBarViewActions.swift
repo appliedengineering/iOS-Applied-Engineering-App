@@ -12,6 +12,8 @@ extension rightBarViewController{
     
     @objc func applySettings(_ sender: UIButton){
         
+        UINotificationFeedbackGenerator().notificationOccurred(.success);
+        
         for textField in settingsInputViews{
             preferencesManager.obj.saveStringValueForIndex(textField.tag, textField.text ?? "");
             textField.text = preferencesManager.obj.getStringValueForIndex(textField.tag);
