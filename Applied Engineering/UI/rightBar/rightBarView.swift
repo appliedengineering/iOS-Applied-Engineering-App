@@ -76,18 +76,18 @@ class rightBarViewController : UIViewController, UITextFieldDelegate{
     private func renderSettings(){
         
         let verticalPadding = CGFloat(10);
+        let horizontalPadding = CGFloat(12);
         var nextY : CGFloat = verticalPadding;
         
-        let testColors : [UIColor] = [.systemRed, .systemBlue, .systemPink, .systemTeal, .systemGray, .systemGreen, .systemGray2, .systemOrange];
+        //let testColors : [UIColor] = [.systemRed, .systemBlue, .systemPink, .systemTeal, .systemGray, .systemGreen, .systemGray2, .systemOrange];
         
         for i in 0..<preferencesManager.obj.numberOfSettings{
             
-            let settingViewHorizontalPadding = CGFloat(12);
-            let settingViewFrame = CGRect(x: settingViewHorizontalPadding, y: nextY, width: settingsScrollView.frame.width - 2*settingViewHorizontalPadding, height: self.view.frame.height / 12);
+            let settingViewFrame = CGRect(x: horizontalPadding, y: nextY, width: settingsScrollView.frame.width - 2*horizontalPadding, height: self.view.frame.height / 12);
             let settingView = UIView(frame: settingViewFrame);
-            
+        
             //settingView.backgroundColor = testColors[i];
-            
+        
             settingsScrollView.addSubview(settingView);
             nextY += settingView.frame.height + verticalPadding;
 
@@ -109,15 +109,25 @@ class rightBarViewController : UIViewController, UITextFieldDelegate{
             let textField = UITextField(frame: textFieldFrame);
             
             //textView.backgroundColor = testColors[i];
-            textField.font = UIFont(name: Inter_Regular, size: textField.frame.height * 0.6);
+            textField.text = preferencesManager.obj.getStringValueForIndex(i);
+            textField.font = UIFont(name: Inter_Medium, size: textField.frame.height * 0.5);
             textField.textColor = InverseBackgroundColor;
             textField.allowsEditingTextAttributes = false;
             textField.autocorrectionType = .no;
             textField.spellCheckingType = .no;
+            textField.autocapitalizationType = .none;
             textField.tintColor = AccentColor;
             textField.delegate = self;
-            
             textField.tag = i;
+            
+            if (textField.tag == 0){
+                textField.keyboardType = .decimalPad;
+            }
+            else if (textField.tag != 2){
+                textField.keyboardType = .numberPad;
+            }
+            
+            settingsInputViews.append(textField);
             
             settingView.addSubview(textField);
             
@@ -130,9 +140,25 @@ class rightBarViewController : UIViewController, UITextFieldDelegate{
             textViewUnderline.backgroundColor = InverseBackgroundColor;
             
             settingView.addSubview(textViewUnderline);
-
             
         }
+        
+        nextY += verticalPadding;
+        
+        let applyButtonFrame = CGRect(x: horizontalPadding, y: nextY, width: settingsScrollView.frame.width - 2*horizontalPadding, height: self.view.frame.height / 18);
+        let applyButton = UIButton(frame: applyButtonFrame);
+        
+        applyButton.backgroundColor = BackgroundGray;
+        applyButton.setTitle("Apply Settings", for: .normal);
+        applyButton.setTitleColor(InverseBackgroundColor, for: .normal);
+        applyButton.titleLabel?.font = UIFont(name: Inter_Medium, size: applyButtonFrame.height * 0.45);
+        applyButton.titleLabel?.textAlignment = .center;
+        applyButton.layer.cornerRadius = 4;
+        
+        applyButton.addTarget(self, action: #selector(self.applySettings), for: .touchUpInside);
+        
+        settingsScrollView.addSubview(applyButton);
+        nextY += applyButton.frame.height + 2*verticalPadding;
         
         settingsScrollView.contentSize = CGSize(width: settingsScrollView.frame.width, height: nextY);
     

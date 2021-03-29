@@ -10,7 +10,17 @@ import UIKit
 
 extension rightBarViewController{
     
-     // Keyboard stuff
+    @objc func applySettings(_ sender: UIButton){
+        
+        for textField in settingsInputViews{
+            preferencesManager.obj.saveStringValueForIndex(textField.tag, textField.text ?? "");
+            textField.text = preferencesManager.obj.getStringValueForIndex(textField.tag);
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutMainViewNotification), object: nil, userInfo: nil);
+    }
+    
+     // Keyboard actions
     
     @objc override func dismissKeyboard() {
         self.view.endEditing(true);
