@@ -25,6 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
         
+        communication.connect(communication.createFullAddress(), preferences.connectionGroup);
+        dataMgr;
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

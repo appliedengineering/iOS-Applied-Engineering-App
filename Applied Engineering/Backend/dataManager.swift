@@ -14,16 +14,31 @@ class dataManager{
     static public let obj = dataManager();
     
     private init(){
-        
+        communicationThread();
     }
     
     private func communicationThread(){
         DispatchQueue.global(qos: .background).async{
             while true{ // keeps on reconnecting
                 
+                while communication.getIsConnected(){
+                 
+                    do{
+                        let data = try communication.dish?.recv();
+                        print("data recv - \(data)");
+                    }
+                    catch{
+                        if (errno != EAGAIN){
+                            log.addc("Communication error - \(error) with errno \(errno) = \(communication.convertErrno(errno))");
+                        }
+                    }
+                    
+                }
                 
+                sleep(UInt32(preferences.reconnectTimeout));
                 
             }
+            
         }
     }
     

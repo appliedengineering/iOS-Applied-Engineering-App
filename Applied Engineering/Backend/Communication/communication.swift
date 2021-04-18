@@ -16,6 +16,8 @@ class communicationClass{
     private var connectionGroup = "";
     private var context : SwiftyZeroMQ.Context?;
     public var dish : SwiftyZeroMQ.Socket?;
+
+    private var isConnected = false;
     
     private init(){
         printVersion();
@@ -42,6 +44,8 @@ class communicationClass{
         connectionGroup = group;
         connectionString = address;
         
+        //print("connect - \(address) - \(group)")
+        
         do{
             
             dish = try context?.socket(.dish);
@@ -56,6 +60,8 @@ class communicationClass{
             log.addc("Connect communication error - \(error) - \(convertErrno(zmq_errno()))");
             return false;
         }
+        
+        isConnected = true;
         
         return true;
     }
@@ -73,6 +79,7 @@ class communicationClass{
         }
         
         dish = nil;
+        isConnected = false;
         
         return true;
     }
@@ -91,25 +98,33 @@ class communicationClass{
     }
     
     public func convertErrno(_ errorn: Int32) -> String{
-            switch errorn {
-            case EAGAIN:
-                return "EAGAIN - Non-blocking mode was requested and no messages are available at the moment.";
-            case ENOTSUP:
-                return "ENOTSUP - The zmq_recv() operation is not supported by this socket type.";
-            case EFSM:
-                return "EFSM - The zmq_recv() operation cannot be performed on this socket at the moment due to the socket not being in the appropriate state.";
-            case ETERM:
-                return "ETERM - The ØMQ context associated with the specified socket was terminated.";
-            case ENOTSOCK:
-                return "ENOTSOCK - The provided socket was invalid.";
-            case EINTR:
-                return "EINTR - The operation was interrupted by delivery of a signal before a message was available.";
-            case EFAULT:
-                return "EFAULT - The message passed to the function was invalid.";
-            default:
-                return "Not valid errno code";
-            }
+        switch errorn {
+        case EAGAIN:
+            return "EAGAIN - Non-blocking mode was requested and no messages are available at the moment.";
+        case ENOTSUP:
+            return "ENOTSUP - The zmq_recv() operation is not supported by this socket type.";
+        case EFSM:
+            return "EFSM - The zmq_recv() operation cannot be performed on this socket at the moment due to the socket not being in the appropriate state.";
+        case ETERM:
+            return "ETERM - The ØMQ context associated with the specified socket was terminated.";
+        case ENOTSOCK:
+            return "ENOTSOCK - The provided socket was invalid.";
+        case EINTR:
+            return "EINTR - The operation was interrupted by delivery of a signal before a message was available.";
+        case EFAULT:
+            return "EFAULT - The message passed to the function was invalid.";
+        default:
+            return "Not valid errno code";
         }
+    }
+    
+    public func getIsConnected() -> Bool{
+        return isConnected;
+    }
+    
+    public func createFullAddress() -> String{
+        return "udp://\(preferences.connectionIPAddress):\(preferences.connectionPort)";
+    }
     
 }
 
