@@ -47,6 +47,7 @@ let Inter_V = "Inter-V";
 // Singleton Macros
 let dataMgr = dataManager.obj;
 let communication = communicationClass.obj;
+let preferences = preferencesManager.obj;
 //
 
 // Extensions
