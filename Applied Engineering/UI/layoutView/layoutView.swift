@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftyZeroMQ5
 
 class layoutViewController: UIViewController {
 
@@ -25,7 +24,6 @@ class layoutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        print("zeromq ver: \(SwiftyZeroMQ.version)");
         
         // set up all the view controllers
         setupLayout();

@@ -44,6 +44,9 @@
 		33D563832606AB72004E5624 /* Inter-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 33D5636E2606AB3D004E5624 /* Inter-Regular.otf */; };
 		33D563842606AB72004E5624 /* Inter-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 33D563612606AB3C004E5624 /* Inter-ExtraBold.otf */; };
 		33D563852606AB72004E5624 /* Inter-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 33D5636F2606AB3D004E5624 /* Inter-Italic.otf */; };
+		33EB261C262CEC7600274847 /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB261B262CEC7600274847 /* dataManager.swift */; };
+		33EB261F262CEDD500274847 /* communication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB261E262CEDD500274847 /* communication.swift */; };
+		33EB2623262CEF3200274847 /* LocalNetworkPermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB2622262CEF3200274847 /* LocalNetworkPermissionService.swift */; };
 		A4C957F2230B2995A09F2A7D /* Pods_Applied_Engineering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5194FD1A9A1ECD96C7360B /* Pods_Applied_Engineering.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +90,9 @@
 		33D5636F2606AB3D004E5624 /* Inter-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Italic.otf"; sourceTree = "<group>"; };
 		33D563702606AB3D004E5624 /* Inter-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-BoldItalic.otf"; sourceTree = "<group>"; };
 		33D563712606AB3D004E5624 /* Inter-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.otf"; sourceTree = "<group>"; };
+		33EB261B262CEC7600274847 /* dataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
+		33EB261E262CEDD500274847 /* communication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communication.swift; sourceTree = "<group>"; };
+		33EB2622262CEF3200274847 /* LocalNetworkPermissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkPermissionService.swift; sourceTree = "<group>"; };
 		451F11BEAF04DAC29001797D /* Pods-Applied Engineering.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.release.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.release.xcconfig"; sourceTree = "<group>"; };
 		B638CC43CA48E5D25E5308A2 /* Pods-Applied Engineering.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.debug.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5194FD1A9A1ECD96C7360B /* Pods_Applied_Engineering.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Applied_Engineering.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,9 +161,11 @@
 		33B2177425EC61E300AE4BAD /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				33EB2621262CEF2300274847 /* Communication */,
 				3357401025F59E8300C5F3CC /* logManager.swift */,
 				337701E125FECEF500DB4A71 /* preferencesManager.swift */,
 				33D563572606A7EF004E5624 /* miscellaneous.swift */,
+				33EB261B262CEC7600274847 /* dataManager.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -229,6 +237,15 @@
 				33D563662606AB3C004E5624 /* Inter-V.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		33EB2621262CEF2300274847 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				33EB261E262CEDD500274847 /* communication.swift */,
+				33EB2622262CEF3200274847 /* LocalNetworkPermissionService.swift */,
+			);
+			path = Communication;
 			sourceTree = "<group>";
 		};
 		66F478F4DF0B80D89588A59B /* Pods */ = {
@@ -374,6 +391,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3357401425F5A48E00C5F3CC /* layoutViewMisc.swift in Sources */,
+				33EB261C262CEC7600274847 /* dataManager.swift in Sources */,
+				33EB2623262CEF3200274847 /* LocalNetworkPermissionService.swift in Sources */,
 				3357401125F59E8300C5F3CC /* logManager.swift in Sources */,
 				3357400325F5989900C5F3CC /* AppUtility.swift in Sources */,
 				33B8851425EC5F50002B22A3 /* layoutView.swift in Sources */,
@@ -383,6 +402,7 @@
 				3357400B25F59D1E00C5F3CC /* rightBarView.swift in Sources */,
 				33205A952606F94D00A5B139 /* telemetryView.swift in Sources */,
 				33663B8A26114FE20010A6F5 /* rightBarViewActions.swift in Sources */,
+				33EB261F262CEDD500274847 /* communication.swift in Sources */,
 				3357400E25F59D2800C5F3CC /* leftBarView.swift in Sources */,
 				33205A982606F96E00A5B139 /* taskTrackingView.swift in Sources */,
 				3357400825F59D0200C5F3CC /* mainView.swift in Sources */,

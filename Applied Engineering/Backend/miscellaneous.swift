@@ -44,6 +44,11 @@ let Inter_ThinItalic = "Inter-ThinItalic";
 let Inter_V = "Inter-V";
 //
 
+// Singleton Macros
+let dataMgr = dataManager.obj;
+let communication = communicationClass.obj;
+//
+
 // Extensions
 extension String {
     func getHeight(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
