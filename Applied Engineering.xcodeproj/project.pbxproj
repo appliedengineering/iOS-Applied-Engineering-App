@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		118DD8A360B8C124842208E5 /* Pods_Applied_Engineering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857F2A97911721CDD54927E6 /* Pods_Applied_Engineering.framework */; };
 		33205A952606F94D00A5B139 /* telemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A942606F94D00A5B139 /* telemetryView.swift */; };
 		33205A982606F96E00A5B139 /* taskTrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A972606F96E00A5B139 /* taskTrackingView.swift */; };
 		33205A9B2606F98A00A5B139 /* instrumentClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A9A2606F98A00A5B139 /* instrumentClusterView.swift */; };
@@ -47,10 +48,10 @@
 		33EB261C262CEC7600274847 /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB261B262CEC7600274847 /* dataManager.swift */; };
 		33EB261F262CEDD500274847 /* communication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB261E262CEDD500274847 /* communication.swift */; };
 		33EB2623262CEF3200274847 /* LocalNetworkPermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB2622262CEF3200274847 /* LocalNetworkPermissionService.swift */; };
-		A4C957F2230B2995A09F2A7D /* Pods_Applied_Engineering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5194FD1A9A1ECD96C7360B /* Pods_Applied_Engineering.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		053BDF651CB20F513485BFDD /* Pods-Applied Engineering.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.release.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.release.xcconfig"; sourceTree = "<group>"; };
 		33205A942606F94D00A5B139 /* telemetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = telemetryView.swift; sourceTree = "<group>"; };
 		33205A972606F96E00A5B139 /* taskTrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskTrackingView.swift; sourceTree = "<group>"; };
 		33205A9A2606F98A00A5B139 /* instrumentClusterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instrumentClusterView.swift; sourceTree = "<group>"; };
@@ -93,9 +94,8 @@
 		33EB261B262CEC7600274847 /* dataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
 		33EB261E262CEDD500274847 /* communication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communication.swift; sourceTree = "<group>"; };
 		33EB2622262CEF3200274847 /* LocalNetworkPermissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkPermissionService.swift; sourceTree = "<group>"; };
-		451F11BEAF04DAC29001797D /* Pods-Applied Engineering.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.release.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.release.xcconfig"; sourceTree = "<group>"; };
-		B638CC43CA48E5D25E5308A2 /* Pods-Applied Engineering.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.debug.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.debug.xcconfig"; sourceTree = "<group>"; };
-		BA5194FD1A9A1ECD96C7360B /* Pods_Applied_Engineering.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Applied_Engineering.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		857F2A97911721CDD54927E6 /* Pods_Applied_Engineering.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Applied_Engineering.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7AFD7DDE70EE5FF7C3E2B56 /* Pods-Applied Engineering.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.debug.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,21 +103,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4C957F2230B2995A09F2A7D /* Pods_Applied_Engineering.framework in Frameworks */,
+				118DD8A360B8C124842208E5 /* Pods_Applied_Engineering.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		26E057995D0854E43CE72650 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BA5194FD1A9A1ECD96C7360B /* Pods_Applied_Engineering.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3357401625F5A49C00C5F3CC /* layoutView */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,7 +168,7 @@
 				33B8850E25EC5F50002B22A3 /* Applied Engineering */,
 				33B8850D25EC5F50002B22A3 /* Products */,
 				66F478F4DF0B80D89588A59B /* Pods */,
-				26E057995D0854E43CE72650 /* Frameworks */,
+				4604D3D1C17DD4FA364728AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,11 +240,19 @@
 			path = Communication;
 			sourceTree = "<group>";
 		};
+		4604D3D1C17DD4FA364728AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				857F2A97911721CDD54927E6 /* Pods_Applied_Engineering.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		66F478F4DF0B80D89588A59B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B638CC43CA48E5D25E5308A2 /* Pods-Applied Engineering.debug.xcconfig */,
-				451F11BEAF04DAC29001797D /* Pods-Applied Engineering.release.xcconfig */,
+				E7AFD7DDE70EE5FF7C3E2B56 /* Pods-Applied Engineering.debug.xcconfig */,
+				053BDF651CB20F513485BFDD /* Pods-Applied Engineering.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -264,11 +264,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33B8852025EC5F51002B22A3 /* Build configuration list for PBXNativeTarget "Applied Engineering" */;
 			buildPhases = (
-				35CBAFD5009239F5536F056D /* [CP] Check Pods Manifest.lock */,
+				4559E0D067641F224E65A9CD /* [CP] Check Pods Manifest.lock */,
 				33B8850825EC5F50002B22A3 /* Sources */,
 				33B8850925EC5F50002B22A3 /* Frameworks */,
 				33B8850A25EC5F50002B22A3 /* Resources */,
-				ABF342665A25ED9AF9E03CA4 /* [CP] Embed Pods Frameworks */,
+				0B34E7D9670A7F46A92239C7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -344,7 +344,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		35CBAFD5009239F5536F056D /* [CP] Check Pods Manifest.lock */ = {
+		0B34E7D9670A7F46A92239C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4559E0D067641F224E65A9CD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -364,23 +381,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ABF342665A25ED9AF9E03CA4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -532,7 +532,7 @@
 		};
 		33B8852125EC5F51002B22A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B638CC43CA48E5D25E5308A2 /* Pods-Applied Engineering.debug.xcconfig */;
+			baseConfigurationReference = E7AFD7DDE70EE5FF7C3E2B56 /* Pods-Applied Engineering.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -552,7 +552,7 @@
 		};
 		33B8852225EC5F51002B22A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 451F11BEAF04DAC29001797D /* Pods-Applied Engineering.release.xcconfig */;
+			baseConfigurationReference = 053BDF651CB20F513485BFDD /* Pods-Applied Engineering.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
