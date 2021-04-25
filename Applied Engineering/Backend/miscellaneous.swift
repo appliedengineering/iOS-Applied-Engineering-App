@@ -8,11 +8,16 @@
 import Foundation
 import UIKit
 
+// General Global Macros
+let numberOfGraphableVars = 10;
+//
+
 // Notification Macros
 let layoutSettingsViewNotification = "layoutSettingsViewNotification";
 let layoutMainViewNotification = "layoutMainViewNotification";
 let mainViewSetContentViewNotification = "mainViewSetContentViewNotification";
 let dismissRightBarKeyboardNotification = "dismissRightBarKeyboardNotification";
+let dataUpdatedNotification = "dataUpdatedNotification";
 //
 
 // Colors

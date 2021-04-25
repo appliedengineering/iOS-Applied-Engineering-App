@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		118DD8A360B8C124842208E5 /* Pods_Applied_Engineering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857F2A97911721CDD54927E6 /* Pods_Applied_Engineering.framework */; };
 		33205A952606F94D00A5B139 /* telemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A942606F94D00A5B139 /* telemetryView.swift */; };
 		33205A982606F96E00A5B139 /* taskTrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A972606F96E00A5B139 /* taskTrackingView.swift */; };
 		33205A9B2606F98A00A5B139 /* instrumentClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A9A2606F98A00A5B139 /* instrumentClusterView.swift */; };
@@ -48,10 +47,10 @@
 		33EB261C262CEC7600274847 /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB261B262CEC7600274847 /* dataManager.swift */; };
 		33EB261F262CEDD500274847 /* communication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB261E262CEDD500274847 /* communication.swift */; };
 		33EB2623262CEF3200274847 /* LocalNetworkPermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EB2622262CEF3200274847 /* LocalNetworkPermissionService.swift */; };
+		E68A55DFE559FE829D05B8A7 /* Pods_Applied_Engineering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53B708242C8361E8A17B5E0B /* Pods_Applied_Engineering.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		053BDF651CB20F513485BFDD /* Pods-Applied Engineering.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.release.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.release.xcconfig"; sourceTree = "<group>"; };
 		33205A942606F94D00A5B139 /* telemetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = telemetryView.swift; sourceTree = "<group>"; };
 		33205A972606F96E00A5B139 /* taskTrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskTrackingView.swift; sourceTree = "<group>"; };
 		33205A9A2606F98A00A5B139 /* instrumentClusterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instrumentClusterView.swift; sourceTree = "<group>"; };
@@ -94,8 +93,9 @@
 		33EB261B262CEC7600274847 /* dataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
 		33EB261E262CEDD500274847 /* communication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communication.swift; sourceTree = "<group>"; };
 		33EB2622262CEF3200274847 /* LocalNetworkPermissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkPermissionService.swift; sourceTree = "<group>"; };
-		857F2A97911721CDD54927E6 /* Pods_Applied_Engineering.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Applied_Engineering.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7AFD7DDE70EE5FF7C3E2B56 /* Pods-Applied Engineering.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.debug.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.debug.xcconfig"; sourceTree = "<group>"; };
+		53B708242C8361E8A17B5E0B /* Pods_Applied_Engineering.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Applied_Engineering.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B59B1B9B0662A22174EB4E6 /* Pods-Applied Engineering.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.debug.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.debug.xcconfig"; sourceTree = "<group>"; };
+		98DE9064A40E882ACD982B84 /* Pods-Applied Engineering.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applied Engineering.release.xcconfig"; path = "Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				118DD8A360B8C124842208E5 /* Pods_Applied_Engineering.framework in Frameworks */,
+				E68A55DFE559FE829D05B8A7 /* Pods_Applied_Engineering.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +168,7 @@
 				33B8850E25EC5F50002B22A3 /* Applied Engineering */,
 				33B8850D25EC5F50002B22A3 /* Products */,
 				66F478F4DF0B80D89588A59B /* Pods */,
-				4604D3D1C17DD4FA364728AA /* Frameworks */,
+				649682B484D92D9D68136038 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,10 +240,10 @@
 			path = Communication;
 			sourceTree = "<group>";
 		};
-		4604D3D1C17DD4FA364728AA /* Frameworks */ = {
+		649682B484D92D9D68136038 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				857F2A97911721CDD54927E6 /* Pods_Applied_Engineering.framework */,
+				53B708242C8361E8A17B5E0B /* Pods_Applied_Engineering.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -251,8 +251,8 @@
 		66F478F4DF0B80D89588A59B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E7AFD7DDE70EE5FF7C3E2B56 /* Pods-Applied Engineering.debug.xcconfig */,
-				053BDF651CB20F513485BFDD /* Pods-Applied Engineering.release.xcconfig */,
+				6B59B1B9B0662A22174EB4E6 /* Pods-Applied Engineering.debug.xcconfig */,
+				98DE9064A40E882ACD982B84 /* Pods-Applied Engineering.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -264,11 +264,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33B8852025EC5F51002B22A3 /* Build configuration list for PBXNativeTarget "Applied Engineering" */;
 			buildPhases = (
-				4559E0D067641F224E65A9CD /* [CP] Check Pods Manifest.lock */,
+				C4D3246269607416AC3B655E /* [CP] Check Pods Manifest.lock */,
 				33B8850825EC5F50002B22A3 /* Sources */,
 				33B8850925EC5F50002B22A3 /* Frameworks */,
 				33B8850A25EC5F50002B22A3 /* Resources */,
-				0B34E7D9670A7F46A92239C7 /* [CP] Embed Pods Frameworks */,
+				C3920C0AFB9C5753A23DEE73 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -344,7 +344,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B34E7D9670A7F46A92239C7 /* [CP] Embed Pods Frameworks */ = {
+		C3920C0AFB9C5753A23DEE73 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,7 +361,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Applied Engineering/Pods-Applied Engineering-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4559E0D067641F224E65A9CD /* [CP] Check Pods Manifest.lock */ = {
+		C4D3246269607416AC3B655E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -532,7 +532,7 @@
 		};
 		33B8852125EC5F51002B22A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7AFD7DDE70EE5FF7C3E2B56 /* Pods-Applied Engineering.debug.xcconfig */;
+			baseConfigurationReference = 6B59B1B9B0662A22174EB4E6 /* Pods-Applied Engineering.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -552,7 +552,7 @@
 		};
 		33B8852225EC5F51002B22A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 053BDF651CB20F513485BFDD /* Pods-Applied Engineering.release.xcconfig */;
+			baseConfigurationReference = 98DE9064A40E882ACD982B84 /* Pods-Applied Engineering.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
