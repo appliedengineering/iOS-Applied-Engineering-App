@@ -85,6 +85,8 @@ class dataManager{
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
         
+        //print("new data point at \(graphData[0][graphData[0].count - 1].x) - \(graphData[0].count)");
+        
     }
     
     public func getGraphData(_ index: Int) -> [ChartDataEntry]{
@@ -124,7 +126,7 @@ class dataManager{
     }
     
     private func createDataPoint(_ timeStamp: Float64, _ data: Float32) -> ChartDataEntry{
-        return ChartDataEntry(x: max(timeStamp - startTimeStamp, 0), y: Double(data));
+        return ChartDataEntry(x: max(timeStamp - startTimeStamp, 0).truncate(places: 3), y: Double(data));
     }
     
 }

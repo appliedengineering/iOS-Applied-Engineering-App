@@ -55,6 +55,7 @@ class preferencesManager{
         zeromqReceiveBuffer = d_zeromqReceiveBuffer;
         reconnectTimeout = d_reconnectTimeout;
         graphBufferSize = d_graphBufferSize;
+        save();
     }
     
     public func save(){
@@ -112,6 +113,7 @@ class preferencesManager{
         default:
             print("saveStringValueForIndex recv invalid index");
         }
+        save();
     }
     
 }
