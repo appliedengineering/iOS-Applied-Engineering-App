@@ -49,7 +49,7 @@ class layoutViewController: UIViewController {
     private func setupLayout(){
         // mainView
         
-        mainViewContainer.frame = CGRect(x: 0, y: AppUtility.topSafeAreaInsetHeight, width: self.view.frame.width, height: self.view.frame.height - AppUtility.topSafeAreaInsetHeight);
+        mainViewContainer.frame = CGRect(x: 0, y: AppUtility.safeAreaInset.top, width: self.view.frame.width, height: self.view.frame.height - AppUtility.safeAreaInset.top);
         /*mainViewContainer.layer.cornerRadius = 10;
         mainViewContainer.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner];
         mainViewContainer.clipsToBounds = true;*/
@@ -61,7 +61,7 @@ class layoutViewController: UIViewController {
         // rightBar
         
         let rightBarWidth = CGFloat(self.view.frame.width * 2 / 3);
-        rightBarContainer.frame = CGRect(x: mainViewContainer.frame.maxX, y: AppUtility.topSafeAreaInsetHeight, width: rightBarWidth, height: self.view.frame.height - AppUtility.topSafeAreaInsetHeight);
+        rightBarContainer.frame = CGRect(x: mainViewContainer.frame.maxX, y: AppUtility.safeAreaInset.top, width: rightBarWidth, height: self.view.frame.height - AppUtility.safeAreaInset.top);
         /*rightBarContainer.layer.cornerRadius = 10;
         rightBarContainer.layer.maskedCorners = [.layerMinXMinYCorner];
         rightBarContainer.clipsToBounds = true;*/
@@ -73,7 +73,7 @@ class layoutViewController: UIViewController {
         // leftBar
         
         let leftBarWidth = CGFloat(self.view.frame.width * 2 / 3);
-        leftBarContainer.frame = CGRect(x: -leftBarWidth, y: AppUtility.topSafeAreaInsetHeight, width: leftBarWidth, height: self.view.frame.height - AppUtility.topSafeAreaInsetHeight);
+        leftBarContainer.frame = CGRect(x: -leftBarWidth, y: AppUtility.safeAreaInset.top, width: leftBarWidth, height: self.view.frame.height - AppUtility.safeAreaInset.top);
         //leftBarContainer.layer.cornerRadius = 10;
         //leftBarContainer.layer.maskedCorners = [.layerMaxXMinYCorner];
         //leftBarContainer.clipsToBounds = true;

@@ -12,7 +12,10 @@ struct AppUtility {
 
     static let originalWidth = UIScreen.main.bounds.width;
     static let originalHeight = UIScreen.main.bounds.height;
-    static var topSafeAreaInsetHeight : CGFloat = UIApplication.shared.windows[0].safeAreaInsets.top;
+    static let safeAreaInset = UIApplication.shared.windows[0].safeAreaInsets;
+    
+    static private var isOrientationLocked = false;
+    static private var isLockedOrientationLandscape = false;
     
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
     
@@ -20,6 +23,8 @@ struct AppUtility {
             delegate.orientationLock = orientation;
         }
         
+        isOrientationLocked = orientation != .all;
+        isLockedOrientationLandscape = UIDevice.current.orientation.isLandscape;
     }
 
     /// OPTIONAL Added method to adjust lock and rotate to the desired orientation
@@ -29,10 +34,12 @@ struct AppUtility {
     
         UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
         UINavigationController.attemptRotationToDeviceOrientation();
+        
+        isLockedOrientationLandscape = rotateOrientation.isLandscape;
     }
 
     static func getCurrentScreenSize() -> CGSize{
-        let isLandscape = UIDevice.current.orientation.isLandscape;
+        let isLandscape = isOrientationLocked ? isLockedOrientationLandscape : UIDevice.current.orientation.isLandscape;
         return CGSize(width: (isLandscape ? AppUtility.originalHeight : AppUtility.originalWidth), height: (isLandscape ? AppUtility.originalWidth : AppUtility.originalHeight));
     }
     
