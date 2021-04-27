@@ -66,7 +66,7 @@ class rightBarViewController : UIViewController, UITextFieldDelegate{
         //
         
         let seperatorViewHeight = CGFloat(1);
-        let seperatorViewFrame = CGRect(x: 0, y: topView.frame.height + 3*seperatorViewHeight, width: topView.frame.width, height: seperatorViewHeight);
+        let seperatorViewFrame = CGRect(x: 0, y: topView.frame.height + 8, width: topView.frame.width, height: seperatorViewHeight);
         let seperatorView = UIView(frame: seperatorViewFrame);
         seperatorView.backgroundColor = BackgroundGray;
         
