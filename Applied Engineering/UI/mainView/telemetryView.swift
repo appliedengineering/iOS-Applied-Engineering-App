@@ -70,20 +70,20 @@ class telemetryViewController : UIViewController{
             //graphButton.backgroundColor = .systemBlue;
             //
             
-            let graphView = LineChartView(frame: CGRect(x: 0, y: 0, width: graphButton.frame.width, height: graphButton.frame.height));
+            //let graphView = LineChartView(frame: CGRect(x: 0, y: 0, width: graphButton.frame.width, height: graphButton.frame.height));
             
-            graphView.backgroundColor = .clear;
-            graphView.isUserInteractionEnabled = false;
-            graphView.xAxis.drawGridLinesEnabled = false;
-            graphView.leftAxis.drawAxisLineEnabled = false;
-            graphView.leftAxis.drawGridLinesEnabled = false;
-            graphView.rightAxis.drawAxisLineEnabled = false;
-            graphView.legend.enabled = false;
-            graphView.rightAxis.enabled = false;
-            graphView.xAxis.enabled = false;
-            graphView.drawGridBackgroundEnabled = false;
+            graphButton.chartView.backgroundColor = .clear;
+            graphButton.chartView.isUserInteractionEnabled = false;
+            graphButton.chartView.xAxis.drawGridLinesEnabled = false;
+            graphButton.chartView.leftAxis.drawAxisLineEnabled = false;
+            graphButton.chartView.leftAxis.drawGridLinesEnabled = false;
+            graphButton.chartView.rightAxis.drawAxisLineEnabled = false;
+            graphButton.chartView.legend.enabled = false;
+            graphButton.chartView.rightAxis.enabled = false;
+            graphButton.chartView.xAxis.enabled = false;
+            graphButton.chartView.drawGridBackgroundEnabled = false;
             
-            graphButton.addSubview(graphView);
+            //graphButton.addSubview(graphView);
             
             
             let graphLine = LineChartDataSet(entries: dataMgr.getGraphData(graphIndex), label: graphNameArray[graphIndex]);
@@ -99,7 +99,7 @@ class telemetryViewController : UIViewController{
             
             graphLineData.addDataSet(graphLine);
             
-            graphView.data = graphLineData;
+            graphButton.chartView.data = graphLineData;
             
             //
             

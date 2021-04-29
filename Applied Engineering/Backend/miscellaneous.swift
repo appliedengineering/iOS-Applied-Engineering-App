@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Charts
 
 // General Global Macros
 let graphNameArray : [String] = [
@@ -143,6 +144,7 @@ class GraphUIButton : UIButton{
             noDataLabel.isHidden = hasData;
         }
     };
+    public let chartView : LineChartView = LineChartView();
     
     //
     
@@ -154,6 +156,7 @@ class GraphUIButton : UIButton{
         
         renderNoDataLabel();
         renderTitleLabel();
+        setupGraph();
     }
     
     required init?(coder: NSCoder) {
@@ -192,6 +195,11 @@ class GraphUIButton : UIButton{
         titleLabel.textColor = InverseBackgroundColor;
         
         self.addSubview(titleLabel);
+    }
+    
+    private func setupGraph(){
+        chartView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height);
+        self.addSubview(chartView);
     }
     
 }
