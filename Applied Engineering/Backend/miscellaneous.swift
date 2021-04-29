@@ -141,7 +141,9 @@ class GraphUIButton : UIButton{
     public var graphIndex : Int = -1;
     public var hasData : Bool = false {
         didSet{
-            noDataLabel.isHidden = hasData;
+            DispatchQueue.main.sync {
+                self.noDataLabel.isHidden = self.hasData;
+            }
         }
     };
     public let chartView : LineChartView = LineChartView();

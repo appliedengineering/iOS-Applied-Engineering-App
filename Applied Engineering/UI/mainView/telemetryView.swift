@@ -17,11 +17,20 @@ class telemetryViewController : UIViewController{
     private var nextY : CGFloat = 0;
     private let mainScrollView : UIScrollView = UIScrollView();
     
+    private var graphButtonArray : [GraphUIButton] = [];
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         
         mainScrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height);
+     
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateData), name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated);
         
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
     }
     
     override func viewDidLoad() {
@@ -104,6 +113,7 @@ class telemetryViewController : UIViewController{
             //
             
             graphButton.tag = 1;
+            graphButtonArray.append(graphButton);
             mainScrollView.addSubview(graphButton);
             nextY += graphButton.frame.height + verticalPadding;
             
@@ -113,5 +123,33 @@ class telemetryViewController : UIViewController{
         
     }
     
+    
+    @objc private func updateData(){
+        
+        for graphIndex in 0..<numberOfGraphableVars{
+            let graphButton = graphButtonArray[graphIndex];
+            let newData = dataMgr.getGraphData(graphIndex);
+            
+            guard let graphData = graphButton.chartView.data as? LineChartData else{
+                continue;
+            }
+            
+            guard let dataSet = graphData.dataSets[0] as? LineChartDataSet else{
+                continue;
+            }
+            
+            dataSet.replaceEntries(newData); // can be optimized
+            
+            graphButton.hasData = newData.count > 0;
+            
+            graphData.notifyDataChanged();
+            
+            DispatchQueue.main.sync {
+                graphButton.chartView.notifyDataSetChanged();
+            }
+            
+        }
+        
+    }
     
 }
