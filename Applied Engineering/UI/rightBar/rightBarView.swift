@@ -39,7 +39,7 @@ class rightBarViewController : UIViewController, UITextFieldDelegate{
         //topView.backgroundColor = .darkGray;
         self.view.addSubview(topView);
         
-        settingsScrollView = UIScrollView(frame: CGRect(x: 0, y: topView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - topView.frame.height));
+        settingsScrollView = UIScrollView(frame: CGRect(x: 0, y: topView.frame.maxY + 10, width: self.view.frame.width, height: self.view.frame.height - topView.frame.height - 10));
         //settingsScrollView.backgroundColor = .systemRed;
         self.view.addSubview(settingsScrollView);
         
