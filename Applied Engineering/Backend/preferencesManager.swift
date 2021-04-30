@@ -15,20 +15,20 @@ class preferencesManager{
     private let d_connectionPort : String = "28650";
     private let d_connectionGroup : String = "telemetry";
     private let d_zeromqReceiveReconnectTimeout : Int = 3000; // in ms
-    private let d_zeromqReceiveTimeout : Int = 100; // in ms
+    private let d_receiveTimeout : Int = 100; // in ms
     private let d_reconnectTimeout : Int = 3; // seconds
     private let d_graphBufferSize : Int = 60; // number of points
     //
     
     // List of accessible variables
     public let numberOfSettings = 7;
-    public let settingsNameArray : [String] = ["Connection IP", "Connection Port", "Connection Group", "ZMQ RCNT (ms)", "ZMQ Timeout (ms)", "Reconnect Timeout (s)", "Graph Point Buffer"];
+    public let settingsNameArray : [String] = ["Connection IP", "Connection Port", "Connection Group", "ZMQ RCNT (ms)", "RCV Timeout (ms)", "RCNT Timeout (s)", "Graph Point Buffer"];
     
     public var connectionIPAddress : String = "";
     public var connectionPort : String = "";
     public var connectionGroup : String = "";
     public var zeromqReceiveReconnectTimeout : Int = -1;
-    public var zeromqReceiveTimeout : Int = -1;
+    public var receiveTimeout : Int = -1;
     public var reconnectTimeout : Int = -1;
     public var graphBufferSize : Int = -1;
     //
@@ -38,7 +38,7 @@ class preferencesManager{
         connectionPort = UserDefaults.standard.string(forKey: "connectionPort") ?? d_connectionPort;
         connectionGroup = UserDefaults.standard.string(forKey: "connectionGroup") ?? d_connectionGroup;
         zeromqReceiveReconnectTimeout = UserDefaults.standard.integer(forKey: "zeromqReceiveReconnectTimeout") == 0 ? d_zeromqReceiveReconnectTimeout : UserDefaults.standard.integer(forKey: "zeromqReceiveReconnectTimeout");
-        zeromqReceiveTimeout = UserDefaults.standard.integer(forKey: "zeromqReceiveTimeout") == 0 ? d_zeromqReceiveTimeout : UserDefaults.standard.integer(forKey: "zeromqReceiveTimeout");
+        receiveTimeout = UserDefaults.standard.integer(forKey: "receiveTimeout") == 0 ? d_receiveTimeout : UserDefaults.standard.integer(forKey: "receiveTimeout");
         reconnectTimeout = UserDefaults.standard.integer(forKey: "reconnectTimeout") == 0 ? d_reconnectTimeout : UserDefaults.standard.integer(forKey: "reconnectTimeout");
         graphBufferSize = UserDefaults.standard.integer(forKey: "graphBufferSize") == 0 ? d_graphBufferSize : UserDefaults.standard.integer(forKey: "graphBufferSize");
     }
@@ -48,7 +48,7 @@ class preferencesManager{
         connectionPort = d_connectionPort;
         connectionGroup = d_connectionGroup;
         zeromqReceiveReconnectTimeout = d_zeromqReceiveReconnectTimeout;
-        zeromqReceiveTimeout = d_zeromqReceiveTimeout;
+        receiveTimeout = d_receiveTimeout;
         reconnectTimeout = d_reconnectTimeout;
         graphBufferSize = d_graphBufferSize;
         save();
@@ -59,7 +59,7 @@ class preferencesManager{
         UserDefaults.standard.setValue(connectionPort, forKey: "connectionPort");
         UserDefaults.standard.setValue(connectionGroup, forKey: "connectionGroup");
         UserDefaults.standard.setValue(zeromqReceiveReconnectTimeout, forKey: "zeromqReceiveReconnectTimeout");
-        UserDefaults.standard.setValue(zeromqReceiveTimeout, forKey: "zeromqReceiveTimeout");
+        UserDefaults.standard.setValue(receiveTimeout, forKey: "receiveTimeout");
         UserDefaults.standard.setValue(reconnectTimeout, forKey: "reconnectTimeout");
         UserDefaults.standard.setValue(graphBufferSize, forKey: "graphBufferSize");
     }
@@ -75,7 +75,7 @@ class preferencesManager{
         case 3:
             return String(zeromqReceiveReconnectTimeout);
         case 4:
-            return String(zeromqReceiveTimeout);
+            return String(receiveTimeout);
         case 5:
             return String(reconnectTimeout);
         case 6:
@@ -96,7 +96,7 @@ class preferencesManager{
         case 3:
             zeromqReceiveReconnectTimeout = Int(val) ?? d_zeromqReceiveReconnectTimeout;
         case 4:
-            zeromqReceiveTimeout = Int(val) ?? d_zeromqReceiveTimeout;
+            receiveTimeout = Int(val) ?? d_receiveTimeout;
         case 5:
             reconnectTimeout = Int(val) ?? d_reconnectTimeout;
         case 6:

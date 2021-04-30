@@ -42,8 +42,11 @@ class dataManager{
     private var graphData : [[ChartDataEntry]] = Array(repeating: [], count: numberOfGraphableVars);
     private var startTimeStamp : Float64 = 0.0;
     
+    private var recvTimeoutTimestamp : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
+    
     private init(){
         startTimeStamp = NSDate().timeIntervalSince1970;
+        recvTimeoutTimestamp = CFAbsoluteTimeGetCurrent();
         communicationThread();
     }
     
@@ -74,16 +77,22 @@ class dataManager{
     
     private func updateWithNewData(_ data: APiData){
         
-        for i in 0..<numberOfGraphableVars{
-            graphData[i].append(createDataPoint(data.timeStamp, specificDataAttribute(with: i, data: data)));
+        if (CFAbsoluteTimeGetCurrent() - recvTimeoutTimestamp >= Double(preferences.receiveTimeout / 1000)){
             
-            while (graphData[i].count > preferences.graphBufferSize){
-                graphData[i].removeFirst();
+            for i in 0..<numberOfGraphableVars{
+                graphData[i].append(createDataPoint(data.timeStamp, specificDataAttribute(with: i, data: data)));
+                
+                while (graphData[i].count > preferences.graphBufferSize){
+                    graphData[i].removeFirst();
+                }
+                
             }
             
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
+            
+            recvTimeoutTimestamp = CFAbsoluteTimeGetCurrent();
+            
         }
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
         
         //print("new data point at \(graphData[0][graphData[0].count - 1].x) - \(graphData[0].count)");
         
