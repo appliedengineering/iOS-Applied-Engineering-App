@@ -57,10 +57,10 @@ class dataManager{
                 while communication.getIsConnected(){
                  
                     do{
-                        self.updateWithNewData(try MessagePackDecoder().decode(APiData.self, from: try communication.dish?.recv() ?? Data()));
+                        self.updateWithNewData(try communication.dish?.recv() ?? Data());
                     }
                     catch{
-                        print(error);
+                        //print(error);
                         if (errno != EAGAIN){
                             log.addc("Communication error - \(error) with errno \(errno) = \(communication.convertErrno(errno))");
                         }
@@ -75,12 +75,21 @@ class dataManager{
         }
     }
     
-    private func updateWithNewData(_ data: APiData){
+    private func updateWithNewData(_ rawData: Data){
         
         if (CFAbsoluteTimeGetCurrent() - recvTimeoutTimestamp >= Double(preferences.receiveTimeout / 1000)){
             
+            var data : APiData? = nil;
+            
+            do {
+                data = try MessagePackDecoder().decode(APiData.self, from: rawData);
+            } catch {
+                log.addc("Failed to decode recv message with MessagePacker - \(error)");
+                return;
+            }
+            
             for i in 0..<numberOfGraphableVars{
-                graphData[i].append(createDataPoint(data.timeStamp, specificDataAttribute(with: i, data: data)));
+                graphData[i].append(createDataPoint(data!.timeStamp, specificDataAttribute(with: i, data: data!)));
                 
                 while (graphData[i].count > preferences.graphBufferSize){
                     graphData[i].removeFirst();
