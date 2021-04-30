@@ -50,10 +50,10 @@ class communicationClass{
             
             dish = try context?.socket(.dish);
             
+            try dish?.setRecvTimeout(Int32(preferences.zeromqReceiveReconnectTimeout));
+            
             try dish?.bind(connectionString);
             try dish?.joinGroup(connectionGroup);
-            try dish?.setRecvTimeout(Int32(preferences.zeromqReceiveReconnectTimeout));
-            try dish?.setRecvBufferSize(Int32(preferences.zeromqReceiveBuffer));
             
         }
         catch{
@@ -75,6 +75,7 @@ class communicationClass{
         catch{
             log.addc("Disconnect communication error - \(error) - \(convertErrno(zmq_errno()))");
             dish = nil;
+            isConnected = false;
             return false;
         }
         
