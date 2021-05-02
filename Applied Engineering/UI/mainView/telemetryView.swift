@@ -18,6 +18,7 @@ class telemetryViewController : UIViewController{
     private let mainScrollView : UIScrollView = UIScrollView();
     
     private var graphButtonArray : [GraphUIButton] = [];
+    private var statusLabelArray : [UILabel] = [];
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
@@ -64,6 +65,9 @@ class telemetryViewController : UIViewController{
         */
         
         renderGraphs();
+        renderLabels();
+        
+        mainScrollView.contentSize = CGSize(width: AppUtility.getCurrentScreenSize().width, height: nextY);
     }
     
     private func renderGraphs(){
@@ -119,7 +123,63 @@ class telemetryViewController : UIViewController{
             
         }
         
-        mainScrollView.contentSize = CGSize(width: AppUtility.getCurrentScreenSize().width, height: nextY);
+    }
+    
+    private func renderLabels(){
+        
+        let miscLabelWidth = AppUtility.getCurrentScreenSize().width - 2*horizontalPadding;
+        let miscLabelFrame = CGRect(x: horizontalPadding, y: nextY, width: miscLabelWidth, height: miscLabelWidth * 0.15);
+        let miscLabel = UILabel(frame: miscLabelFrame);
+        miscLabel.text = "Miscellaneous";
+        miscLabel.textColor = InverseBackgroundColor;
+        miscLabel.font = UIFont(name: Inter_Bold, size: miscLabel.frame.height / 2);
+        miscLabel.textAlignment = .left;
+        
+        nextY += miscLabel.frame.height + verticalPadding;
+        mainScrollView.addSubview(miscLabel);
+        
+        let statusViewWidth = AppUtility.getCurrentScreenSize().width - 2*horizontalPadding;
+        for statusIndex in 0..<numberOfStatusVars{
+            let statusViewFrame = CGRect(x: horizontalPadding, y: nextY, width: statusViewWidth, height: statusViewWidth * 0.15);
+            let statusView = UIView(frame: statusViewFrame);
+            
+            //
+            let statusLeftLabel = UILabel();
+            statusView.addSubview(statusLeftLabel);
+            
+            statusLeftLabel.translatesAutoresizingMaskIntoConstraints = false;
+            statusLeftLabel.leadingAnchor.constraint(equalTo: statusView.leadingAnchor).isActive = true;
+            statusLeftLabel.topAnchor.constraint(equalTo: statusView.topAnchor).isActive = true;
+            statusLeftLabel.heightAnchor.constraint(equalTo: statusView.heightAnchor).isActive = true;
+            
+            statusLeftLabel.text = statusNameArray[statusIndex];
+            statusLeftLabel.font = UIFont(name: Inter_SemiBold, size: statusView.frame.height * 0.34);
+            statusLeftLabel.textAlignment = .left;
+            statusLeftLabel.textColor = InverseBackgroundColor;
+        
+            //
+            let statusRightLabel = UILabel();
+            statusLabelArray.append(statusRightLabel);
+            statusView.addSubview(statusRightLabel);
+            
+            statusRightLabel.translatesAutoresizingMaskIntoConstraints = false;
+            statusRightLabel.leadingAnchor.constraint(equalTo: statusLeftLabel.leadingAnchor).isActive = true;
+            statusRightLabel.topAnchor.constraint(equalTo: statusView.topAnchor).isActive = true;
+            statusRightLabel.heightAnchor.constraint(equalTo: statusView.heightAnchor).isActive = true;
+            statusRightLabel.trailingAnchor.constraint(equalTo: statusView.trailingAnchor).isActive = true;
+            
+            statusRightLabel.textAlignment = .right;
+            statusRightLabel.textColor = .systemRed;
+            
+            statusRightLabel.font = UIFont(name: Inter_SemiBold, size: statusView.frame.height * 0.34);
+            statusRightLabel.text = "No Data.";
+            
+            
+            //
+            
+            nextY += statusView.frame.height + verticalPadding;
+            mainScrollView.addSubview(statusView);
+        }
         
     }
     

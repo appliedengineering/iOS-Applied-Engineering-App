@@ -35,7 +35,15 @@ let graphColorArray : [UIColor] = [
     UIColor.rgb(156, 39, 176)
 ];
 
+let statusNameArray : [String] = [
+    "Minimum Duty Detection",
+    "Over Current Protection",
+    "Over Voltage Prevention",
+    "Power Supply Mode"
+];
+
 let numberOfGraphableVars = 10;
+let numberOfStatusVars = 4;
 //
 
 // Notification Macros

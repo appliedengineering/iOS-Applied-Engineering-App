@@ -19,4 +19,9 @@ class instrumentClusterViewController : UIViewController{
         self.view.backgroundColor = .systemGray;
         
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated);
+        
+    }
 }

@@ -40,6 +40,7 @@ class dataManager{
     //
     
     private var graphData : [[ChartDataEntry]] = Array(repeating: [], count: numberOfGraphableVars);
+    private var statusData : [Int] = Array(repeating: -1, count: numberOfStatusVars);
     private var startTimeStamp : Float64 = 0.0;
     
     private var recvTimeoutTimestamp : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
@@ -97,6 +98,10 @@ class dataManager{
                 
             }
             
+            for i in 0..<numberOfStatusVars{
+                statusData[i] = specificStatusDataAttribute(with: i, data: data!);
+            }
+            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
             
             recvTimeoutTimestamp = CFAbsoluteTimeGetCurrent();
@@ -112,6 +117,13 @@ class dataManager{
             return [];
         }
         return graphData[index];
+    }
+    
+    public func getStatusData(_ index: Int) -> Int{
+        guard index < numberOfStatusVars && index > -1 else{
+            return 0;
+        }
+        return statusData[index];
     }
     
     // Helper functions
@@ -140,6 +152,21 @@ class dataManager{
             return data.voltageChange;
         default:
             return 0;
+        }
+    }
+    
+    private func specificStatusDataAttribute(with index: Int, data: APiData) -> Int{
+        switch index {
+        case 0:
+            return data.mddStatus ? 1 : 0;
+        case 1:
+            return data.ocpStatus ? 1 : 0;
+        case 2:
+            return data.ovpStatus ? 1 : 0;
+        case 3:
+            return data.psuMode;
+        default:
+            return -1;
         }
     }
     
