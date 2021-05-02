@@ -33,6 +33,11 @@ class leftBarViewController : UIViewController{
         if (sender.tag == 3){ // settings was clicked
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil, userInfo: nil);
         }
+        else if (sender.tag == 2){
+            UINotificationFeedbackGenerator().notificationOccurred(.success);
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutMainViewNotification), object: nil, userInfo: nil);
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutContentInstrumentClusterPage), object: nil, userInfo: nil);
+        }
         else{
             var dataDict : [String : Any] = [:];
             dataDict["contentIndex"] = sender.tag;

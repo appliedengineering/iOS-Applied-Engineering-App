@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		33205A952606F94D00A5B139 /* telemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A942606F94D00A5B139 /* telemetryView.swift */; };
 		33205A982606F96E00A5B139 /* taskTrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A972606F96E00A5B139 /* taskTrackingView.swift */; };
-		33205A9B2606F98A00A5B139 /* instrumentClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A9A2606F98A00A5B139 /* instrumentClusterView.swift */; };
+		33265AC0263F686C00309661 /* InstrumentClusterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33265ABF263F686C00309661 /* InstrumentClusterViewController.swift */; };
 		3357400025F5978500C5F3CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33573FFF25F5978500C5F3CC /* LaunchScreen.storyboard */; };
 		3357400325F5989900C5F3CC /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357400225F5989900C5F3CC /* AppUtility.swift */; };
 		3357400825F59D0200C5F3CC /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357400725F59D0200C5F3CC /* mainView.swift */; };
@@ -53,7 +53,7 @@
 /* Begin PBXFileReference section */
 		33205A942606F94D00A5B139 /* telemetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = telemetryView.swift; sourceTree = "<group>"; };
 		33205A972606F96E00A5B139 /* taskTrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskTrackingView.swift; sourceTree = "<group>"; };
-		33205A9A2606F98A00A5B139 /* instrumentClusterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instrumentClusterView.swift; sourceTree = "<group>"; };
+		33265ABF263F686C00309661 /* InstrumentClusterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentClusterViewController.swift; sourceTree = "<group>"; };
 		33573FFF25F5978500C5F3CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3357400225F5989900C5F3CC /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		3357400725F59D0200C5F3CC /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
@@ -110,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33265ABE263F685400309661 /* Content Pages */ = {
+			isa = PBXGroup;
+			children = (
+				33265ABF263F686C00309661 /* InstrumentClusterViewController.swift */,
+			);
+			path = "Content Pages";
+			sourceTree = "<group>";
+		};
 		3357401625F5A49C00C5F3CC /* layoutView */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +142,6 @@
 				3357400725F59D0200C5F3CC /* mainView.swift */,
 				33205A942606F94D00A5B139 /* telemetryView.swift */,
 				33205A972606F96E00A5B139 /* taskTrackingView.swift */,
-				33205A9A2606F98A00A5B139 /* instrumentClusterView.swift */,
 			);
 			path = mainView;
 			sourceTree = "<group>";
@@ -142,6 +149,7 @@
 		33B2177325EC61DA00AE4BAD /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				33265ABE263F685400309661 /* Content Pages */,
 				3357401625F5A49C00C5F3CC /* layoutView */,
 				337701E625FED6BE00DB4A71 /* mainView */,
 				33663B8826114FCC0010A6F5 /* rightBar */,
@@ -394,6 +402,7 @@
 				33EB261C262CEC7600274847 /* dataManager.swift in Sources */,
 				33EB2623262CEF3200274847 /* LocalNetworkPermissionService.swift in Sources */,
 				3357401125F59E8300C5F3CC /* logManager.swift in Sources */,
+				33265AC0263F686C00309661 /* InstrumentClusterViewController.swift in Sources */,
 				3357400325F5989900C5F3CC /* AppUtility.swift in Sources */,
 				33B8851425EC5F50002B22A3 /* layoutView.swift in Sources */,
 				33B8851025EC5F50002B22A3 /* AppDelegate.swift in Sources */,
@@ -406,7 +415,6 @@
 				3357400E25F59D2800C5F3CC /* leftBarView.swift in Sources */,
 				33205A982606F96E00A5B139 /* taskTrackingView.swift in Sources */,
 				3357400825F59D0200C5F3CC /* mainView.swift in Sources */,
-				33205A9B2606F98A00A5B139 /* instrumentClusterView.swift in Sources */,
 				33B8851225EC5F50002B22A3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

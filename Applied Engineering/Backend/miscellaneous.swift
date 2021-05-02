@@ -49,6 +49,7 @@ let numberOfStatusVars = 4;
 // Notification Macros
 let layoutSettingsViewNotification = "layoutSettingsViewNotification";
 let layoutMainViewNotification = "layoutMainViewNotification";
+let layoutContentInstrumentClusterPage = "layoutContentInstrumentClusterPage";
 let mainViewSetContentViewNotification = "mainViewSetContentViewNotification";
 let dismissRightBarKeyboardNotification = "dismissRightBarKeyboardNotification";
 let dataUpdatedNotification = "dataUpdatedNotification";

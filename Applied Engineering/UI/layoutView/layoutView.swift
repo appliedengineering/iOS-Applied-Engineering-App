@@ -36,13 +36,15 @@ class layoutViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.moveToSettings), name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(self.moveToMain), name: NSNotification.Name(rawValue: layoutMainViewNotification), object: nil);
-        //mainViewContainer.backgroundColor = .green;
-       
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentInstrumentClusterPage), name: NSNotification.Name(rawValue: layoutContentInstrumentClusterPage), object: nil);
     }
     
     deinit{
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil);
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: layoutMainViewNotification), object: nil);
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: layoutContentInstrumentClusterPage), object: nil);
     }
 
     

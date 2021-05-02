@@ -10,7 +10,7 @@ import UIKit
 
 class mainViewController : UIViewController{
     
-    internal let contentViewControllers : [UIViewController] = [telemetryViewController(), taskTrackingViewController(), instrumentClusterViewController()];
+    internal let contentViewControllers : [UIViewController] = [telemetryViewController(), taskTrackingViewController()];
     internal var previousViewControllerIndex : Int = -1;
     
     override func viewDidLoad() {
