@@ -171,7 +171,7 @@ class telemetryViewController : UIViewController{
             statusRightLabel.textAlignment = .right;
             statusRightLabel.textColor = .systemRed;
             
-            statusRightLabel.font = UIFont(name: Inter_SemiBold, size: statusView.frame.height * 0.34);
+            statusRightLabel.font = UIFont(name: Inter_SemiBold, size: statusView.frame.height * 0.4);
             statusRightLabel.text = "No Data.";
             
             
@@ -206,6 +206,24 @@ class telemetryViewController : UIViewController{
             
             DispatchQueue.main.sync {
                 graphButton.chartView.notifyDataSetChanged();
+            }
+            
+        }
+        
+        for statusIndex in 0..<numberOfStatusVars{
+            let data = dataMgr.getStatusData(statusIndex);
+            let label = statusLabelArray[statusIndex];
+            
+            DispatchQueue.main.sync {
+                if (statusIndex == 3){ // psu mode
+                    label.text = data == 1 ? "Batteries" : "Solar Panels";
+                    label.textColor = InverseBackgroundColor;
+                }
+                else{ // everything else
+                    let isOn = data == 1;
+                    label.text = (isOn ? "ON" : "OFF");
+                    label.textColor = (isOn ? .systemGreen : .systemRed);
+                }
             }
             
         }
