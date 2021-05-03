@@ -12,6 +12,8 @@ class instrumentClusterViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad();
         
+        AppUtility.lockOrientation(.landscape, andRotateTo: .landscapeRight);
+        
         self.view.backgroundColor = .systemRed;
         
         let button = UIButton();
@@ -28,11 +30,7 @@ class instrumentClusterViewController : UIViewController{
         button.addTarget(self, action: #selector(self.dismissVC), for: .touchUpInside);
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated);
-        AppUtility.lockOrientation(.landscape, andRotateTo: .landscapeRight);
-    }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated);
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
@@ -41,6 +39,7 @@ class instrumentClusterViewController : UIViewController{
     //
     
     @objc func dismissVC(_ sender: UIButton){
+        UINotificationFeedbackGenerator().notificationOccurred(.success);
         self.dismiss(animated: true, completion: nil);
     }
 }
