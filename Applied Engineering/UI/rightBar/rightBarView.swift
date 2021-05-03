@@ -16,6 +16,8 @@ class rightBarViewController : UIViewController, UITextFieldDelegate{
     
     internal var settingsInputViews : [UITextField] = [];
     
+    internal var hasSetup = false;
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         self.hideKeyboardWhenTappedAround();
@@ -32,20 +34,22 @@ class rightBarViewController : UIViewController, UITextFieldDelegate{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
-        
-        self.view.backgroundColor = BackgroundColor;
-        
-        topView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height / 24));
-        //topView.backgroundColor = .darkGray;
-        self.view.addSubview(topView);
-        
-        settingsScrollView = UIScrollView(frame: CGRect(x: 0, y: topView.frame.maxY + 10, width: self.view.frame.width, height: self.view.frame.height - topView.frame.height - 10));
-        //settingsScrollView.backgroundColor = .systemRed;
-        self.view.addSubview(settingsScrollView);
-        
-        renderTopView();
-        renderSettings();
-        
+        if (!hasSetup){
+            self.view.backgroundColor = BackgroundColor;
+            
+            topView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height / 24));
+            //topView.backgroundColor = .darkGray;
+            self.view.addSubview(topView);
+            
+            settingsScrollView = UIScrollView(frame: CGRect(x: 0, y: topView.frame.maxY + 10, width: self.view.frame.width, height: self.view.frame.height - topView.frame.height - 10));
+            //settingsScrollView.backgroundColor = .systemRed;
+            self.view.addSubview(settingsScrollView);
+            
+            renderTopView();
+            renderSettings();
+            
+            hasSetup = true;
+        }
     }
     
     private func renderTopView(){

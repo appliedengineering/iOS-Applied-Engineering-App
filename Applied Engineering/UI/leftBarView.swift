@@ -11,6 +11,7 @@ import UIKit
 class leftBarViewController : UIViewController{
     
     internal var topView : UIView = UIView();
+    internal var hasSetup = false;
     
     private let leftBarContentTitles : [String] = ["Telemetry", "Task\nTracking", "Instrument\nCluster", "Settings"];
     private let leftBarContentImageNames : [String] = ["list.bullet.rectangle", "doc.plaintext", "speedometer", "gearshape"];
@@ -21,11 +22,14 @@ class leftBarViewController : UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
-        
-        renderTopView();
-        renderList();
-        
-        self.view.backgroundColor = BackgroundColor;
+    
+        if (!hasSetup){
+            renderTopView();
+            renderList();
+            
+            self.view.backgroundColor = BackgroundColor;
+            hasSetup = true;
+        }
     }
     
     @objc func updateMainView(_ sender: UIButton){
