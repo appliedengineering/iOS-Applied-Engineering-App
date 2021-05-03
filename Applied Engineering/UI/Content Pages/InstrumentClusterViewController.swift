@@ -33,13 +33,13 @@ class instrumentClusterViewController : UIViewController{
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated);
-        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
     }
     
     //
     
     @objc func dismissVC(_ sender: UIButton){
         UINotificationFeedbackGenerator().notificationOccurred(.success);
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
         self.dismiss(animated: true, completion: nil);
     }
 }

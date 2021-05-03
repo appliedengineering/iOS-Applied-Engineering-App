@@ -12,6 +12,7 @@ class mainViewController : UIViewController{
     
     internal let contentViewControllers : [UIViewController] = [telemetryViewController(), taskTrackingViewController()];
     internal var previousViewControllerIndex : Int = -1;
+    internal var hasSetup = false;
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -26,7 +27,10 @@ class mainViewController : UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         
-        setContent(0);
+        if (!hasSetup){
+            setContent(0);
+            hasSetup = true;
+        }
         
     }
     
