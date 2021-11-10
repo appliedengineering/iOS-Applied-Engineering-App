@@ -1,6 +1,0 @@
-framework module Pods_Applied_Engineering {
-  umbrella header "Pods-Applied Engineering-umbrella.h"
-
-  export *
-  module * { export * }
-}
