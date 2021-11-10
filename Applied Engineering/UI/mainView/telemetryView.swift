@@ -116,6 +116,8 @@ class telemetryViewController : UIViewController{
             
             //
             
+            graphButton.addTarget(self, action: #selector(self.openGraph), for: .touchUpInside);
+            
             graphButton.tag = 1;
             graphButtonArray.append(graphButton);
             mainScrollView.addSubview(graphButton);
@@ -228,6 +230,10 @@ class telemetryViewController : UIViewController{
             
         }
         
+    }
+    
+    @objc internal func openGraph(_ button: GraphUIButton){
+        print(button.graphIndex);
     }
     
 }

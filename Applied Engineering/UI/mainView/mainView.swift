@@ -10,7 +10,7 @@ import UIKit
 
 class mainViewController : UIViewController{
     
-    internal let contentViewControllers : [UIViewController] = [telemetryViewController(), taskTrackingViewController()];
+    internal let contentViewControllers : [UIViewController] = [telemetryViewController()];
     internal var previousViewControllerIndex : Int = -1;
     internal var hasSetup = false;
     

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		33205A952606F94D00A5B139 /* telemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A942606F94D00A5B139 /* telemetryView.swift */; };
-		33205A982606F96E00A5B139 /* taskTrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33205A972606F96E00A5B139 /* taskTrackingView.swift */; };
 		33265AC0263F686C00309661 /* InstrumentClusterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33265ABF263F686C00309661 /* InstrumentClusterViewController.swift */; };
 		3357400025F5978500C5F3CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33573FFF25F5978500C5F3CC /* LaunchScreen.storyboard */; };
 		3357400325F5989900C5F3CC /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357400225F5989900C5F3CC /* AppUtility.swift */; };
@@ -52,7 +51,6 @@
 
 /* Begin PBXFileReference section */
 		33205A942606F94D00A5B139 /* telemetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = telemetryView.swift; sourceTree = "<group>"; };
-		33205A972606F96E00A5B139 /* taskTrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskTrackingView.swift; sourceTree = "<group>"; };
 		33265ABF263F686C00309661 /* InstrumentClusterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentClusterViewController.swift; sourceTree = "<group>"; };
 		33573FFF25F5978500C5F3CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3357400225F5989900C5F3CC /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			children = (
 				3357400725F59D0200C5F3CC /* mainView.swift */,
 				33205A942606F94D00A5B139 /* telemetryView.swift */,
-				33205A972606F96E00A5B139 /* taskTrackingView.swift */,
 			);
 			path = mainView;
 			sourceTree = "<group>";
@@ -413,7 +410,6 @@
 				33663B8A26114FE20010A6F5 /* rightBarViewActions.swift in Sources */,
 				33EB261F262CEDD500274847 /* communication.swift in Sources */,
 				3357400E25F59D2800C5F3CC /* leftBarView.swift in Sources */,
-				33205A982606F96E00A5B139 /* taskTrackingView.swift in Sources */,
 				3357400825F59D0200C5F3CC /* mainView.swift in Sources */,
 				33B8851225EC5F50002B22A3 /* SceneDelegate.swift in Sources */,
 			);
@@ -554,7 +550,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.applied-engineering.Applied-Engineering";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -574,7 +570,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.applied-engineering.Applied-Engineering";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
