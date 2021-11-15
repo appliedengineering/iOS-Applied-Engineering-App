@@ -11,8 +11,8 @@ class preferencesManager{
     static public let obj : preferencesManager = preferencesManager();
     
     // List of defaults
-    private let d_connectionIPAddress : String = "224.0.0.1";
-    private let d_connectionPort : String = "28650";
+    private let d_connectionIPAddress : String = "169.254.200.200";
+    private let d_connectionPort : String = "5556";
     private let d_zeromqReceiveReconnectTimeout : Int = 3000; // in ms
     private let d_receiveTimeout : Int = 100; // in ms
     private let d_reconnectTimeout : Int = 3; // seconds

@@ -24,6 +24,7 @@ class communicationClass{
         LocalNetworkPermissionService.obj.triggerDialog();
         do{
             context = try SwiftyZeroMQ.Context();
+            sub = try context?.socket(.subscribe);
         }
         catch{
             log.addc("Unable to create ZeroMQ context");
@@ -50,8 +51,6 @@ class communicationClass{
             
         do{
             
-            sub = try context?.socket(.subscribe);
-            
             try sub?.setRecvTimeout(Int32(preferences.zeromqReceiveReconnectTimeout));
             
             try sub?.connect(connectionString);
@@ -72,16 +71,13 @@ class communicationClass{
         
         do{
             try sub?.disconnect(connectionString);
-            try sub?.close();
         }
         catch{
             log.addc("Disconnect communication error - \(error) - \(convertErrno(zmq_errno()))");
-            sub = nil;
             isConnected = false;
             return false;
         }
         
-        sub = nil;
         isConnected = false;
         
         return true;

@@ -55,7 +55,7 @@ class dataManager{
         DispatchQueue.global(qos: .background).async{
             while true{ // keeps on reconnecting
                 
-                while communication.getIsConnected(){
+                while (communication.getIsConnected() && communication.getSocket() != nil) {
                  
                     do{
                         self.updateWithNewData(try communication.getSocket()?.recv() ?? Data());
