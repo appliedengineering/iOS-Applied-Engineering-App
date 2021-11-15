@@ -7,7 +7,7 @@ target 'Applied Engineering' do
 
   # Pods for Applied Engineering
 
-  pod 'SwiftyZeroMQ5', :git => 'https://github.com/appliedengineering/SwiftyZeroMQ5.git', :branch => 'master'
+  pod 'SwiftyZeroMQ5'
 
   pod 'Charts'
 
