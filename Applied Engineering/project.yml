@@ -1,0 +1,10 @@
+name: Applied Engineering
+targets:
+    AHS:
+        type: application
+        platform: iOS
+        deploymentTarget: 14.0
+        sources: [Applied Engineering]
+        settings:
+            PRODUCT_BUNDLE_IDENTIFIER: com.applied-engineering.Applied-Engineering
+            TARGETED_DEVICE_FAMILY: 1
