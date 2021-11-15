@@ -58,7 +58,7 @@ class dataManager{
                 while communication.getIsConnected(){
                  
                     do{
-                        self.updateWithNewData(try communication.recvData() ?? Data());
+                        self.updateWithNewData(try communication.getSocket()?.recv() ?? Data());
                     }
                     catch{
                         //print(error);

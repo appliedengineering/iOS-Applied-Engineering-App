@@ -38,8 +38,8 @@ class communicationClass{
     
     //
     
-    public func recvData() throws -> Data?{
-        return sub?.recv();
+    public func getSocket() -> SwiftyZeroMQ.Socket?{
+        return sub;
     }
     
     //
