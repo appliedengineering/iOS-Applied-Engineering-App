@@ -10,12 +10,12 @@ import SwiftyZeroMQ5
 import Network
 
 class communicationClass{
-    static let obj = communicationClass();
+    static public let obj = communicationClass();
     
     private var connectionString = "";
-    private var connectionGroup = "";
+    
     private var context : SwiftyZeroMQ.Context?;
-    public var dish : SwiftyZeroMQ.Socket?;
+    private var sub : SwiftyZeroMQ.Socket?;
 
     private var isConnected = false;
     
@@ -36,24 +36,26 @@ class communicationClass{
         log.add("SwiftyZeroMQ version is \(SwiftyZeroMQ.frameworkVersion)");
     }
     
+    //
+    
+    public func recvData() throws -> Data?{
+        return sub?.recv();
+    }
     
     //
     
-    public func connect(_ address: String,_ group: String) -> Bool{
+    public func connect(_ address: String) -> Bool{
         
-        connectionGroup = group;
         connectionString = address;
-        
-        //print("connect - \(address) - \(group)")
-        
+            
         do{
             
-            dish = try context?.socket(.dish);
+            sub = try context?.socket(.subscribe);
             
-            try dish?.setRecvTimeout(Int32(preferences.zeromqReceiveReconnectTimeout));
+            try sub?.setRecvTimeout(Int32(preferences.zeromqReceiveReconnectTimeout));
             
-            try dish?.bind(connectionString);
-            try dish?.joinGroup(connectionGroup);
+            try sub?.connect(connectionString);
+            try sub?.setSubscribe("");
             
         }
         catch{
@@ -69,29 +71,29 @@ class communicationClass{
     public func disconnect() -> Bool{
         
         do{
-            try dish?.leaveGroup(connectionGroup);
-            try dish?.unbind(connectionString);
+            try sub?.disconnect(connectionString);
+            try sub?.close();
         }
         catch{
             log.addc("Disconnect communication error - \(error) - \(convertErrno(zmq_errno()))");
-            dish = nil;
+            sub = nil;
             isConnected = false;
             return false;
         }
         
-        dish = nil;
+        sub = nil;
         isConnected = false;
         
         return true;
     }
 
-    public func newConnection(_ address: String, _ group: String) -> Bool{
+    public func newConnection(_ address: String) -> Bool{
         
         if (!disconnect()){
             log.add("Failed to disconnect");
         }
         
-        if (!connect(address, group)){
+        if (!connect(address)){
             return false;
         }
         
@@ -124,7 +126,7 @@ class communicationClass{
     }
     
     public func createFullAddress() -> String{
-        return "udp://\(preferences.connectionIPAddress):\(preferences.connectionPort)";
+        return "tcp://\(preferences.connectionIPAddress):\(preferences.connectionPort)";
     }
     
 }

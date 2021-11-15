@@ -58,7 +58,7 @@ class dataManager{
                 while communication.getIsConnected(){
                  
                     do{
-                        self.updateWithNewData(try communication.dish?.recv() ?? Data());
+                        self.updateWithNewData(try communication.recvData() ?? Data());
                     }
                     catch{
                         //print(error);
