@@ -19,7 +19,7 @@ extension rightBarViewController{
             textField.text = preferencesManager.obj.getStringValueForIndex(textField.tag);
         }
         
-        communication.newConnection(communication.createFullAddress(), preferences.connectionGroup);
+        communication.newConnection(communication.createFullAddress());
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutMainViewNotification), object: nil, userInfo: nil);
     }

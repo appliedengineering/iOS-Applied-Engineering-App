@@ -13,7 +13,6 @@ class preferencesManager{
     // List of defaults
     private let d_connectionIPAddress : String = "224.0.0.1";
     private let d_connectionPort : String = "28650";
-    private let d_connectionGroup : String = "telemetry";
     private let d_zeromqReceiveReconnectTimeout : Int = 3000; // in ms
     private let d_receiveTimeout : Int = 100; // in ms
     private let d_reconnectTimeout : Int = 3; // seconds
@@ -21,12 +20,11 @@ class preferencesManager{
     //
     
     // List of accessible variables
-    public let numberOfSettings = 7;
-    public let settingsNameArray : [String] = ["Connection IP", "Connection Port", "Connection Group", "ZMQ RCNT (ms)", "RCV Timeout (ms)", "RCNT Timeout (s)", "Graph Point Buffer"];
+    public let numberOfSettings = 6;
+    public let settingsNameArray : [String] = ["Connection IP", "Connection Port", "ZMQ RCNT (ms)", "RCV Timeout (ms)", "RCNT Timeout (s)", "Graph Point Buffer"];
     
     public var connectionIPAddress : String = "";
     public var connectionPort : String = "";
-    public var connectionGroup : String = "";
     public var zeromqReceiveReconnectTimeout : Int = -1;
     public var receiveTimeout : Int = -1;
     public var reconnectTimeout : Int = -1;
@@ -36,7 +34,6 @@ class preferencesManager{
     private init(){ // load what was saved
         connectionIPAddress = UserDefaults.standard.string(forKey: "connectionIPAddress") ?? d_connectionIPAddress;
         connectionPort = UserDefaults.standard.string(forKey: "connectionPort") ?? d_connectionPort;
-        connectionGroup = UserDefaults.standard.string(forKey: "connectionGroup") ?? d_connectionGroup;
         zeromqReceiveReconnectTimeout = UserDefaults.standard.integer(forKey: "zeromqReceiveReconnectTimeout") == 0 ? d_zeromqReceiveReconnectTimeout : UserDefaults.standard.integer(forKey: "zeromqReceiveReconnectTimeout");
         receiveTimeout = UserDefaults.standard.integer(forKey: "receiveTimeout") == 0 ? d_receiveTimeout : UserDefaults.standard.integer(forKey: "receiveTimeout");
         reconnectTimeout = UserDefaults.standard.integer(forKey: "reconnectTimeout") == 0 ? d_reconnectTimeout : UserDefaults.standard.integer(forKey: "reconnectTimeout");
@@ -46,7 +43,6 @@ class preferencesManager{
     public func resetDefaults(){
         connectionIPAddress = d_connectionIPAddress;
         connectionPort = d_connectionPort;
-        connectionGroup = d_connectionGroup;
         zeromqReceiveReconnectTimeout = d_zeromqReceiveReconnectTimeout;
         receiveTimeout = d_receiveTimeout;
         reconnectTimeout = d_reconnectTimeout;
@@ -57,7 +53,6 @@ class preferencesManager{
     public func save(){
         UserDefaults.standard.setValue(connectionIPAddress, forKey: "connectionIPAddress");
         UserDefaults.standard.setValue(connectionPort, forKey: "connectionPort");
-        UserDefaults.standard.setValue(connectionGroup, forKey: "connectionGroup");
         UserDefaults.standard.setValue(zeromqReceiveReconnectTimeout, forKey: "zeromqReceiveReconnectTimeout");
         UserDefaults.standard.setValue(receiveTimeout, forKey: "receiveTimeout");
         UserDefaults.standard.setValue(reconnectTimeout, forKey: "reconnectTimeout");
@@ -71,14 +66,12 @@ class preferencesManager{
         case 1:
             return connectionPort;
         case 2:
-            return connectionGroup;
-        case 3:
             return String(zeromqReceiveReconnectTimeout);
-        case 4:
+        case 3:
             return String(receiveTimeout);
-        case 5:
+        case 4:
             return String(reconnectTimeout);
-        case 6:
+        case 5:
             return String(graphBufferSize);
         default:
             return "";
@@ -92,14 +85,12 @@ class preferencesManager{
         case 1:
             connectionPort = val;
         case 2:
-            connectionGroup = val;
-        case 3:
             zeromqReceiveReconnectTimeout = Int(val) ?? d_zeromqReceiveReconnectTimeout;
-        case 4:
+        case 3:
             receiveTimeout = Int(val) ?? d_receiveTimeout;
-        case 5:
+        case 4:
             reconnectTimeout = Int(val) ?? d_reconnectTimeout;
-        case 6:
+        case 5:
             graphBufferSize = Int(val) ?? d_graphBufferSize;
         default:
             print("saveStringValueForIndex recv invalid index");
