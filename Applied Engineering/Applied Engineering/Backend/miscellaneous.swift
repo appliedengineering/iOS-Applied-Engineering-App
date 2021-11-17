@@ -12,13 +12,13 @@ import Charts
 // General Global Macros
 let graphNameArray : [String] = [
     "RPM",
-    "Torque",
+    "Torque (N⋅m)",
     "Throttle (%)",
     "Duty (%)",
     "PWM Frequency",
     "Temperature (C)",
-    "Source Voltage",
-    "PWM Current",
+    "Source Voltage (V)",
+    "PWM Current (I)",
     "Power Change (Δ)",
     "Voltage Change (Δ)"
 ];
