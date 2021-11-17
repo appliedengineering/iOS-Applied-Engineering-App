@@ -18,7 +18,7 @@ let graphNameArray : [String] = [
     "PWM Frequency",
     "Temperature (C)",
     "Source Voltage (V)",
-    "PWM Current (I)",
+    "PWM Current (A)",
     "Power Change (Δ)",
     "Voltage Change (Δ)"
 ];
