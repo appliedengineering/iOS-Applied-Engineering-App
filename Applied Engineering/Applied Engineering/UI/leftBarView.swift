@@ -14,7 +14,7 @@ class leftBarViewController : UIViewController{
     internal var hasSetup = false;
     
     private let leftBarContentTitles : [String] = ["Telemetry", "Instrument\nCluster", "Settings"];
-    private let leftBarContentImageNames : [String] = ["list.bullet.rectangle", "speedometer", "gearshape"];
+    private let leftBarContentImageNames : [String] = ["list.bullet.rectangle", "speedometer", "gearshape"]; // system image names
     
     override func viewDidLoad() {
         super.viewDidLoad();

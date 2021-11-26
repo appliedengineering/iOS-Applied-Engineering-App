@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import SwiftyZeroMQ5
-import MessagePacker
+import SwiftMsgPack
 import Charts
 
 // ["RPM", "Torque", "Throttle (%)", "Duty (%)", "PWM Frequency", "Temperature (C)", "Source Voltage", "PWM Current", "Power Change (Δ)", "Voltage Change (Δ)"];
@@ -16,11 +16,13 @@ import Charts
 public struct APiData : Decodable{
     var psuMode : Int = 0; // power supply mode - 3
     // graphable data
+    var throttleDuty : Int = 0;
+    var mpptDuty : Int = 0;
     var throttlePercent : Int = 0;
     var dutyPercent : Int = 0;
     var pwmFrequency : Int = 0;
-    var rpm : Float32 = 0.0;
-    var torque : Float32 = 0.0;
+    //var rpm : Float32 = 0.0;
+    //var torque : Float32 = 0.0;
     var tempC : Float32 = 0.0;
     var sourceVoltage : Float32 = 0.0;
     var pwmCurrent : Float32 = 0.0;
@@ -76,19 +78,24 @@ class dataManager{
         }
     }
     
+
+    
     private func updateWithNewData(_ rawData: Data){
         
         if (CFAbsoluteTimeGetCurrent() - recvTimeoutTimestamp >= Double(preferences.receiveTimeout / 1000)){
             
-            var data : APiData? = nil;
+            var data : [String : AnyObject]? = nil;
             
             do {
-                data = try MessagePackDecoder().decode(APiData.self, from: rawData);
+                data = try rawData.unpack() as? [String : AnyObject];
             } catch {
                 log.addc("Failed to decode recv message with MessagePacker - \(error)");
                 return;
             }
             
+            print("recv data - \(data)")
+            
+            /*
             for i in 0..<numberOfGraphableVars{
                 graphData[i].append(createDataPoint(data!.timeStamp, specificDataAttribute(with: i, data: data!)));
                 
@@ -104,7 +111,7 @@ class dataManager{
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
             
-            recvTimeoutTimestamp = CFAbsoluteTimeGetCurrent();
+            recvTimeoutTimestamp = CFAbsoluteTimeGetCurrent();*/
             
         }
         
@@ -130,10 +137,10 @@ class dataManager{
     
     private func specificDataAttribute(with index: Int, data: APiData) -> Float32{
         switch index{
-        case 0:
+        /*case 0:
             return data.rpm;
         case 1:
-            return data.torque;
+            return data.torque;*/
         case 2:
             return Float32(data.throttlePercent);
         case 3:

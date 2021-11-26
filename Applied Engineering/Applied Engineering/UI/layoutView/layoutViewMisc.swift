@@ -92,10 +92,11 @@ extension layoutViewController{
     }
     
     @objc func presentInstrumentClusterPage(_ sender: NSNotification){
-        //print("present vc")
-        let vc = instrumentClusterViewController();
+        self.presentContentPage(instrumentClusterViewController());
+    }
+    
+    @objc func presentContentPage(_ vc: UIViewController){
         vc.modalPresentationStyle = .fullScreen;
         self.present(vc, animated: true, completion: nil);
-        
     }
 }

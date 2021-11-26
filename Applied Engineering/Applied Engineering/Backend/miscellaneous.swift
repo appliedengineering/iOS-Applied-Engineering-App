@@ -50,6 +50,8 @@ let numberOfStatusVars = 4;
 let layoutSettingsViewNotification = "layoutSettingsViewNotification";
 let layoutMainViewNotification = "layoutMainViewNotification";
 let layoutContentInstrumentClusterPage = "layoutContentInstrumentClusterPage";
+let layoutContentGraphPage = "layoutContentGraphPage";
+
 let mainViewSetContentViewNotification = "mainViewSetContentViewNotification";
 let dismissRightBarKeyboardNotification = "dismissRightBarKeyboardNotification";
 let dataUpdatedNotification = "dataUpdatedNotification";

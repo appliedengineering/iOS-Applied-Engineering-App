@@ -11,6 +11,6 @@ target 'Applied Engineering' do
 
   pod 'Charts'
 
-  pod 'MessagePacker'
+  pod 'SwiftMsgPack'
 
 end
