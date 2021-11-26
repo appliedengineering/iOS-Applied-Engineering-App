@@ -11,7 +11,6 @@ import SwiftyZeroMQ5
 import SwiftMsgPack
 import Charts
 
-// ["RPM", "Torque", "Throttle (%)", "Duty (%)", "PWM Frequency", "Temperature (C)", "Source Voltage", "PWM Current", "Power Change (Δ)", "Voltage Change (Δ)"];
 
 public struct APiData : Decodable{
     var psuMode : Int = 0; // power supply mode - 3
@@ -41,10 +40,9 @@ class dataManager{
     
     //
     
-    private var graphData : [[ChartDataEntry]] = Array(repeating: [], count: numberOfGraphableVars);
-    private var statusData : [Int] = Array(repeating: -1, count: numberOfStatusVars);
-    private var startTimeStamp : Float64 = 0.0;
+    private var dataStorage : [String : [AnyObject]] = [:];
     
+    private var startTimeStamp : Float64 = 0.0;
     private var recvTimeoutTimestamp : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
     
     private init(){
@@ -89,12 +87,41 @@ class dataManager{
             do {
                 data = try rawData.unpack() as? [String : AnyObject];
             } catch {
-                log.addc("Failed to decode recv message with MessagePacker - \(error)");
+                log.addc("Failed to decode recv message with MessagePack - \(error)");
                 return;
             }
             
-            print("recv data - \(data)")
+            //print("recv data - \(data)")
             
+            guard let data = data else {
+                log.add("Decoded data was invalid - \(data)");
+                return;
+            }
+            
+            // remove excess data points from original
+            
+            for key in dataStorage.keys{
+                if (data[key] == nil){
+                    dataStorage[key] = nil;
+                }
+            }
+            
+            // update all other values
+            
+            for point in data{
+                if (dataStorage[point.key] == nil){
+                    dataStorage[point.key] = [];
+                }
+                
+                dataStorage[point.key]!.append(point.value);
+                
+                while ((dataStorage[point.key]?.count ?? -1) > preferences.graphBufferSize){
+                    dataStorage[point.key]?.removeFirst();
+                }
+            }
+            
+            //
+                        
             /*
             for i in 0..<numberOfGraphableVars{
                 graphData[i].append(createDataPoint(data!.timeStamp, specificDataAttribute(with: i, data: data!)));
@@ -119,7 +146,7 @@ class dataManager{
         
     }
     
-    public func getGraphData(_ index: Int) -> [ChartDataEntry]{
+    /*public func getGraphData(_ index: Int) -> [ChartDataEntry]{
         guard index < numberOfGraphableVars && index > -1 else{
             return [];
         }
@@ -179,6 +206,6 @@ class dataManager{
     
     private func createDataPoint(_ timeStamp: Float64, _ data: Float32) -> ChartDataEntry{
         return ChartDataEntry(x: max(timeStamp - startTimeStamp, 0).truncate(places: 3), y: Double(data));
-    }
+    }*/
     
 }

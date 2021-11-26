@@ -16,9 +16,7 @@ class telemetryViewController : UIViewController{
     
     private var nextY : CGFloat = 0;
     private let mainScrollView : UIScrollView = UIScrollView();
-    
-    private var graphButtonArray : [GraphUIButton] = [];
-    private var statusLabelArray : [UILabel] = [];
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
@@ -64,171 +62,14 @@ class telemetryViewController : UIViewController{
         
         */
         
-        renderGraphs();
-        renderLabels();
+
         
         mainScrollView.contentSize = CGSize(width: AppUtility.getCurrentScreenSize().width, height: nextY);
     }
     
-    private func renderGraphs(){
-        
-        let graphViewHorizontalPadding = horizontalPadding / 2;
-        
-        for graphIndex in 0..<numberOfGraphableVars{
-            
-            let graphButtonWidth = AppUtility.getCurrentScreenSize().width - 2*graphViewHorizontalPadding;
-            let graphButtonFrame = CGRect(x: graphViewHorizontalPadding, y: nextY, width: graphButtonWidth, height: graphButtonWidth * 0.5333);
-            let graphButton = GraphUIButton(frame: graphButtonFrame, index: graphIndex);
-            
-            //graphButton.backgroundColor = .systemBlue;
-            //
-            
-            //let graphView = LineChartView(frame: CGRect(x: 0, y: 0, width: graphButton.frame.width, height: graphButton.frame.height));
-            
-            graphButton.chartView.backgroundColor = .clear;
-            graphButton.chartView.isUserInteractionEnabled = false;
-            graphButton.chartView.xAxis.drawGridLinesEnabled = false;
-            graphButton.chartView.leftAxis.drawAxisLineEnabled = false;
-            graphButton.chartView.leftAxis.drawGridLinesEnabled = false;
-            graphButton.chartView.rightAxis.drawAxisLineEnabled = false;
-            graphButton.chartView.legend.enabled = false;
-            graphButton.chartView.rightAxis.enabled = false;
-            graphButton.chartView.xAxis.enabled = false;
-            graphButton.chartView.drawGridBackgroundEnabled = false;
-            
-            //graphButton.addSubview(graphView);
-            
-            
-            let graphLine = LineChartDataSet(entries: dataMgr.getGraphData(graphIndex), label: graphNameArray[graphIndex]);
-            
-            graphLine.fill = .fillWithLinearGradient(CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [graphColorArray[graphIndex].cgColor, UIColor.clear.cgColor] as CFArray, locations: [1.0, 0.0])!, angle: 90);
-            graphLine.drawFilledEnabled = true;
-            graphLine.drawCirclesEnabled = false;
-            graphLine.drawValuesEnabled = false;
-            graphLine.colors = [graphColorArray[graphIndex]];
-            
-            
-            let graphLineData = LineChartData();
-            
-            graphLineData.addDataSet(graphLine);
-            
-            graphButton.chartView.data = graphLineData;
-            
-            //
-            
-            graphButton.addTarget(self, action: #selector(self.openGraph), for: .touchUpInside);
-            
-            graphButton.tag = 1;
-            graphButtonArray.append(graphButton);
-            mainScrollView.addSubview(graphButton);
-            nextY += graphButton.frame.height + verticalPadding;
-            
-        }
-        
-    }
+    //
     
-    private func renderLabels(){
-        
-        let miscLabelWidth = AppUtility.getCurrentScreenSize().width - 2*horizontalPadding;
-        let miscLabelFrame = CGRect(x: horizontalPadding, y: nextY, width: miscLabelWidth, height: miscLabelWidth * 0.15);
-        let miscLabel = UILabel(frame: miscLabelFrame);
-        miscLabel.text = "Miscellaneous";
-        miscLabel.textColor = InverseBackgroundColor;
-        miscLabel.font = UIFont(name: Inter_Bold, size: miscLabel.frame.height / 2);
-        miscLabel.textAlignment = .left;
-        
-        nextY += miscLabel.frame.height + verticalPadding;
-        mainScrollView.addSubview(miscLabel);
-        
-        let statusViewWidth = AppUtility.getCurrentScreenSize().width - 2*horizontalPadding;
-        for statusIndex in 0..<numberOfStatusVars{
-            let statusViewFrame = CGRect(x: horizontalPadding, y: nextY, width: statusViewWidth, height: statusViewWidth * 0.15);
-            let statusView = UIView(frame: statusViewFrame);
-            
-            //
-            let statusLeftLabel = UILabel();
-            statusView.addSubview(statusLeftLabel);
-            
-            statusLeftLabel.translatesAutoresizingMaskIntoConstraints = false;
-            statusLeftLabel.leadingAnchor.constraint(equalTo: statusView.leadingAnchor).isActive = true;
-            statusLeftLabel.topAnchor.constraint(equalTo: statusView.topAnchor).isActive = true;
-            statusLeftLabel.heightAnchor.constraint(equalTo: statusView.heightAnchor).isActive = true;
-            
-            statusLeftLabel.text = statusNameArray[statusIndex];
-            statusLeftLabel.font = UIFont(name: Inter_SemiBold, size: statusView.frame.height * 0.34);
-            statusLeftLabel.textAlignment = .left;
-            statusLeftLabel.textColor = InverseBackgroundColor;
-        
-            //
-            let statusRightLabel = UILabel();
-            statusLabelArray.append(statusRightLabel);
-            statusView.addSubview(statusRightLabel);
-            
-            statusRightLabel.translatesAutoresizingMaskIntoConstraints = false;
-            statusRightLabel.leadingAnchor.constraint(equalTo: statusLeftLabel.leadingAnchor).isActive = true;
-            statusRightLabel.topAnchor.constraint(equalTo: statusView.topAnchor).isActive = true;
-            statusRightLabel.heightAnchor.constraint(equalTo: statusView.heightAnchor).isActive = true;
-            statusRightLabel.trailingAnchor.constraint(equalTo: statusView.trailingAnchor).isActive = true;
-            
-            statusRightLabel.textAlignment = .right;
-            statusRightLabel.textColor = .systemRed;
-            
-            statusRightLabel.font = UIFont(name: Inter_SemiBold, size: statusView.frame.height * 0.4);
-            statusRightLabel.text = "No Data.";
-            
-            
-            //
-            
-            nextY += statusView.frame.height + verticalPadding;
-            mainScrollView.addSubview(statusView);
-        }
-        
-    }
-    
-    
-    @objc private func updateData(){
-        
-        for graphIndex in 0..<numberOfGraphableVars{
-            let graphButton = graphButtonArray[graphIndex];
-            let newData = dataMgr.getGraphData(graphIndex);
-            
-            guard let graphData = graphButton.chartView.data as? LineChartData else{
-                continue;
-            }
-            
-            guard let dataSet = graphData.dataSets[0] as? LineChartDataSet else{
-                continue;
-            }
-            
-            dataSet.replaceEntries(newData); // can be optimized
-            
-            graphButton.hasData = newData.count > 0;
-            
-            graphData.notifyDataChanged();
-            
-            DispatchQueue.main.sync {
-                graphButton.chartView.notifyDataSetChanged();
-            }
-            
-        }
-        
-        for statusIndex in 0..<numberOfStatusVars{
-            let data = dataMgr.getStatusData(statusIndex);
-            let label = statusLabelArray[statusIndex];
-            
-            DispatchQueue.main.sync {
-                if (statusIndex == 3){ // psu mode
-                    label.text = data == 1 ? "Batteries" : "Solar Panels";
-                    label.textColor = InverseBackgroundColor;
-                }
-                else{ // everything else
-                    let isOn = data == 1;
-                    label.text = (isOn ? "ON" : "OFF");
-                    label.textColor = (isOn ? .systemGreen : .systemRed);
-                }
-            }
-            
-        }
+    @objc internal func updateData(_ notification: NSNotification){
         
     }
     
