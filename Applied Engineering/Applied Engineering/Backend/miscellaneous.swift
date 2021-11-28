@@ -42,8 +42,13 @@ let statusNameArray : [String] = [
     "Power Supply Mode"
 ];
 
-let numberOfGraphableVars = 10;
-let numberOfStatusVars = 4;
+let nonGraphableDataPoints : [String] = [
+    "lastRPMTime",
+    "numInterrupts",
+    "mddStatus",
+    "ocpStatus",
+    "ovpStatus"
+];
 //
 
 // Notification Macros
@@ -55,6 +60,8 @@ let layoutContentGraphPage = "layoutContentGraphPage";
 let mainViewSetContentViewNotification = "mainViewSetContentViewNotification";
 let dismissRightBarKeyboardNotification = "dismissRightBarKeyboardNotification";
 let dataUpdatedNotification = "dataUpdatedNotification";
+
+let notificationDictionaryUpdateKeys = "notificationDictionaryUpdateKeys";
 //
 
 // Colors

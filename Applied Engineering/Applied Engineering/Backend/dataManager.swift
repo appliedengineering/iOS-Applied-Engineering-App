@@ -40,7 +40,8 @@ class dataManager{
     
     //
     
-    private var dataStorage : [String : [AnyObject]] = [:];
+    private var graphDataStorage : [String : [ChartDataEntry]] = [:];
+    private var staticDataStorage : [String : AnyObject] = [:];
     
     private var startTimeStamp : Float64 = 0.0;
     private var recvTimeoutTimestamp : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
@@ -93,34 +94,61 @@ class dataManager{
             
             //print("recv data - \(data)")
             
-            guard let data = data else {
+            guard var data = data else {
                 log.add("Decoded data was invalid - \(data)");
                 return;
             }
             
-            // remove excess data points from original
+            //
             
-            for key in dataStorage.keys{
+            guard let currentTimestamp = data["timeStamp"] as? Float64 else{
+                log.add("Invalid timestamp in data - \(data)");
+                return;
+            }
+            data["timestamp"] = nil; // remove from raw data
+            
+            // remove excess data points from storage
+            
+            for key in graphDataStorage.keys{
                 if (data[key] == nil){
-                    dataStorage[key] = nil;
+                    graphDataStorage[key] = nil;
+                }
+            }
+            
+            for key in staticDataStorage.keys{
+                if (data[key] == nil){
+                    staticDataStorage[key] = nil;
                 }
             }
             
             // update all other values
             
             for point in data{
-                if (dataStorage[point.key] == nil){
-                    dataStorage[point.key] = [];
+                if (isGraphableData(point.key)){
+                    if (graphDataStorage[point.key] == nil){
+                        graphDataStorage[point.key] = [];
+                    }
+                    
+                    graphDataStorage[point.key]!.append(createDataPoint(currentTimestamp, castToFloat(point.value)));
+                    
+                    while ((graphDataStorage[point.key]?.count ?? -1) > preferences.graphBufferSize){
+                        graphDataStorage[point.key]?.removeFirst();
+                    }
+                    
                 }
-                
-                dataStorage[point.key]!.append(point.value);
-                
-                while ((dataStorage[point.key]?.count ?? -1) > preferences.graphBufferSize){
-                    dataStorage[point.key]?.removeFirst();
+                else{
+                    if (staticDataStorage[point.key] == nil){
+                        staticDataStorage[point.key] = point.value;
+                    }
                 }
             }
             
             //
+            
+            let notificationDict : [String : [String]] = [notificationDictionaryUpdateKeys : Array(data.keys)];
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: dataUpdatedNotification), object: notificationDict);
+            
+            recvTimeoutTimestamp = CFAbsoluteTimeGetCurrent();
                         
             /*
             for i in 0..<numberOfGraphableVars{
@@ -135,15 +163,36 @@ class dataManager{
             for i in 0..<numberOfStatusVars{
                 statusData[i] = specificStatusDataAttribute(with: i, data: data!);
             }
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
-            
-            recvTimeoutTimestamp = CFAbsoluteTimeGetCurrent();*/
+            */
             
         }
         
         //print("new data point at \(graphData[0][graphData[0].count - 1].x) - \(graphData[0].count)");
         
+    }
+    
+    //
+
+    public func isGraphableData(_ key: String) -> Bool{
+        return !nonGraphableDataPoints.contains(key); // defined in misc
+    }
+    
+    public func getGraphDataFor(_ key: String) -> [ChartDataEntry]?{
+        return graphDataStorage[key];
+    }
+    
+    //
+    
+    private func castToFloat(_ obj: AnyObject) -> Float64{
+        guard let f = obj as? Float64 else{
+            log.add("Failed to cast \(obj) to Float64");
+            return 0.0;
+        }
+        return f;
+    }
+    
+    private func createDataPoint(_ timeStamp: Float64, _ data: Float64) -> ChartDataEntry{
+        return ChartDataEntry(x: max(timeStamp - startTimeStamp, 0).truncate(places: 3), y: Double(data));
     }
     
     /*public func getGraphData(_ index: Int) -> [ChartDataEntry]{
@@ -203,9 +252,6 @@ class dataManager{
             return -1;
         }
     }
-    
-    private func createDataPoint(_ timeStamp: Float64, _ data: Float32) -> ChartDataEntry{
-        return ChartDataEntry(x: max(timeStamp - startTimeStamp, 0).truncate(places: 3), y: Double(data));
-    }*/
+     */
     
 }
