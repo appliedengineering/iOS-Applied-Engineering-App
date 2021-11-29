@@ -15,12 +15,15 @@ class telemetryViewController : UIViewController{
     internal let verticalPadding : CGFloat = 10;
     
     internal var nextY : CGFloat = 0;
+    internal var defaultNextY : CGFloat = 0;
+    
     internal let mainScrollView : UIScrollView = UIScrollView();
     internal let refreshControl : UIRefreshControl = UIRefreshControl();
     
     //
     
     internal var isDisplayingData : [String : Bool] = [:];
+    internal var graphForData : [String : GraphUIButton] = [:];
     
     internal let noDataLabel : UILabel = UILabel();
     
@@ -79,28 +82,72 @@ class telemetryViewController : UIViewController{
         noDataLabel.textColor = InverseBackgroundColor;
             
         mainScrollView.addSubview(noDataLabel);
-        nextY += noDataLabel.frame.height + verticalPadding;
+        //nextY += noDataLabel.frame.height + verticalPadding;
         
         //
         
         mainScrollView.contentSize = CGSize(width: AppUtility.getCurrentScreenSize().width, height: nextY);
         
+        //
+        
+        defaultNextY = nextY;
         
     }
     
     //
     
-    internal func renderGraphs(){
-        
+    
+    internal func renderData(){
         for subview in mainScrollView.subviews{
             if (subview.tag == 1){
                 subview.removeFromSuperview();
             }
         }
         
+        nextY = defaultNextY;
+
         //
         
+        if (!isDisplayingData.isEmpty){
+            noDataLabel.isHidden = true;
+            
+            self.renderGraphs();
+            self.renderStaticData();
+        }
+        else{
+            noDataLabel.isHidden = false;
+            mainScrollView.contentSize = CGSize(width: AppUtility.getCurrentScreenSize().width, height: nextY);
+        }
+    }
+    
+    internal func renderGraphs(){
+            
+        let graphViewHorizontalPadding : CGFloat = horizontalPadding/2;
+     
+        for graph in graphForData{
+            
+            let graphButton = graph.value;
+            
+            let graphButtonWidth = AppUtility.getCurrentScreenSize().width - 2*graphViewHorizontalPadding;
+            let graphButtonFrame = CGRect(x: graphViewHorizontalPadding, y: nextY, width: graphButtonWidth, height: graphButtonWidth * 0.5333);
+                        
+            graphButton.updateFrame(graphButtonFrame);
+            graphButton.frame = graphButtonFrame;
+            graphButton.tag = 1;
+            graphButton.backgroundColor = .systemBlue;
+            
+            mainScrollView.addSubview(graphButton);
+            nextY += graphButton.frame.height + verticalPadding;
+            
+           // print("frame - \(graphButtonFrame) - \(graph.value.frame)")
+            
+        }
         
+        mainScrollView.contentSize = CGSize(width: AppUtility.getCurrentScreenSize().width, height: nextY);
+
+    }
+    
+    internal func renderStaticData(){
         
     }
     

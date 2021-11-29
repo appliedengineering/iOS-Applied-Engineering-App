@@ -177,8 +177,12 @@ class dataManager{
         return !nonGraphableDataPoints.contains(key); // defined in misc
     }
     
-    public func getGraphDataFor(_ key: String) -> [ChartDataEntry]?{
-        return graphDataStorage[key];
+    public func getGraphDataFor(_ key: String) -> [ChartDataEntry]{
+        guard let dataSet = graphDataStorage[key] else{
+            log.add("No dataset for graph \(key)");
+            return [];
+        }
+        return dataSet;
     }
     
     //
