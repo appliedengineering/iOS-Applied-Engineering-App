@@ -12,7 +12,7 @@ import SwiftMsgPack
 import Charts
 
 
-public struct APiData : Decodable{
+/*public struct APiData : Decodable{
     var psuMode : Int = 0; // power supply mode - 3
     // graphable data
     var throttleDuty : Int = 0;
@@ -32,7 +32,7 @@ public struct APiData : Decodable{
     var ocpStatus : Bool = false; // over current protection - 1
     var ovpStatus : Bool = false; // over voltage prevention - 2
     var timeStamp : Float64 = 0.0;
-}
+}*/
 
 class dataManager{
     
@@ -105,7 +105,7 @@ class dataManager{
                 log.add("Invalid timestamp in data - \(data)");
                 return;
             }
-            data["timestamp"] = nil; // remove from raw data
+            data["timeStamp"] = nil; // remove from raw data
             
             // remove excess data points from storage
             

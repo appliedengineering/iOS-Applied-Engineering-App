@@ -17,59 +17,62 @@ extension telemetryViewController{
     
     @objc internal func updateData(_ notification: NSNotification){
         //print("update data")
+        guard let notificationDict = notification.object as? [String : Any] else{
+            log.add("Invalid dictionary in notification");
+            return;
+        }
         
-        DispatchQueue.main.sync {
-            guard let notificationDict = notification.object as? [String : Any] else{
-                log.add("Invalid dictionary in notification");
-                return;
-            }
-            
-            guard let keyArray = notificationDict[notificationDictionaryUpdateKeys] as? [String] else{
-                log.add("Invalid keyArray in updateData");
-                return;
-            }
-            
-            //print(keyArray);
-            
-            var shouldRerender : Bool = false;
-            
-            for key in keyArray{
-                if (self.isDisplayingData[key] == nil){
-                    shouldRerender = true;
-                    
-                    self.isDisplayingData[key] = true;
-                    
+        guard let keyArray = notificationDict[notificationDictionaryUpdateKeys] as? [String] else{
+            log.add("Invalid keyArray in updateData");
+            return;
+        }
+        
+        //print(keyArray);
+        
+        var shouldRerender : Bool = false;
+        
+        for key in keyArray{
+            if (self.isDisplayingData[key] == nil){
+                shouldRerender = true;
+                
+                self.isDisplayingData[key] = true;
+                
+                DispatchQueue.main.sync {
                     if (dataMgr.isGraphableData(key)){
                         self.createGraph(key);
                     }
                     else{
                         //
                     }
-                    
                 }
+                
             }
-            
-            for key in self.isDisplayingData.keys{
-                if (!keyArray.contains(key)){
-                    shouldRerender = true;
-                    
-                    if (dataMgr.isGraphableData(key)){
+        }
+        
+        for key in self.isDisplayingData.keys{
+            if (!keyArray.contains(key)){
+                shouldRerender = true;
+                
+                if (dataMgr.isGraphableData(key)){
+                    DispatchQueue.main.sync {
                         self.graphForData[key]?.removeFromSuperview();
                         self.graphForData[key] = nil;
                     }
                 }
             }
-            
-            //
-            
-            for key in keyArray{
-                if (dataMgr.isGraphableData(key)){
-                    self.updateGraphData(key);
-                }
+        }
+        
+        //
+        
+        for key in keyArray{
+            if (dataMgr.isGraphableData(key)){
+                self.updateGraphData(key);
             }
-            
-            //
-            
+        }
+        
+        //
+        
+        DispatchQueue.main.sync {
             if (shouldRerender){
                 self.handleRefresh(self.refreshControl);
             }
@@ -84,9 +87,8 @@ extension telemetryViewController{
     }
     
     private func updateGraphData(_ graphKey: String){
-        let graphButton = graphForData[graphKey];
         
-        guard let graphButton = graphButton else{
+        guard let graphButton = graphForData[graphKey] else{
             log.add("Missing graph for \(graphKey)");
             return;
         }
@@ -107,12 +109,11 @@ extension telemetryViewController{
         
         //
         
-        /*graphData.notifyDataChanged();
+        graphData.notifyDataChanged();
         
         DispatchQueue.main.sync {
             graphButton.chartView.notifyDataSetChanged();
-        }*/
-        
+        }
     }
     
     //
