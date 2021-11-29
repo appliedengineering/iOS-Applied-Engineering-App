@@ -134,7 +134,6 @@ class dataManager{
                     while ((graphDataStorage[point.key]?.count ?? -1) > preferences.graphBufferSize){
                         graphDataStorage[point.key]?.removeFirst();
                     }
-                    
                 }
                 else{
                     if (staticDataStorage[point.key] == nil){

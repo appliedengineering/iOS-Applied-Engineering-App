@@ -105,6 +105,7 @@ extension telemetryViewController{
         
         //
         
+        //print("\(graphKey) = \(dataMgr.getGraphDataFor(graphKey))");
         dataSet.replaceEntries(dataMgr.getGraphDataFor(graphKey)); // can be optimized
         
         //
