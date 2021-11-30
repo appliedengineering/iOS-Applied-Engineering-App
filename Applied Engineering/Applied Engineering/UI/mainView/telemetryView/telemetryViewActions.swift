@@ -105,7 +105,8 @@ extension telemetryViewController{
         
         //
         
-        //print("\(graphKey) = \(dataMgr.getGraphDataFor(graphKey))");
+        //print("Updating \(graphKey)");
+        
         dataSet.replaceEntries(dataMgr.getGraphDataFor(graphKey)); // can be optimized
         
         //
@@ -113,6 +114,7 @@ extension telemetryViewController{
         graphData.notifyDataChanged();
         
         DispatchQueue.main.sync {
+            //print("graph button frame for \(graphKey) = \(graphButton.frame)")
             graphButton.chartView.notifyDataSetChanged();
         }
     }

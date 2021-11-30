@@ -13,8 +13,12 @@ class GraphUIButton : UIButton{
     public var graphKey : String = "";
     
     private let graphTitleLabel : UILabel = UILabel();
-    public let chartView : LineChartView = LineChartView();
+    private var graphTitleLabelText = "Graph Name";
+    private let graphTitleLabelFont = Inter_SemiBold;
     
+    private var graphColor : UIColor = .systemBlue;
+    public let chartView : LineChartView = LineChartView();
+        
     //
     
     private let noDataLabel = UILabel();
@@ -22,28 +26,34 @@ class GraphUIButton : UIButton{
     init(frame: CGRect, key: String){
         super.init(frame: frame);
         graphKey = key;
-        renderTitleLabel();
         setupGraph();
+        renderTitleLabel();
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func renderTitleLabel(){
-        
-        let graphTitleLabelFont = UIFont(name: Inter_SemiBold, size: frame.height / 10)!;
-        let graphTitleLabelText = "Graph Name";
-        let graphTitleLabelWidth = frame.size.width;
+    private func getTitleLabelSize(_ parentFrame: CGRect) -> CGSize{
+        let graphTitleLabelFont = UIFont(name: Inter_SemiBold, size: parentFrame.height / 10)!;
+        let graphTitleLabelWidth = parentFrame.size.width;
         let graphTitleLabelHeight = graphTitleLabelText.getHeight(withConstrainedWidth: graphTitleLabelWidth, font: graphTitleLabelFont);
+        return CGSize(width: graphTitleLabelWidth, height: graphTitleLabelHeight);
+    }
+    
+    private func renderTitleLabel(){
+
+        let graphTitleLabelSize = getTitleLabelSize(self.frame);
         
-        let graphTitleLabelFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: graphTitleLabelHeight);
+        let graphTitleLabelFrame = CGRect(x: 0, y: 0, width: graphTitleLabelSize.width, height: graphTitleLabelSize.height);
         graphTitleLabel.frame = graphTitleLabelFrame;
         
         graphTitleLabel.textAlignment = .right;
         graphTitleLabel.text = graphTitleLabelText;
-        graphTitleLabel.font = graphTitleLabelFont;
+        graphTitleLabel.font = UIFont(name: graphTitleLabelFont, size: graphTitleLabelSize.height * 0.7)!;
         graphTitleLabel.textColor = InverseBackgroundColor;
+        //graphTitleLabel.backgroundColor = InverseBackgroundColor;
+        graphTitleLabel.numberOfLines = 1;
         
         self.addSubview(graphTitleLabel);
     }
@@ -66,16 +76,13 @@ class GraphUIButton : UIButton{
         
         //
         
-        let testGraphName = "Graph Name";
-        let testGraphColor = UIColor.systemBlue;
+        let graphLine = LineChartDataSet(entries: dataMgr.getGraphDataFor(self.graphKey), label: graphTitleLabelText);
         
-        let graphLine = LineChartDataSet(entries: dataMgr.getGraphDataFor(self.graphKey), label: testGraphName);
-        
-        graphLine.fill = .fillWithLinearGradient(CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [testGraphColor.cgColor, UIColor.clear.cgColor] as CFArray, locations: [1.0, 0.0])!, angle: 90);
+        graphLine.fill = .fillWithLinearGradient(CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [graphColor.cgColor, UIColor.clear.cgColor] as CFArray, locations: [1.0, 0.0])!, angle: 90);
         graphLine.drawFilledEnabled = true;
         graphLine.drawCirclesEnabled = false;
         graphLine.drawValuesEnabled = false;
-        graphLine.colors = [testGraphColor];
+        graphLine.colors = [graphColor];
         
         //
         
@@ -89,8 +96,16 @@ class GraphUIButton : UIButton{
     public func updateFrame(_ newFrame: CGRect){
         self.frame = frame;
         
-        self.chartView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height);
-        self.graphTitleLabel.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: self.graphTitleLabel.frame.height);
+        self.chartView.frame = CGRect(x: 0, y: 0, width: newFrame.size.width, height: newFrame.size.height);
+        self.chartView.setNeedsDisplay();
+        self.chartView.setNeedsLayout();
+        
+        let graphTitleLabelSize = getTitleLabelSize(newFrame);
+        self.graphTitleLabel.frame = CGRect(x: 0, y: 0, width: graphTitleLabelSize.width, height: graphTitleLabelSize.height);
+        self.graphTitleLabel.font = UIFont(name: graphTitleLabelFont, size: graphTitleLabelSize.height * 0.7);
+        
+        //print("\(self.frame) = new frames - \(self.chartView.frame) and \(self.graphTitleLabel.frame)")
+        
     }
     
 }
