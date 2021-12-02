@@ -10,39 +10,16 @@ import UIKit
 import Charts
 
 // General Global Macros
-let graphNameArray : [String] = [
-    "RPM",
-    "Torque (N⋅m)",
-    "Throttle (%)",
-    "Duty (%)",
-    "PWM Frequency",
-    "Temperature (C)",
-    "Source Voltage (V)",
-    "PWM Current (A)",
-    "Power Change (Δ)",
-    "Voltage Change (Δ)"
-];
-let graphColorArray : [UIColor] = [
-    UIColor.rgb(63, 81, 181),
-    UIColor.rgb(0, 150,136),
-    UIColor.rgb(76, 175, 80),
-    UIColor.rgb(139, 195, 74),
-    UIColor.rgb(255, 235, 59),
-    UIColor.rgb(255, 152, 0),
-    UIColor.rgb(255, 87, 34),
-    UIColor.rgb(244, 67, 54),
-    UIColor.rgb(233, 30, 99),
-    UIColor.rgb(156, 39, 176)
-];
 
-let statusNameArray : [String] = [
+/*let statusNameArray : [String] = [
     "Minimum Duty Detection",
     "Over Current Protection",
     "Over Voltage Prevention",
     "Power Supply Mode"
-];
+];*/
 
 let nonGraphableDataPoints : [String] = [
+    "psuMode",
     "lastRPMTime",
     "numInterrupts",
     "mddStatus",

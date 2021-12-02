@@ -13,7 +13,7 @@ class GraphUIButton : UIButton{
     public var graphKey : String = "";
     
     private let graphTitleLabel : UILabel = UILabel();
-    private var graphTitleLabelText = "Graph Name";
+    private var graphTitleLabelText : String = "";
     private let graphTitleLabelFont = Inter_SemiBold;
     
     private var graphColor : UIColor = .systemBlue;
@@ -26,6 +26,9 @@ class GraphUIButton : UIButton{
     init(frame: CGRect, key: String){
         super.init(frame: frame);
         graphKey = key;
+        graphTitleLabelText = dataMgr.getGraphTitleFor(graphKey);
+        graphColor = dataMgr.getGraphColorFor(graphKey);
+        
         setupGraph();
         renderTitleLabel();
     }

@@ -123,8 +123,12 @@ class telemetryViewController : UIViewController{
     internal func renderGraphs(){
             
         let graphViewHorizontalPadding : CGFloat = horizontalPadding/2;
+        
+        let sortedGraphs = graphForData.sorted(by: { (a, b) in
+            return a.key < b.key;
+        });
      
-        for graph in graphForData{
+        for graph in sortedGraphs{
             
             let graphButton = graph.value;
             

@@ -46,6 +46,40 @@ class dataManager{
     private var startTimeStamp : Float64 = 0.0;
     private var recvTimeoutTimestamp : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
     
+    //
+    
+    private let graphNameLookup : [String : String] = [
+        "rpm" : "RPM",
+        "torque" : "Torque (N⋅m)",
+        "throttleDuty" : "Throttle Duty",
+        "mpptDuty" : "MPPT Duty",
+        "throttlePercent" : "Throttle (%)",
+        "dutyPercent" : "Duty (%)",
+        "pwmFrequency" : "PWM Frequency",
+        "tempC" : "Temperature (C)",
+        "sourceVoltage" : "Source Voltage (V)",
+        "pwmCurrent" : "PWM Current (A)",
+        "powerChange" : "Power Change (Δ)",
+        "voltageChange" : "Voltage Change (Δ)"
+    ];
+    
+    private let graphColorLookup : [String : UIColor] = [
+        "rpm" : UIColor.rgb(63, 81, 181),
+        "torque" : UIColor.rgb(0, 150,136),
+        "throttleDuty" : UIColor.rgb(76, 175, 80),
+        "mpptDuty" : UIColor.rgb(139, 195, 74),
+        "throttlePercent" : UIColor.rgb(255, 235, 59),
+        "dutyPercent" : UIColor.rgb(255, 152, 0),
+        "pwmFrequency" : UIColor.rgb(255, 87, 34),
+        "tempC" : UIColor.rgb(244, 67, 54),
+        "sourceVoltage" : UIColor.rgb(233, 30, 99),
+        "pwmCurrent" : UIColor.rgb(156, 39, 176),
+        "powerChange" : UIColor.rgb(38, 198, 218),
+        "voltageChange" : UIColor.rgb(206, 147, 216)
+    ];
+    
+    //
+    
     private init(){
         startTimeStamp = NSDate().timeIntervalSince1970;
         recvTimeoutTimestamp = CFAbsoluteTimeGetCurrent();
@@ -182,6 +216,14 @@ class dataManager{
             return [];
         }
         return dataSet;
+    }
+    
+    public func getGraphTitleFor(_ key: String) -> String{
+        return graphNameLookup[key] ?? key;
+    }
+    
+    public func getGraphColorFor(_ key: String) -> UIColor{
+        return graphColorLookup[key] ?? .systemBlue;
     }
     
     //
