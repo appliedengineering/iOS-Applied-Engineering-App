@@ -38,7 +38,6 @@ class leftBarViewController : UIViewController{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil, userInfo: nil);
         }
         else if (sender.tag == 1){ // instrument cluster page
-            UINotificationFeedbackGenerator().notificationOccurred(.success);
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutMainViewNotification), object: nil, userInfo: nil);
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutContentInstrumentClusterPage), object: nil, userInfo: nil);
         }

@@ -7,13 +7,16 @@
 
 import Foundation
 import UIKit
+import Charts
 
-class graphViewController : UIViewController{
+class graphViewController : contentViewController{
     
     internal var graphKey : String = "";
 
     internal let backButton : UIButton = UIButton();
     internal var backButtonHeightConstraint : NSLayoutConstraint? = nil;
+    
+    internal let graphView : LineChartView = LineChartView();
     
     //
     
@@ -50,13 +53,14 @@ class graphViewController : UIViewController{
         NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: UIDevice.orientationDidChangeNotification, object: nil);
         
         self.updateViewsWithScreenSize(AppUtility.getCurrentScreenSize());
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateData), name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated);
-        
-        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
         NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil);
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
     }
     
     //
@@ -67,6 +71,10 @@ class graphViewController : UIViewController{
 
     @objc internal func rotated(){
         updateViewsWithScreenSize(AppUtility.getCurrentScreenSize());
+    }
+    
+    @objc internal func updateData(_ notification: NSNotification){
+        print("update data")
     }
     
     private func updateViewsWithScreenSize(_ screenSize: CGSize){

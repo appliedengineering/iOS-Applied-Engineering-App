@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class instrumentClusterViewController : UIViewController{
+class instrumentClusterViewController : contentViewController{
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -29,17 +29,10 @@ class instrumentClusterViewController : UIViewController{
         
         button.addTarget(self, action: #selector(self.dismissVC), for: .touchUpInside);
     }
-    
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated);
-    }
-    
     //
     
     @objc func dismissVC(_ sender: UIButton){
-        UINotificationFeedbackGenerator().notificationOccurred(.success);
-        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
         self.dismiss(animated: true, completion: nil);
     }
 }

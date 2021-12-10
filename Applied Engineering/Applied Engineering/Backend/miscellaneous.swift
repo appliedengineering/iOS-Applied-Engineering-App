@@ -132,4 +132,16 @@ internal func linkViewControllerToView(view: UIView, controller: UIViewControlle
 //
 
 // Classes
+class contentViewController : UIViewController{
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        UINotificationFeedbackGenerator().notificationOccurred(.success);
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated);
+        UINotificationFeedbackGenerator().notificationOccurred(.success);
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
+    }
+}
 //
