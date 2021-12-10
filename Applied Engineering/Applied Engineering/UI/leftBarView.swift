@@ -182,7 +182,7 @@ class leftBarViewController : UIViewController{
         // version number
         
         let versionLabelPadding = CGFloat(20);
-        let versionLabelText = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0";
+        let versionLabelText = AppUtility.getAppVersionString();
         let versionLabelFont = UIFont(name: Inter_Bold, size: self.view.frame.width / 15)!;
         let versionLabelTextHeight = versionLabelText.getHeight(withConstrainedWidth: self.view.frame.width, font: versionLabelFont);
         let versionLabelFrame = CGRect(x: versionLabelPadding, y: self.view.frame.height - versionLabelPadding - versionLabelTextHeight, width: self.view.frame.width, height: versionLabelTextHeight);
