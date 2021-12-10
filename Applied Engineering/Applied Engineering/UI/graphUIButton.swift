@@ -1,5 +1,5 @@
 //
-//  miscellaneous_graphUIButton.swift
+//  graphUIButton.swift
 //  Applied Engineering
 //
 //  Created by Richard Wei on 11/28/21.

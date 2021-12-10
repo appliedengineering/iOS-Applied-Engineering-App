@@ -140,6 +140,8 @@ class telemetryViewController : UIViewController{
             graphButton.tag = 1;
             //graphButton.backgroundColor = .systemRed;
             
+            graphButton.addTarget(self, action: #selector(self.openGraph), for: .touchUpInside);
+            
             mainScrollView.addSubview(graphButton);
             nextY += graphButton.frame.height + verticalPadding;
             

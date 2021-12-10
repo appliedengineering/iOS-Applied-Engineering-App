@@ -134,13 +134,13 @@ class dataManager{
             }
             
             //
-            
+                        
             guard let currentTimestamp = data["timeStamp"] as? Float64 else{
                 log.add("Invalid timestamp in data - \(data)");
                 return;
             }
             data["timeStamp"] = nil; // remove from raw data
-            
+                        
             // remove excess data points from storage
             
             for key in graphDataStorage.keys{
@@ -237,7 +237,15 @@ class dataManager{
     }
     
     private func createDataPoint(_ timeStamp: Float64, _ data: Float64) -> ChartDataEntry{
-        return ChartDataEntry(x: max(timeStamp - startTimeStamp, 0).truncate(places: 3), y: Double(data));
+        
+        let pointTimeStamp = (timeStamp - startTimeStamp).truncate(places: 3);
+        
+        guard pointTimeStamp >= 0 else{
+            log.addc("Recieved timeStamp (\(timeStamp)) is smaller than starting timeStamp");
+            return ChartDataEntry(x: 0, y: Double(data));
+        }
+        
+        return ChartDataEntry(x: pointTimeStamp, y: Double(data));
     }
     
     /*public func getGraphData(_ index: Int) -> [ChartDataEntry]{

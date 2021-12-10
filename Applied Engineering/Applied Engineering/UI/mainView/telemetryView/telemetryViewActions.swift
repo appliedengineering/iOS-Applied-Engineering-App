@@ -104,8 +104,9 @@ extension telemetryViewController{
         }
         
         //
-        
-        //print("Updating \(graphKey)");
+        /*if (graphKey == "throttlePercent"){
+            print("Updating \(graphKey) = \(dataMgr.getGraphDataFor(graphKey))");
+        }*/
         
         dataSet.replaceEntries(dataMgr.getGraphDataFor(graphKey)); // can be optimized
         
@@ -122,6 +123,6 @@ extension telemetryViewController{
     //
     
     @objc internal func openGraph(_ button: GraphUIButton){
-        //print(button.graphIndex);
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutContentGraphPage), object: nil, userInfo: ["graphKey":button.graphKey]);
     }
 }
