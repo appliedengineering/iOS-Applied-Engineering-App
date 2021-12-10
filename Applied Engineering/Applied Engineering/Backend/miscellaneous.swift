@@ -10,49 +10,35 @@ import UIKit
 import Charts
 
 // General Global Macros
-let graphNameArray : [String] = [
-    "RPM",
-    "Torque (N⋅m)",
-    "Throttle (%)",
-    "Duty (%)",
-    "PWM Frequency",
-    "Temperature (C)",
-    "Source Voltage (V)",
-    "PWM Current (A)",
-    "Power Change (Δ)",
-    "Voltage Change (Δ)"
-];
-let graphColorArray : [UIColor] = [
-    UIColor.rgb(63, 81, 181),
-    UIColor.rgb(0, 150,136),
-    UIColor.rgb(76, 175, 80),
-    UIColor.rgb(139, 195, 74),
-    UIColor.rgb(255, 235, 59),
-    UIColor.rgb(255, 152, 0),
-    UIColor.rgb(255, 87, 34),
-    UIColor.rgb(244, 67, 54),
-    UIColor.rgb(233, 30, 99),
-    UIColor.rgb(156, 39, 176)
-];
 
-let statusNameArray : [String] = [
+/*let statusNameArray : [String] = [
     "Minimum Duty Detection",
     "Over Current Protection",
     "Over Voltage Prevention",
     "Power Supply Mode"
-];
+];*/
 
-let numberOfGraphableVars = 10;
-let numberOfStatusVars = 4;
+let nonGraphableDataPoints : [String] = [
+    "psuMode",
+    "lastRPMTime",
+    "numInterrupts",
+    "mddStatus",
+    "ocpStatus",
+    "ovpStatus"
+];
 //
 
 // Notification Macros
 let layoutSettingsViewNotification = "layoutSettingsViewNotification";
 let layoutMainViewNotification = "layoutMainViewNotification";
 let layoutContentInstrumentClusterPage = "layoutContentInstrumentClusterPage";
+let layoutContentGraphPage = "layoutContentGraphPage";
+
 let mainViewSetContentViewNotification = "mainViewSetContentViewNotification";
 let dismissRightBarKeyboardNotification = "dismissRightBarKeyboardNotification";
 let dataUpdatedNotification = "dataUpdatedNotification";
+
+let notificationDictionaryUpdateKeys = "notificationDictionaryUpdateKeys";
 //
 
 // Colors
@@ -146,72 +132,4 @@ internal func linkViewControllerToView(view: UIView, controller: UIViewControlle
 //
 
 // Classes
-class GraphUIButton : UIButton{
-    public var graphIndex : Int = -1;
-    public var hasData : Bool = false {
-        didSet{
-            DispatchQueue.main.sync {
-                self.noDataLabel.isHidden = self.hasData;
-            }
-        }
-    };
-    public let chartView : LineChartView = LineChartView();
-    
-    //
-    
-    private let noDataLabel = UILabel();
-    
-    init(frame: CGRect, index: Int){
-        super.init(frame: frame);
-        graphIndex = index;
-        
-        renderNoDataLabel();
-        renderTitleLabel();
-        setupGraph();
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func renderNoDataLabel(){
-        let noDataLabelFont = UIFont(name: Inter_Regular, size: frame.height / 12)!;
-        let noDataLabelText = "No Data.";
-        let noDataLabelWidth = frame.size.width;
-        let noDataLabelHeight = noDataLabelText.getHeight(withConstrainedWidth: noDataLabelWidth, font: noDataLabelFont);
-        
-        noDataLabel.frame = CGRect(x: 0, y: (frame.size.height / 2) - (noDataLabelHeight / 2), width: noDataLabelWidth, height: noDataLabelHeight);
-        
-        noDataLabel.text = noDataLabelText;
-        noDataLabel.font = noDataLabelFont;
-        noDataLabel.textColor = InverseBackgroundColor;
-        noDataLabel.textAlignment = .center;
-        
-        self.addSubview(noDataLabel);
-    }
-    
-    private func renderTitleLabel(){
-        
-        let titleLabelFont = UIFont(name: Inter_SemiBold, size: frame.height / 10)!;
-        let titleLabelText = graphNameArray[graphIndex];
-        let titleLabelWidth = frame.size.width;
-        let titleLabelHeight = titleLabelText.getHeight(withConstrainedWidth: titleLabelWidth, font: titleLabelFont);
-        
-        let titleLabelFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: titleLabelHeight);
-        let titleLabel = UILabel(frame: titleLabelFrame);
-        
-        titleLabel.textAlignment = .right;
-        titleLabel.text = titleLabelText;
-        titleLabel.font = titleLabelFont;
-        titleLabel.textColor = InverseBackgroundColor;
-        
-        self.addSubview(titleLabel);
-    }
-    
-    private func setupGraph(){
-        chartView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height);
-        self.addSubview(chartView);
-    }
-    
-}
 //

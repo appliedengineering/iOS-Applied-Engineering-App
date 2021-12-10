@@ -92,10 +92,32 @@ extension layoutViewController{
     }
     
     @objc func presentInstrumentClusterPage(_ sender: NSNotification){
-        //print("present vc")
-        let vc = instrumentClusterViewController();
+        self.presentContentPage(instrumentClusterViewController());
+    }
+    
+    @objc func presentGraphPage(_ sender: NSNotification){
+        
+        guard let dict = sender.userInfo as? [String : Any] else{
+            print("invalid dictionary")
+            return;
+        }
+        
+        guard let graphKey = dict["graphKey"] as? String else{
+            print("graphkey not found")
+            return;
+        }
+        
+        //print("present")
+        
+        let vc = graphViewController();
+        
+        self.presentContentPage(vc);
+        
+        vc.setGraphKey(graphKey);
+    }
+    
+    @objc func presentContentPage(_ vc: UIViewController){
         vc.modalPresentationStyle = .fullScreen;
         self.present(vc, animated: true, completion: nil);
-        
     }
 }

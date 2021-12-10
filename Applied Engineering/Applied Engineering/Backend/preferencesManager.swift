@@ -11,10 +11,10 @@ class preferencesManager{
     static public let obj : preferencesManager = preferencesManager();
     
     // List of defaults
-    private let d_connectionIPAddress : String = "169.254.200.200";
+    private let d_connectionIPAddress : String = "192.168.2.1"; // default ip address (static ip assigned to rpi)
     private let d_connectionPort : String = "5556";
     private let d_zeromqReceiveReconnectTimeout : Int = 3000; // in ms
-    private let d_receiveTimeout : Int = 100; // in ms
+    private let d_receiveTimeout : Int = 1000; // in ms
     private let d_reconnectTimeout : Int = 3; // seconds
     private let d_graphBufferSize : Int = 60; // number of points
     //
