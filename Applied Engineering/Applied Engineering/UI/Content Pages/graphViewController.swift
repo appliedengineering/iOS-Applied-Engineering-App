@@ -18,6 +18,12 @@ class graphViewController : contentViewController, ChartViewDelegate{
     internal var backButtonHeightConstraint : NSLayoutConstraint? = nil;
     internal var backButtonTopAnchorConstraint : NSLayoutConstraint? = nil;
     
+    internal let dataButton : UIButton = UIButton();
+    internal var dataButtonTrailingConstraint : NSLayoutConstraint? = nil;
+    internal var dataButtonWidthConstraint : NSLayoutConstraint? = nil;
+    private let dataButtonOnImage : UIImage = UIImage(systemName: "wifi")!;
+    private let dataButtonOffImage : UIImage = UIImage(systemName: "wifi.slash")!;
+    
     internal var graphKey : String = "";
     private var graphColor : UIColor = .systemRed;
     private var graphTitleLabelText : String = "";
@@ -62,6 +68,28 @@ class graphViewController : contentViewController, ChartViewDelegate{
         backButton.addTarget(self, action: #selector(self.dismissVC), for: .touchUpInside);
         
         setupTopBar();
+        
+        //
+        
+        self.view.addSubview(dataButton);
+        
+        dataButton.translatesAutoresizingMaskIntoConstraints = false;
+        
+        dataButtonTrailingConstraint = dataButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0);
+        dataButtonTrailingConstraint?.isActive = true;
+        
+        dataButton.topAnchor.constraint(equalTo: backButton.topAnchor).isActive = true;
+        
+        dataButtonWidthConstraint = dataButton.widthAnchor.constraint(equalToConstant: 0);
+        dataButtonWidthConstraint?.isActive = true;
+        
+        dataButton.heightAnchor.constraint(equalTo: backButton.heightAnchor).isActive = true;
+        
+        //dataButton.backgroundColor = .systemBlue;
+        dataButton.tintColor = InverseBackgroundColor;
+        dataButton.imageView?.contentMode = .scaleAspectFit;
+        dataButton.addTarget(self, action: #selector(self.toggleDataButton), for: .touchUpInside);
+        updateDataButton();
         
         //
         
@@ -147,6 +175,11 @@ class graphViewController : contentViewController, ChartViewDelegate{
         }
     }
     
+    @objc internal func toggleDataButton(_ button: UIButton){
+        dataMgr.setShouldReceiveData(!dataMgr.isReceivingData());
+        updateDataButton();
+    }
+    
     public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight){
         //print("graph value selected - \(entry)");
         graphValueLabel.text = "Selected point (\(entry.x), \(entry.y))";
@@ -163,7 +196,15 @@ class graphViewController : contentViewController, ChartViewDelegate{
             
             self.backButtonTopAnchorConstraint?.constant = (isPortrait ? AppUtility.safeAreaInset.top : 0);
             
+            self.dataButtonWidthConstraint?.constant = self.backButtonHeightConstraint?.constant ?? 0;
+            
+            self.dataButtonTrailingConstraint?.constant = -(isPortrait ? 10 : 20);
+            
         });
+    }
+    
+    private func updateDataButton(){
+        self.dataButton.setImage((dataMgr.isReceivingData() ? dataButtonOnImage : dataButtonOffImage), for: .normal);
     }
     
     private func setupGraph(){
@@ -214,7 +255,7 @@ class graphViewController : contentViewController, ChartViewDelegate{
         
         graphTitleLabel.numberOfLines = 1;
         graphTitleLabel.textColor = InverseBackgroundColor;
-        graphTitleLabel.font = UIFont(name: Inter_Bold, size: AppUtility.originalWidth * 0.04);
+        graphTitleLabel.font = UIFont(name: Inter_Bold, size: AppUtility.originalWidth * 0.05);
         graphTitleLabel.textAlignment = .center;
         
         //

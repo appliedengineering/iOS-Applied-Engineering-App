@@ -46,6 +46,8 @@ class dataManager{
     private var startTimeStamp : Float64 = 0.0;
     private var recvTimeoutTimestamp : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
     
+    private var shouldReceiveData : Bool = true;
+    
     //
     
     private let graphNameLookup : [String : String] = [
@@ -115,7 +117,7 @@ class dataManager{
     
     private func updateWithNewData(_ rawData: Data){
         
-        if (CFAbsoluteTimeGetCurrent() - recvTimeoutTimestamp >= Double(preferences.receiveTimeout / 1000)){
+        if (shouldReceiveData && (CFAbsoluteTimeGetCurrent() - recvTimeoutTimestamp >= Double(preferences.receiveTimeout / 1000))){
             
             var data : [String : AnyObject]? = nil;
             
@@ -224,6 +226,14 @@ class dataManager{
     
     public func getGraphColorFor(_ key: String) -> UIColor{
         return graphColorLookup[key] ?? .systemBlue;
+    }
+    
+    public func setShouldReceiveData(_ recvData: Bool){
+        shouldReceiveData = recvData;
+    }
+    
+    public func isReceivingData() -> Bool{
+        return shouldReceiveData;
     }
     
     //
