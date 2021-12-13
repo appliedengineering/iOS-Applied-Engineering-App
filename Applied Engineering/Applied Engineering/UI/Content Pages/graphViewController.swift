@@ -11,14 +11,22 @@ import Charts
 
 class graphViewController : contentViewController, ChartViewDelegate{
 
+    private let horizontalTopBarRatio : CGFloat = 0.006;
+    private let verticalTopBarRatio : CGFloat = 0.025;
+    
     internal let backButton : UIButton = UIButton();
     internal var backButtonHeightConstraint : NSLayoutConstraint? = nil;
+    internal var backButtonTopAnchorConstraint : NSLayoutConstraint? = nil;
     
     internal var graphKey : String = "";
     private var graphColor : UIColor = .systemRed;
     private var graphTitleLabelText : String = "";
     
     internal let graphView : LineChartView = LineChartView();
+    internal let graphTitleLabel : UILabel = UILabel();
+    
+    internal let graphValueLabel : UILabel = UILabel();
+    //internal let graphValueLabelTextPrecision : Int = 0;
     
     //
     
@@ -41,14 +49,19 @@ class graphViewController : contentViewController, ChartViewDelegate{
         backButton.translatesAutoresizingMaskIntoConstraints = false;
         
         backButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true;
-        backButton.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true;
+        
+        backButtonTopAnchorConstraint = backButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: AppUtility.safeAreaInset.top);
+        backButtonTopAnchorConstraint?.isActive = true;
+        
         backButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true;
         
         backButtonHeightConstraint = backButton.heightAnchor.constraint(equalToConstant: 0);
         backButtonHeightConstraint?.isActive = true;
         
-        backButton.backgroundColor = .systemBlue;
+        //backButton.backgroundColor = .systemBlue;
         backButton.addTarget(self, action: #selector(self.dismissVC), for: .touchUpInside);
+        
+        setupTopBar();
         
         //
         
@@ -61,6 +74,24 @@ class graphViewController : contentViewController, ChartViewDelegate{
         graphView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true;
         graphView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true;
         
+        //
+        
+        let graphValueLabelHorizontalPadding : CGFloat = 10;
+        
+        self.view.addSubview(graphValueLabel);
+        
+        graphValueLabel.translatesAutoresizingMaskIntoConstraints = false;
+        
+        graphValueLabel.topAnchor.constraint(equalTo: graphView.topAnchor).isActive = true;
+        graphValueLabel.trailingAnchor.constraint(equalTo: graphView.trailingAnchor, constant: -graphValueLabelHorizontalPadding).isActive = true;
+        graphValueLabel.leadingAnchor.constraint(greaterThanOrEqualTo: graphView.leadingAnchor, constant: graphValueLabelHorizontalPadding).isActive = true;
+        
+        graphValueLabel.textAlignment = .right;
+        graphValueLabel.textColor = InverseBackgroundColor;
+        graphValueLabel.font = UIFont(name: Inter_Regular, size: AppUtility.originalWidth * 0.03);
+        graphValueLabel.numberOfLines = 0;
+        
+        //
         
     }
     
@@ -117,14 +148,21 @@ class graphViewController : contentViewController, ChartViewDelegate{
     }
     
     public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight){
-        print("graph value selected - \(entry)");
+        //print("graph value selected - \(entry)");
+        graphValueLabel.text = "Selected point (\(entry.x), \(entry.y))";
     }
     
     //
     
     private func updateViewsWithScreenSize(_ screenSize: CGSize){
         UIView.animate(withDuration: 1, animations: {
-            self.backButtonHeightConstraint?.constant = (screenSize.width * (AppUtility.getCurrentScreenOrientation() == .portrait ? 0.1 : 0.01)) + AppUtility.safeAreaInset.top;
+            
+            let isPortrait : Bool = AppUtility.getCurrentScreenOrientation() == .portrait;
+            
+            self.backButtonHeightConstraint?.constant = (screenSize.width * (isPortrait ? self.verticalTopBarRatio : self.horizontalTopBarRatio)) + AppUtility.safeAreaInset.top;
+            
+            self.backButtonTopAnchorConstraint?.constant = (isPortrait ? AppUtility.safeAreaInset.top : 0);
+            
         });
     }
     
@@ -156,6 +194,47 @@ class graphViewController : contentViewController, ChartViewDelegate{
         let graphLineData = LineChartData();
         graphLineData.addDataSet(graphLine);
         self.graphView.data = graphLineData;
+        
+        //
+        
+        graphTitleLabel.text = graphTitleLabelText;
+    }
+    
+    private func setupTopBar(){
+        backButton.backgroundColor = BackgroundColor;
+        
+        //
+        
+        backButton.addSubview(graphTitleLabel);
+        
+        graphTitleLabel.translatesAutoresizingMaskIntoConstraints = false;
+        
+        graphTitleLabel.centerXAnchor.constraint(equalTo: backButton.centerXAnchor).isActive = true;
+        graphTitleLabel.centerYAnchor.constraint(equalTo: backButton.centerYAnchor).isActive = true;
+        
+        graphTitleLabel.numberOfLines = 1;
+        graphTitleLabel.textColor = InverseBackgroundColor;
+        graphTitleLabel.font = UIFont(name: Inter_Bold, size: AppUtility.originalWidth * 0.04);
+        graphTitleLabel.textAlignment = .center;
+        
+        //
+        
+        let chevronImageView = UIImageView();
+        let chevronImageViewHorizontalPadding : CGFloat = 20;
+        
+        backButton.addSubview(chevronImageView);
+        
+        chevronImageView.translatesAutoresizingMaskIntoConstraints = false;
+        
+        chevronImageView.leadingAnchor.constraint(equalTo: backButton.leadingAnchor, constant: chevronImageViewHorizontalPadding).isActive = true;
+        
+        /*chevronImageView.topAnchor.constraint(greaterThanOrEqualTo: backButton.topAnchor, constant: chevronImageViewPadding).isActive = true;
+        chevronImageView.bottomAnchor.constraint(lessThanOrEqualTo: backButton.bottomAnchor, constant: -chevronImageViewPadding).isActive = true;*/
+        chevronImageView.centerYAnchor.constraint(equalTo: backButton.centerYAnchor).isActive = true;
+        
+        chevronImageView.image = UIImage(systemName: "chevron.left");
+        chevronImageView.tintColor = InverseBackgroundColor;
+        
     }
     
 }
