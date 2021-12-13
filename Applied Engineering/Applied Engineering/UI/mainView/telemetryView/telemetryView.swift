@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Charts
+import SwiftyPing
 
 class telemetryViewController : UIViewController{
     
@@ -19,6 +20,10 @@ class telemetryViewController : UIViewController{
     
     internal let mainScrollView : UIScrollView = UIScrollView();
     internal let refreshControl : UIRefreshControl = UIRefreshControl();
+    
+    //
+    
+    internal let statusView : UIView = UIView();
     
     //
     
@@ -72,6 +77,17 @@ class telemetryViewController : UIViewController{
         
         //
         
+        let statusViewWidth = AppUtility.getCurrentScreenSize().width - 2*horizontalPadding;
+        let statusViewFrame = CGRect(x: horizontalPadding, y: nextY, width: statusViewWidth, height: statusViewWidth * 0.1);
+        statusView.frame = statusViewFrame;
+
+        renderStatusView();
+        
+        mainScrollView.addSubview(statusView);
+        nextY += statusView.frame.height;
+        
+        //
+        
         let noDataLabelWidth = AppUtility.getCurrentScreenSize().width - 2*horizontalPadding;
         let noDataLabelFrame = CGRect(x: horizontalPadding, y: nextY, width: noDataLabelWidth, height: noDataLabelWidth * 0.15);
         noDataLabel.frame = noDataLabelFrame;
@@ -96,6 +112,11 @@ class telemetryViewController : UIViewController{
     
     //
     
+    internal func renderStatusView(){
+        
+    }
+    
+    //
     
     internal func renderData(){
         for subview in mainScrollView.subviews{

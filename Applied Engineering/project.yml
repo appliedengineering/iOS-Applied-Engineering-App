@@ -1,4 +1,8 @@
 name: Applied Engineering
+packages:
+    SwiftyPing:
+        url: "https://github.com/samiyr/SwiftyPing"
+        from: 1.0.0
 targets:
     Applied Engineering:
         type: application
