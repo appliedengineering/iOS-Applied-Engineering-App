@@ -125,4 +125,13 @@ extension telemetryViewController{
     @objc internal func openGraph(_ button: GraphUIButton){
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutContentGraphPage), object: nil, userInfo: ["graphKey":button.graphKey]);
     }
+    
+    internal func updateDataButton(){
+        dataButton.setImage((dataMgr.isReceivingData() ? dataButtonOnImage : dataButtonOffImage), for: .normal);
+    }
+    
+    @objc internal func toggleDataButton(_ button: UIButton){
+        dataMgr.setShouldReceiveData(!dataMgr.isReceivingData());
+        updateDataButton();
+    }
 }

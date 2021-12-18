@@ -26,6 +26,9 @@ let nonGraphableDataPoints : [String] = [
     "ocpStatus",
     "ovpStatus"
 ];
+
+let dataButtonOnImage : UIImage = UIImage(systemName: "wifi")!;
+let dataButtonOffImage : UIImage = UIImage(systemName: "wifi.slash")!;
 //
 
 // Notification Macros
@@ -37,6 +40,7 @@ let layoutContentGraphPage = "layoutContentGraphPage";
 let mainViewSetContentViewNotification = "mainViewSetContentViewNotification";
 let dismissRightBarKeyboardNotification = "dismissRightBarKeyboardNotification";
 let dataUpdatedNotification = "dataUpdatedNotification";
+let connectionStatusUpdatedNotification = "connectionStatusUpdatedNotification";
 
 let notificationDictionaryUpdateKeys = "notificationDictionaryUpdateKeys";
 //

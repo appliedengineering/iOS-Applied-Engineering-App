@@ -8,6 +8,7 @@
 import Foundation
 import SwiftyZeroMQ5
 import Network
+import SwiftyPing
 
 class communicationClass{
     static public let obj = communicationClass();
@@ -17,7 +18,13 @@ class communicationClass{
     private var context : SwiftyZeroMQ.Context?;
     private var sub : SwiftyZeroMQ.Socket?;
 
-    private var isConnected = false;
+    private var zmqIsConnected = false;
+    
+    //
+    
+    private var pinger : SwiftyPing? = nil;
+    
+    //
     
     private init(){
         printVersion();
@@ -62,25 +69,40 @@ class communicationClass{
             return false;
         }
         
-        isConnected = true;
+        zmqIsConnected = true;
+        
+        pinger = try? SwiftyPing(host: preferences.connectionIPAddress, configuration: PingConfiguration(interval: 1), queue: DispatchQueue.global(qos: .background));
+        
+        pinger?.observer = { (response) in
+            //let duration = response.duration;
+            print(response.error == nil);
+            
+            
+            
+        }
+        
+        try? pinger?.startPinging();
         
         return true;
     }
     
     public func disconnect() -> Bool{
+        var isSuccessful = true;
         
         do{
             try sub?.disconnect(connectionString);
         }
         catch{
             log.addc("Disconnect communication error - \(error) - \(convertErrno(zmq_errno()))");
-            isConnected = false;
-            return false;
+            isSuccessful = false;
         }
         
-        isConnected = false;
+        zmqIsConnected = false;
         
-        return true;
+        pinger?.stopPinging();
+        pinger = nil;
+        
+        return isSuccessful;
     }
 
     public func newConnection(_ address: String) -> Bool{
@@ -118,7 +140,7 @@ class communicationClass{
     }
     
     public func getIsConnected() -> Bool{
-        return isConnected;
+        return zmqIsConnected;
     }
     
     public func createFullAddress() -> String{

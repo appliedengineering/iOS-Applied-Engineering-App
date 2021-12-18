@@ -18,6 +18,8 @@ class telemetryViewController : UIViewController{
     internal var nextY : CGFloat = 0;
     internal var defaultNextY : CGFloat = 0;
     
+    internal let dataButton : UIButton = UIButton();
+    
     internal let mainScrollView : UIScrollView = UIScrollView();
     internal let refreshControl : UIRefreshControl = UIRefreshControl();
     
@@ -63,8 +65,30 @@ class telemetryViewController : UIViewController{
         
         //
         
-        let graphLabelWidth = AppUtility.getCurrentScreenSize().width - 2*horizontalPadding;
-        let graphLabelFrame = CGRect(x: horizontalPadding, y: 0, width: graphLabelWidth, height: graphLabelWidth * 0.15);
+        let topBarPadding : CGFloat = horizontalPadding / 2;
+        let topBarWidth : CGFloat = AppUtility.getCurrentScreenSize().width - 2*topBarPadding;
+        let topBarHeight : CGFloat = topBarWidth * 0.15;
+        
+        //
+        
+        let dataButtonSize = topBarHeight;
+        let dataButtonFrame = CGRect(x: topBarPadding + topBarWidth - dataButtonSize, y: 0, width: dataButtonSize, height: dataButtonSize);
+        dataButton.frame = dataButtonFrame;
+        
+        //connectionIndicatorButton.setImage(UIImage(systemName: ), for: <#T##UIControl.State#>)
+        //dataButton.backgroundColor = .systemBlue;
+        updateDataButton();
+        dataButton.imageView?.contentMode = .scaleAspectFit;
+        
+        dataButton.tintColor = InverseBackgroundColor;
+        
+        dataButton.addTarget(self, action: #selector(self.toggleDataButton), for: .touchUpInside);
+        
+        mainScrollView.addSubview(dataButton);
+        
+        //
+        
+        let graphLabelFrame = CGRect(x: topBarPadding, y: 0, width: topBarWidth - dataButtonSize, height: topBarHeight);
         let graphLabel = UILabel(frame: graphLabelFrame);
         
         graphLabel.text = "Telemetry Data";
@@ -73,18 +97,10 @@ class telemetryViewController : UIViewController{
         graphLabel.textColor = InverseBackgroundColor;
         
         mainScrollView.addSubview(graphLabel);
-        nextY += graphLabel.frame.height;
-        
+    
         //
         
-        let statusViewWidth = AppUtility.getCurrentScreenSize().width - 2*horizontalPadding;
-        let statusViewFrame = CGRect(x: horizontalPadding, y: nextY, width: statusViewWidth, height: statusViewWidth * 0.1);
-        statusView.frame = statusViewFrame;
-
-        renderStatusView();
-        
-        mainScrollView.addSubview(statusView);
-        nextY += statusView.frame.height;
+        nextY += topBarHeight;
         
         //
         
@@ -107,12 +123,6 @@ class telemetryViewController : UIViewController{
         //
         
         defaultNextY = nextY;
-        
-    }
-    
-    //
-    
-    internal func renderStatusView(){
         
     }
     

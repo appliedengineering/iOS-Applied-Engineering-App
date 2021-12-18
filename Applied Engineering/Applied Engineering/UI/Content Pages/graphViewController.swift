@@ -21,8 +21,6 @@ class graphViewController : contentViewController, ChartViewDelegate{
     internal let dataButton : UIButton = UIButton();
     internal var dataButtonTrailingConstraint : NSLayoutConstraint? = nil;
     internal var dataButtonWidthConstraint : NSLayoutConstraint? = nil;
-    private let dataButtonOnImage : UIImage = UIImage(systemName: "wifi")!;
-    private let dataButtonOffImage : UIImage = UIImage(systemName: "wifi.slash")!;
     
     internal var graphKey : String = "";
     private var graphColor : UIColor = .systemRed;
