@@ -29,6 +29,9 @@ let nonGraphableDataPoints : [String] = [
 
 let dataButtonOnImage : UIImage = UIImage(systemName: "wifi")!;
 let dataButtonOffImage : UIImage = UIImage(systemName: "wifi.slash")!;
+
+let dataButtonOnColor : UIColor = .systemGreen;
+let dataButtonOffColor : UIColor = .systemRed;
 //
 
 // Notification Macros

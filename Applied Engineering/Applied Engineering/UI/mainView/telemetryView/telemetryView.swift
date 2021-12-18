@@ -42,12 +42,15 @@ class telemetryViewController : UIViewController{
         mainScrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height);
      
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateData), name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDataButtonStatus), name: NSNotification.Name(rawValue: connectionStatusUpdatedNotification), object: nil);
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated);
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: connectionStatusUpdatedNotification), object: nil);
+
     }
     
     override func viewDidLoad() {

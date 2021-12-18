@@ -130,6 +130,20 @@ extension telemetryViewController{
         dataButton.setImage((dataMgr.isReceivingData() ? dataButtonOnImage : dataButtonOffImage), for: .normal);
     }
     
+    @objc internal func updateDataButtonStatus(_ notification: NSNotification){
+        
+        guard let dict = notification.userInfo as NSDictionary? else{
+            return;
+        }
+        
+        guard let isConnected = dict["isConnected"] as? Bool else{
+            return;
+        }
+        
+        dataButton.tintColor = isConnected ? dataButtonOnColor : dataButtonOffColor;
+        
+    }
+    
     @objc internal func toggleDataButton(_ button: UIButton){
         dataMgr.setShouldReceiveData(!dataMgr.isReceivingData());
         updateDataButton();

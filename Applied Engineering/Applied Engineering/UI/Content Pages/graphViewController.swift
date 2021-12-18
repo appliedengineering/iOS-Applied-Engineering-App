@@ -130,12 +130,15 @@ class graphViewController : contentViewController, ChartViewDelegate{
         self.updateViewsWithScreenSize(AppUtility.getCurrentScreenSize());
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateData), name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDataButtonStatus), name: NSNotification.Name(rawValue: connectionStatusUpdatedNotification), object: nil);
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated);
         NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil);
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: dataUpdatedNotification), object: nil);
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: connectionStatusUpdatedNotification), object: nil);
+
     }
     
     //
@@ -203,6 +206,20 @@ class graphViewController : contentViewController, ChartViewDelegate{
     
     private func updateDataButton(){
         self.dataButton.setImage((dataMgr.isReceivingData() ? dataButtonOnImage : dataButtonOffImage), for: .normal);
+    }
+    
+    @objc private func updateDataButtonStatus(_ notification: NSNotification){
+        
+        guard let dict = notification.userInfo as NSDictionary? else{
+            return;
+        }
+        
+        guard let isConnected = dict["isConnected"] as? Bool else{
+            return;
+        }
+        
+        dataButton.tintColor = isConnected ? dataButtonOnColor : dataButtonOffColor;
+        
     }
     
     private func setupGraph(){

@@ -75,10 +75,9 @@ class communicationClass{
         
         pinger?.observer = { (response) in
             //let duration = response.duration;
-            print(response.error == nil);
+            //print(response.error == nil);
             
-            
-            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: connectionStatusUpdatedNotification), object: nil, userInfo: ["isConnected" : response.error == nil]);
         }
         
         try? pinger?.startPinging();
