@@ -151,4 +151,17 @@ class contentViewController : UIViewController{
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
     }
 }
+
+class debugContentViewController : UIViewController{
+    internal var debugTitle : String = "N/A";
+    internal var widthToHeightRatio : CGFloat = 0;
+    
+    public func getDebugTitle() -> String{
+        return debugTitle;
+    }
+    
+    public func getWidthToHeightRatio() -> CGFloat{
+        return widthToHeightRatio;
+    }
+}
 //
