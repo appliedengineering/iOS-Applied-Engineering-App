@@ -10,7 +10,7 @@ import UIKit
 
 class mainViewController : UIViewController{
     
-    internal let contentViewControllers : [UIViewController] = [telemetryViewController()];
+    internal let contentViewControllers : [UIViewController?] = [telemetryViewController(), nil, debugViewController(), nil];
     internal var previousViewControllerIndex : Int = -1;
     internal var hasSetup = false;
     
@@ -56,7 +56,7 @@ class mainViewController : UIViewController{
                     views.removeFromSuperview();
                 }
                 
-                let vc = contentViewControllers[previousViewControllerIndex];
+                let vc = contentViewControllers[previousViewControllerIndex]!;
                 
                 vc.willMove(toParent: nil);
                 vc.view.removeFromSuperview();
@@ -64,7 +64,7 @@ class mainViewController : UIViewController{
             }
             
             previousViewControllerIndex = contentIndex;
-            linkViewControllerToView(view: self.view, controller: contentViewControllers[contentIndex], parentController: self);
+            linkViewControllerToView(view: self.view, controller: contentViewControllers[contentIndex]!, parentController: self);
         }
     }
 }

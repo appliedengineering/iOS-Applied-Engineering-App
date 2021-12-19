@@ -13,8 +13,12 @@ class leftBarViewController : UIViewController{
     internal var topView : UIView = UIView();
     internal var hasSetup = false;
     
-    private let leftBarContentTitles : [String] = ["Telemetry", "Instrument\nCluster", "Settings"];
-    private let leftBarContentImageNames : [String] = ["list.bullet.rectangle", "speedometer", "gearshape"]; // system image names
+    //
+
+    private let leftBarContentTitles : [String] = ["Telemetry", "Instrument\nCluster", "Debug", "Settings"];
+    private let leftBarContentImageNames : [String] = ["list.bullet.rectangle", "speedometer", "ladybug", "gearshape"]; // system image names
+    
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -34,12 +38,12 @@ class leftBarViewController : UIViewController{
     
     @objc func updateMainView(_ sender: UIButton){
         //print(sender.tag);
-        if (sender.tag == 2){ // settings was clicked
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil, userInfo: nil);
-        }
-        else if (sender.tag == 1){ // instrument cluster page
+        if (sender.tag == leftBarContentTitles.firstIndex(of: "Instrument\nCluster")!){ // instrument cluster page
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutMainViewNotification), object: nil, userInfo: nil);
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutContentInstrumentClusterPage), object: nil, userInfo: nil);
+        }
+        else if (sender.tag == leftBarContentTitles.firstIndex(of: "Settings")!){ // settings was clicked
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: layoutSettingsViewNotification), object: nil, userInfo: nil);
         }
         else{
             var dataDict : [String : Any] = [:];
