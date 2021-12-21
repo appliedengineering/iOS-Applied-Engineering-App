@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait);
         
-        communication.connect(communication.createFullAddress());
+        communication.connect(communication.createTelemetryFullAddress());
         dataMgr;
         
     }

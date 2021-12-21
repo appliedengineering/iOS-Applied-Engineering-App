@@ -72,6 +72,7 @@ class debugViewController : contentViewController{
             let parentView = UIView(frame: parentViewFrame);
             
             //parentView.backgroundColor = .systemGreen;
+            
             linkViewControllerToView(view: parentView, controller: vc, parentController: self);
             
             mainScrollView.addSubview(parentView);

@@ -78,7 +78,6 @@ class telemetryViewController : UIViewController{
         let dataButtonFrame = CGRect(x: topBarPadding + topBarWidth - dataButtonSize, y: 0, width: dataButtonSize, height: dataButtonSize);
         dataButton.frame = dataButtonFrame;
         
-        //connectionIndicatorButton.setImage(UIImage(systemName: ), for: <#T##UIControl.State#>)
         //dataButton.backgroundColor = .systemBlue;
         updateDataButton();
         dataButton.imageView?.contentMode = .scaleAspectFit;

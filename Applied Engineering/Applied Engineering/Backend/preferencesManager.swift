@@ -83,7 +83,9 @@ class preferencesManager{
         case 0:
             connectionIPAddress = val;
         case 1:
-            connectionPort = val;
+            if val.count <= 4{
+                connectionPort = val;
+            }
         case 2:
             zeromqReceiveReconnectTimeout = Int(val) ?? d_zeromqReceiveReconnectTimeout;
         case 3:

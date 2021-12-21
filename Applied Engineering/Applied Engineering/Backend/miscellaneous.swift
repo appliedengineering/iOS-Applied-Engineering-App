@@ -153,6 +153,11 @@ class contentViewController : UIViewController{
 }
 
 class debugContentViewController : UIViewController{
+    internal let horizontalPadding = AppUtility.getCurrentScreenSize().width / 28;
+    internal let verticalPadding : CGFloat = 10;
+
+    //
+    
     internal var debugTitle : String = "N/A";
     internal var widthToHeightRatio : CGFloat = 0;
     

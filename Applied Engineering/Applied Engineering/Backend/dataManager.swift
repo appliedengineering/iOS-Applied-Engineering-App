@@ -42,6 +42,7 @@ class dataManager{
     
     private var graphDataStorage : [String : [ChartDataEntry]] = [:];
     private var staticDataStorage : [String : AnyObject] = [:];
+    private var latestTimestamp : Float64 = 0.0;
     
     private var startTimeStamp : Float64 = 0.0;
     private var recvTimeoutTimestamp : CFAbsoluteTime = CFAbsoluteTimeGetCurrent();
@@ -92,10 +93,10 @@ class dataManager{
         DispatchQueue.global(qos: .background).async{
             while true{ // keeps on reconnecting
                 
-                while (communication.getIsConnected() && communication.getSocket() != nil) {
+                while (communication.getIsConnected() && communication.getTelemetrySocket() != nil) {
                  
                     do{
-                        self.updateWithNewData(try communication.getSocket()?.recv() ?? Data());
+                        self.updateWithNewData(try communication.getTelemetrySocket()?.recv() ?? Data());
                     }
                     catch{
                         //print(error);
@@ -142,6 +143,8 @@ class dataManager{
                 return;
             }
             data["timeStamp"] = nil; // remove from raw data
+            
+            latestTimestamp = currentTimestamp;
                         
             // remove excess data points from storage
             
@@ -234,6 +237,14 @@ class dataManager{
     
     public func isReceivingData() -> Bool{
         return shouldReceiveData;
+    }
+    
+    public func getLatestTimestamp() -> Float64{
+        return latestTimestamp;
+    }
+    
+    public func getStartTimestamp() -> Float64{
+        return startTimeStamp;
     }
     
     //
