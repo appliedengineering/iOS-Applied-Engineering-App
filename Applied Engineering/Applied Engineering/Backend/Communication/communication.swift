@@ -13,17 +13,17 @@ import SwiftyPing
 class communicationClass{
     static public let obj = communicationClass();
     
-    private var connectionString = "";
+    internal var connectionString = "";
     
-    private var context : SwiftyZeroMQ.Context?;
+    internal var context : SwiftyZeroMQ.Context?;
     internal var sub : SwiftyZeroMQ.Socket?;
     
-    internal var pair : SwiftyZeroMQ.Socket?;
+    internal var req : SwiftyZeroMQ.Socket?;
     
     internal let replyTimeoutCounterDefault : Int = 5; // in seconds
     internal var replyTimeoutCounter : Int = 5;
     
-    private var zmqIsConnected = false;
+    internal var zmqIsConnected = false;
     
     //
     
@@ -37,7 +37,7 @@ class communicationClass{
         do{
             context = try SwiftyZeroMQ.Context();
             sub = try context?.socket(.subscribe);
-            pair = try context?.socket(.pair);
+            req = try context?.socket(.request);
         }
         catch{
             log.addc("Unable to create ZeroMQ context");
@@ -69,7 +69,7 @@ class communicationClass{
             try sub?.connect(connectionString);
             try sub?.setSubscribe("");
             
-            try pair?.connect(connectionString + "1"); // adds one to the port
+            try req?.connect(connectionString + "1"); // adds one to the port
             
         }
         catch{
@@ -98,6 +98,7 @@ class communicationClass{
         
         do{
             try sub?.disconnect(connectionString);
+            try req?.disconnect(connectionString + "1");
         }
         catch{
             log.addc("Disconnect communication error - \(error) - \(convertErrno(zmq_errno()))");

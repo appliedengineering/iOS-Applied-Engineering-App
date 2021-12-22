@@ -20,7 +20,7 @@ extension communicationClass{
         
         do{
             try rawData.pack(timestamp);
-            try pair?.send(data: rawData);
+            try req?.send(data: rawData);
         }
         catch{
             log.addc("Failed to sync timestamp \(timestamp) : \(error) - \(convertErrno(zmq_errno()))");
@@ -34,6 +34,11 @@ extension communicationClass{
                 DispatchQueue.main.sync {
                     replyCompletion(isSuccessful);
                 }
+                
+                if (!isSuccessful){
+                    self.resetReq();
+                }
+                
             });
         }
     }
@@ -47,7 +52,7 @@ extension communicationClass{
         
         while (replyTimeoutCounter > 0 && replyRawData == nil){
             do{
-                try replyRawData = pair?.recv(options: .dontWait);
+                try replyRawData = req?.recv(options: .dontWait);
             }
             catch{
                 if (errno != EAGAIN){
@@ -93,6 +98,24 @@ extension communicationClass{
     
     private func resetCounter(){
         replyTimeoutCounter = replyTimeoutCounterDefault;
+    }
+    
+    private func resetReq(){
+        
+        do{
+            try req?.disconnect(connectionString + "1");
+            try req?.close();
+        
+            req = nil;
+            
+            try req = context?.socket(.request);
+            try req?.connect(connectionString + "1");
+        }
+        catch{
+            log.addc("Unable to reset req - \(error) - \(convertErrno(zmq_errno()))");
+            return;
+        }
+        
     }
     
 }

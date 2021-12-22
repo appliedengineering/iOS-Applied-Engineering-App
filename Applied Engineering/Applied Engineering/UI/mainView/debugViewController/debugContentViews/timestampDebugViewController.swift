@@ -190,7 +190,6 @@ class timestampDebugViewController : debugContentViewController{
             
             let receive = dataMgr.getLatestTimestamp().truncate(places: 1);
             let curr = NSDate().timeIntervalSince1970.truncate(places: 1);
-            let accuracy : Double = 3;
             
             receiveTimestampLabel.text = "Receive Timestamp = \(dataMgr.getLatestTimestamp().truncate(places: 1))";
             
