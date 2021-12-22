@@ -37,6 +37,9 @@ class timestampDebugViewController : debugContentViewController{
     internal let resultLabel : UILabel = UILabel();
     internal var resultLabelHeightConstraint : NSLayoutConstraint? = nil;
     
+    private var waitingOnSyncResult : Bool = false;
+    private var resultLabelTimer : Timer? = nil;
+    
     internal var timestampTimer : Timer? = nil;
     
     //
@@ -206,8 +209,30 @@ class timestampDebugViewController : debugContentViewController{
     }
     
     @objc internal func sendSyncRequest(){
-        communication.sendSyncTimestampRequest(replyCompletion: { (updateStatus) in
-            print("sync request outcome - \(updateStatus)");
-        });
+        if (!waitingOnSyncResult){
+            UINotificationFeedbackGenerator().notificationOccurred(.success);
+            
+            resultLabelTimer?.invalidate();
+            resultLabelTimer = nil;
+                        
+            waitingOnSyncResult = true;
+            resultLabel.text = "Waiting for reply...";
+            resultLabel.textColor = InverseBackgroundColor;
+            
+            communication.sendSyncTimestampRequest(replyCompletion: { (reply) in
+                //print("sync request outcome - \(reply)");
+                
+                self.resultLabel.text = reply ? "Successful" : "Failed";
+                self.resultLabel.textColor = reply ? .systemGreen : .systemRed;
+                
+                self.waitingOnSyncResult = false;
+                self.resultLabelTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.resetResultLabel), userInfo: nil, repeats: false);
+            });
+        }
+    }
+    
+    @objc internal func resetResultLabel(){
+        self.resultLabel.text = "";
+        self.resultLabel.textColor = InverseBackgroundColor;
     }
 }
