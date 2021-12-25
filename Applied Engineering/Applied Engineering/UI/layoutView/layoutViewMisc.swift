@@ -116,6 +116,10 @@ extension layoutViewController{
         vc.setGraphKey(graphKey);
     }
     
+    @objc func presentLogPage(_ sender: NSNotification){
+        self.presentContentPage(logViewController());
+    }
+    
     @objc func presentContentPage(_ vc: UIViewController){
         vc.modalPresentationStyle = .fullScreen;
         self.present(vc, animated: true, completion: nil);

@@ -11,7 +11,7 @@ import Charts
 
 class debugViewController : contentViewController{
     
-    private let debugViewControllers : [debugContentViewController] = [timestampDebugViewController()];
+    private let debugViewControllers : [debugContentViewController] = [timestampDebugViewController(), logDebugViewController()];
     
     //
     

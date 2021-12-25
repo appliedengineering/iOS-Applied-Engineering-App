@@ -12,11 +12,11 @@ import Charts
 // General Global Macros
 
 /*let statusNameArray : [String] = [
-    "Minimum Duty Detection",
-    "Over Current Protection",
-    "Over Voltage Prevention",
-    "Power Supply Mode"
-];*/
+ "Minimum Duty Detection",
+ "Over Current Protection",
+ "Over Voltage Prevention",
+ "Power Supply Mode"
+ ];*/
 
 let nonGraphableDataPoints : [String] = [
     "psuMode",
@@ -39,6 +39,7 @@ let layoutSettingsViewNotification = "layoutSettingsViewNotification";
 let layoutMainViewNotification = "layoutMainViewNotification";
 let layoutContentInstrumentClusterPage = "layoutContentInstrumentClusterPage";
 let layoutContentGraphPage = "layoutContentGraphPage";
+let layoutContentLogPage = "layoutContentLogPage";
 
 let mainViewSetContentViewNotification = "mainViewSetContentViewNotification";
 let dismissRightBarKeyboardNotification = "dismissRightBarKeyboardNotification";
@@ -155,7 +156,7 @@ class contentViewController : UIViewController{
 class debugContentViewController : UIViewController{
     internal let horizontalPadding = AppUtility.getCurrentScreenSize().width / 28;
     internal let verticalPadding : CGFloat = 10;
-
+    
     //
     
     internal var debugTitle : String = "N/A";

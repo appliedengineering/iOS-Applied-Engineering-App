@@ -39,6 +39,7 @@ class layoutViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.presentInstrumentClusterPage), name: NSNotification.Name(rawValue: layoutContentInstrumentClusterPage), object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(self.presentGraphPage), name: NSNotification.Name(rawValue: layoutContentGraphPage), object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(self.presentLogPage), name: NSNotification.Name(rawValue: layoutContentLogPage), object: nil);
     }
     
     deinit{
@@ -47,7 +48,7 @@ class layoutViewController: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: layoutContentInstrumentClusterPage), object: nil);
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: layoutContentGraphPage), object: nil);
-
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: layoutContentLogPage), object: nil);
     }
 
     
