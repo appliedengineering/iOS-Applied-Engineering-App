@@ -12,28 +12,6 @@ import SwiftMsgPack
 import Charts
 
 
-/*public struct APiData : Decodable{
- var psuMode : Int = 0; // power supply mode - 3
- // graphable data
- var throttleDuty : Int = 0;
- var mpptDuty : Int = 0;
- var throttlePercent : Int = 0;
- var dutyPercent : Int = 0;
- var pwmFrequency : Int = 0;
- //var rpm : Float32 = 0.0;
- //var torque : Float32 = 0.0;
- var tempC : Float32 = 0.0;
- var sourceVoltage : Float32 = 0.0;
- var pwmCurrent : Float32 = 0.0;
- var powerChange : Float32 = 0.0;
- var voltageChange : Float32 = 0.0;
- // graphable data
- var mddStatus : Bool = false; // minimum duty detection - 0
- var ocpStatus : Bool = false; // over current protection - 1
- var ovpStatus : Bool = false; // over voltage prevention - 2
- var timeStamp : Float64 = 0.0;
- }*/
-
 class dataManager{
     
     static public let obj = dataManager();
@@ -51,18 +29,34 @@ class dataManager{
     
     //
     
-    private let graphNameLookup : [String : String] = [
+    struct graphAttributes{
+        static public let defaultColor : UIColor = .rgb(68, 75, 55); // branding default color
+        
+        var title : String = "";
+        var color : UIColor = defaultColor;
+    }
+    
+    private let graphAttributeLookup : [String : graphAttributes] = [
+        "rpm" : graphAttributes(title: "RPM", color: .rgb(68, 81, 181)), // X
+        "torque" : graphAttributes(title: "Torque (N⋅m)", color: .rgb(0, 150, 136)), // X
+        "throttleDuty" : graphAttributes(title: "Throttle Duty", color: .rgb(76, 175, 80)), // X
+        "throttlePercent" : graphAttributes(title: "Throttle (%)", color: .rgb(255, 235, 59)), // on instrument cluster
+        "dutyPercent" : graphAttributes(title: "Duty (%)", color: .rgb(255, 152, 0)),
+        "pwmFrequency" : graphAttributes(title: "PWM Frequency", color: .rgb(255, 87, 34)),
+        "tempC" : graphAttributes(title: "Temperature (C)", color: .rgb(244, 67, 54)), // on instrument cluster
+        "sourceVoltage" : graphAttributes(title: "Source Voltage (V)", color: .rgb(233, 30, 99)),
+        //"voltageChange" : graphAttributes(title: "Voltage Change (Δ)", color: .rgb(206, 147, 216))
+    ];
+    
+    /*private let graphNameLookup : [String : String] = [
         "rpm" : "RPM",
         "torque" : "Torque (N⋅m)",
         "throttleDuty" : "Throttle Duty",
-        "mpptDuty" : "MPPT Duty",
         "throttlePercent" : "Throttle (%)",
         "dutyPercent" : "Duty (%)",
         "pwmFrequency" : "PWM Frequency",
         "tempC" : "Temperature (C)",
         "sourceVoltage" : "Source Voltage (V)",
-        "pwmCurrent" : "PWM Current (A)",
-        "powerChange" : "Power Change (Δ)",
         "voltageChange" : "Voltage Change (Δ)"
     ];
     
@@ -70,16 +64,13 @@ class dataManager{
         "rpm" : UIColor.rgb(63, 81, 181),
         "torque" : UIColor.rgb(0, 150,136),
         "throttleDuty" : UIColor.rgb(76, 175, 80),
-        "mpptDuty" : UIColor.rgb(139, 195, 74),
         "throttlePercent" : UIColor.rgb(255, 235, 59),
         "dutyPercent" : UIColor.rgb(255, 152, 0),
         "pwmFrequency" : UIColor.rgb(255, 87, 34),
         "tempC" : UIColor.rgb(244, 67, 54),
         "sourceVoltage" : UIColor.rgb(233, 30, 99),
-        "pwmCurrent" : UIColor.rgb(156, 39, 176),
-        "powerChange" : UIColor.rgb(38, 198, 218),
         "voltageChange" : UIColor.rgb(206, 147, 216)
-    ];
+    ];*/
     
     //
     
@@ -214,11 +205,11 @@ class dataManager{
     }
     
     public func getGraphTitleFor(_ key: String) -> String{
-        return graphNameLookup[key] ?? key;
+        return graphAttributeLookup[key]?.title ?? key;
     }
     
     public func getGraphColorFor(_ key: String) -> UIColor{
-        return graphColorLookup[key] ?? .systemBlue;
+        return graphAttributeLookup[key]?.color ?? graphAttributes.defaultColor;
     }
     
     public func setShouldReceiveData(_ recvData: Bool){

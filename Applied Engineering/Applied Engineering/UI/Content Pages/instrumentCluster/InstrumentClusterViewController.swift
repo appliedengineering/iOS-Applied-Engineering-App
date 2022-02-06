@@ -15,6 +15,15 @@ class instrumentClusterViewController : contentViewController{
     
     //
     
+    internal let speedometerGague : UIView = UIView(); // left side of screen
+    
+    internal let throttleGague : SemiCircleGagueView = SemiCircleGagueView();
+    internal let temperatureGague : SemiCircleGagueView = SemiCircleGagueView();
+    
+    internal let batteryGague : UIView = UIView();
+    
+    //
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -42,7 +51,7 @@ class instrumentClusterViewController : contentViewController{
         
         //
         
-        
+        renderContent();
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -84,5 +93,59 @@ class instrumentClusterViewController : contentViewController{
         
         dismissImageView.image = UIImage(systemName: "chevron.left");
         dismissImageView.tintColor = InverseBackgroundColor;
+    }
+    
+    internal func renderContent(){
+        
+        let contentViewWidth = AppUtility.getCurrentScreenSize().width;
+        let contentViewHeight = AppUtility.getCurrentScreenSize().height - dismissButtonHeightAnchor!.constant;
+        
+        let contentViewHorizontalPadding : CGFloat = contentViewWidth * 0.01;
+        let contentViewVerticalPadding : CGFloat = contentViewHeight * 0.01;
+        
+        //
+        
+        let contentView = UIView();
+        
+        self.view.addSubview(contentView);
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false;
+        
+        contentView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true;
+        contentView.topAnchor.constraint(equalTo: dismissButton.bottomAnchor).isActive = true;
+        contentView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true;
+        contentView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true;
+        
+        contentView.backgroundColor = .systemRed;
+        
+        ///
+        
+        /*contentView.addSubview(speedLabel);
+        
+        speedLabel.translatesAutoresizingMaskIntoConstraints = false;
+        
+        speedLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true;
+        speedLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: contentViewVerticalPadding).isActive = true;
+        
+        speedLabel.text = "0";
+        speedLabel.textColor = InverseBackgroundColor;
+        speedLabel.font = UIFont(name: Inter_Bold, size: contentViewWidth * 0.06);
+        //speedLabel.backgroundColor = .systemRed;
+        
+        //
+        
+        let mphLabel = UILabel();
+        
+        contentView.addSubview(mphLabel);
+        
+        mphLabel.translatesAutoresizingMaskIntoConstraints = false;
+        
+        mphLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true;
+        mphLabel.topAnchor.constraint(equalTo: speedLabel.bottomAnchor).isActive = true;
+        
+        mphLabel.text = "mph";
+        mphLabel.textColor = InverseBackgroundColor;
+        mphLabel.font = UIFont(name: Inter_Regular, size: contentViewWidth * 0.02);*/
+        
     }
 }
