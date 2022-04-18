@@ -37,14 +37,14 @@ class dataManager{
     }
     
     private let graphAttributeLookup : [String : graphAttributes] = [
-        "rpm" : graphAttributes(title: "RPM", color: .rgb(68, 81, 181)), // X
-        "torque" : graphAttributes(title: "Torque (N⋅m)", color: .rgb(0, 150, 136)), // X
-        "throttleDuty" : graphAttributes(title: "Throttle Duty", color: .rgb(76, 175, 80)), // X
-        "throttlePercent" : graphAttributes(title: "Throttle (%)", color: .rgb(255, 235, 59)), // on instrument cluster
-        "dutyPercent" : graphAttributes(title: "Duty (%)", color: .rgb(255, 152, 0)),
-        "pwmFrequency" : graphAttributes(title: "PWM Frequency", color: .rgb(255, 87, 34)),
-        "tempC" : graphAttributes(title: "Temperature (C)", color: .rgb(244, 67, 54)), // on instrument cluster
-        "sourceVoltage" : graphAttributes(title: "Source Voltage (V)", color: .rgb(233, 30, 99)),
+        "TP" : graphAttributes(title: "Throttle %", color: .rgb(68, 81, 181)), // X
+        "DP" : graphAttributes(title: "Duty %", color: .rgb(0, 150, 136)), // X
+        "CP" : graphAttributes(title: "Chip Temp (°C)", color: .rgb(76, 175, 80)), // X
+        "BV" : graphAttributes(title: "Battery Voltage", color: .rgb(255, 235, 59)), // on instrument cluster
+        "speed" : graphAttributes(title: "Speed (m/s)", color: .rgb(255, 152, 0)),
+        //"pwmFrequency" : graphAttributes(title: "PWM Frequency", color: .rgb(255, 87, 34)),
+        //"tempC" : graphAttributes(title: "Temperature (C)", color: .rgb(244, 67, 54)), // on instrument cluster
+        //"sourceVoltage" : graphAttributes(title: "Source Voltage (V)", color: .rgb(233, 30, 99)),
         //"voltageChange" : graphAttributes(title: "Voltage Change (Δ)", color: .rgb(206, 147, 216))
     ];
     

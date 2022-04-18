@@ -17,8 +17,8 @@ class instrumentClusterViewController : contentViewController{
     
     internal let speedometerGague : UIView = UIView(); // left side of screen
     
-    internal let throttleGague : SemiCircleGagueView = SemiCircleGagueView();
-    internal let temperatureGague : SemiCircleGagueView = SemiCircleGagueView();
+    //internal let throttleGague : SemiCircleGagueView = SemiCircleGagueView();
+    //internal let temperatureGague : SemiCircleGagueView = SemiCircleGagueView();
     
     internal let batteryGague : UIView = UIView();
     

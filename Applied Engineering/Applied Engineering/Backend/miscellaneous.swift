@@ -19,12 +19,12 @@ import Charts
  ];*/
 
 let nonGraphableDataPoints : [String] = [
-    "psuMode",
-    "lastRPMTime",
-    "numInterrupts",
-    "mddStatus",
-    "ocpStatus",
-    "ovpStatus"
+    "EM",
+    "OV",
+    "SM",
+    "UV",
+    "posLat",
+    "posLon"
 ];
 
 let dataButtonOnImage : UIImage = UIImage(systemName: "wifi")!;
