@@ -15,12 +15,15 @@ class instrumentClusterViewController : contentViewController{
     
     //
     
-    internal let speedometerGague : UIView = UIView(); // left side of screen
+    internal let speedLabel : UILabel = UILabel();
+    internal let mphLabel : UILabel = UILabel();
+    
+    //internal let speedometerGague : UIView = UIView(); // left side of screen
     
     //internal let throttleGague : SemiCircleGagueView = SemiCircleGagueView();
     //internal let temperatureGague : SemiCircleGagueView = SemiCircleGagueView();
     
-    internal let batteryGague : UIView = UIView();
+    //internal let batteryGague : UIView = UIView();
     
     //
     
@@ -116,11 +119,11 @@ class instrumentClusterViewController : contentViewController{
         contentView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true;
         contentView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true;
         
-        contentView.backgroundColor = .systemRed;
+        //contentView.backgroundColor = .systemRed;
         
         ///
         
-        /*contentView.addSubview(speedLabel);
+        contentView.addSubview(speedLabel);
         
         speedLabel.translatesAutoresizingMaskIntoConstraints = false;
         
@@ -145,7 +148,7 @@ class instrumentClusterViewController : contentViewController{
         
         mphLabel.text = "mph";
         mphLabel.textColor = InverseBackgroundColor;
-        mphLabel.font = UIFont(name: Inter_Regular, size: contentViewWidth * 0.02);*/
+        mphLabel.font = UIFont(name: Inter_Regular, size: contentViewWidth * 0.02);
         
     }
 }

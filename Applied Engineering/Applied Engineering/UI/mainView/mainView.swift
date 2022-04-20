@@ -10,7 +10,8 @@ import UIKit
 
 class mainViewController : UIViewController{
     
-    internal let contentViewControllers : [UIViewController?] = [telemetryViewController(), nil, debugViewController(), nil];
+    //internal let contentViewControllers : [UIViewController?] = [telemetryViewController(), nil, debugViewController(), nil];
+    internal let contentViewControllers : [UIViewController?] = [telemetryViewController(), debugViewController(), nil];
     internal var previousViewControllerIndex : Int = -1;
     internal var hasSetup = false;
     
