@@ -163,6 +163,8 @@ class dataManager{
                         
                         graphDataStorage[point.key]!.append(createDataPoint(currentTimestamp, castToFloat(point.value)));
                         
+                        graphDataStorage[point.key]!.sort(by: { $0.x < $1.x });
+                        
                         while ((graphDataStorage[point.key]?.count ?? -1) > preferences.graphBufferSize){
                             graphDataStorage[point.key]?.removeFirst();
                         }
